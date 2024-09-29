@@ -1,0 +1,10 @@
+.vscode
+**/.vscode
+
+**/node_modules
+
+**/dist
+**/build
+
+**/.env
+**/.env.local
