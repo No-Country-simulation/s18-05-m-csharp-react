@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* COLOR PALETTE */
+  --primary: #5804B2;
+  --secondary: #AF91CF;
+  --highlight: #CD7223;
+  --accent: #FAA861;
+  --dark-gray: #595959;
+  --light-gray: #B3B3B3;
+  --white: #FFFFFF;
+
+  /* FONTS SIZES */
+  --fs-title: 34pt;
+  --fs-title-secondary: 28pt;
+  --fs-subtitle: 17pt;
+  --fs-body: 13pt;
+  --fs-small: 12pt;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sf);
+}
+
+h1,
+h2,
+h3,
+button {
+  font-weight: 800;
+}
+
+h1 {
+  font-size: var(--fs-title);
+}
+
+h2 {
+  font-size: var(--fs-title-secondary);
+}
+
+h3 {
+  font-size: var(--fs-subtitle);
+}
+
+button {
+  font-size: var(--fs-subtitle);
+  text-transform: uppercase;
+  color: var(--white);
+
+  &:disabled {
+    color: var(--light-gray);
+    cursor: not-allowed;
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
