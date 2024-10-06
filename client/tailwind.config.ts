@@ -5,6 +5,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/layout/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -12,9 +13,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
+        "primary-light": "var(--primary-light)",
         secondary: "var(--secondary)",
-        highlight: "var(--highlight)",
-        accent: "var(--accent)",
+        "secondary-light": "var(--secondary-light)",
         "dark-gray": "var(--dark-gray)",
         "light-gray": "var(--light-gray)",
         white: "var(--white)",
@@ -28,6 +29,19 @@ const config: Config = {
       },
       fontFamily: {
         "sf": ["var(--font-sf)", "sans-serif"],
+      },
+      fontWeight: {
+        regular: "400",
+        bold: "800"
+      },
+      backgroundImage: {
+        "custom-gradient": "linear-gradient(180deg, #9D6DD1 0%, #6D3F9E 100%)",
+      },
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
       },
     },
   },

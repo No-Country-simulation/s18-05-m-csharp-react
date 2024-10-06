@@ -3,16 +3,17 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/layout/Header";
 import Footer from "@/layout/Footer";
+import BottomNav from "@/layout/BottomNav";
 
 const sanFranciscoFont = localFont({
   src: [
     {
-      path: '../../public/fonts/SF-regular.woff',
+      path: '../../public/assets/fonts/SF-regular.woff',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../public/fonts/SF-bold.woff',
+      path: '../../public/assets/fonts/SF-bold.woff',
       weight: '800',
       style: 'normal',
     },
@@ -39,7 +40,8 @@ export default function RootLayout({
         <main>
           {children}
         </main>
-        <Footer />
+        <BottomNav />
+        {/* <Footer /> */}
       </body>
     </html>
   );

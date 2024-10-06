@@ -1,8 +1,7 @@
 
 const Header = () => {
     return (
-        <header>
-
+        <header className="bg-custom-gradient h-20 flex items-center justify-between px-4">
         </header>
     )
 }
