@@ -36,6 +36,7 @@ const config: Config = {
       },
       backgroundImage: {
         "custom-gradient": "linear-gradient(180deg, #9D6DD1 0%, #6D3F9E 100%)",
+        "active": "linear-gradient(180deg, #9D6DD1 0%, var(--primary) 100%)",
       },
       screens: {
         sm: "480px",

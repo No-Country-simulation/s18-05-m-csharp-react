@@ -1,0 +1,45 @@
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .btn {
+    font-size: var(--fs-);
+    text-transform: uppercase;
+    font-weight: 800;
+    width: 201px;
+    padding: 6px;
+    border-radius: 25px;
+
+    &:disabled {
+      color: var(--light-gray);
+      cursor: not-allowed;
+      background: transparent;
+      border: 1px solid var(--primary-light)
+    }
+  }
+
+  .input {
+    background-color: var(--white);
+    border-radius: 25px;
+    border: solid 1px var(--primary-light);
+    padding: 10px 16px;
+    width: 200px;
+    font-size: var(--fs-small);
+
+    &:not(:placeholder-shown) {
+      border-color: var(--primary);
+    }
+
+    &:hover,
+    &:focus {
+      border-color: var(--primary)
+    }
+
+    &:focus {
+      outline: solid 2px var(--primary)
+    }
+  }
+}

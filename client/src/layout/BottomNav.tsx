@@ -17,7 +17,7 @@ const navigation: Item[] = [
   { Icon: HandIcon, href: '/#donar', label: 'donar' },
 ]
 
-const BottomNav = () => {
+const BottomNav: FC = () => {
   const router = useRouter()
   const pathname = usePathname()
   const [isMobile, setIsMobile] = useState(false)

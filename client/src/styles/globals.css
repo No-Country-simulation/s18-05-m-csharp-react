@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -52,20 +51,5 @@ h3 {
   font-size: var(--fs-subtitle);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
 
-  .btn {
-    font-size: var(--fs-subtitle);
-    text-transform: uppercase;
-    color: var(--white);
-    font-weight: 800;
-
-    &:disabled {
-      color: var(--light-gray);
-      cursor: not-allowed;
-    }
-  }
-}
+@import url("./utiilities.css");
