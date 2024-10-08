@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Exclude Migrations folder in Persistence layer
+JuniorHub.Persistence/Migrations
