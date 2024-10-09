@@ -1,4 +1,6 @@
-﻿using AdoPet.Persistence.Data;
+﻿using AdoPet.Application.Contracts.Persistence;
+using AdoPet.Persistence.Data;
+using AdoPet.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +17,7 @@ public static class PersistenceServiceExtensions
         });
 
         // repositories
-        //services.AddScoped<IRepository, Repository>();
+        services.AddScoped<IAdoptablePetRepository, AdoptablePetRepository>();
 
         return services;
     }

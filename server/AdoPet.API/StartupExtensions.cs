@@ -1,4 +1,5 @@
-﻿using AdoPet.Persistence;
+﻿using AdoPet.Application;
+using AdoPet.Persistence;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -8,6 +9,7 @@ public static class StartupExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddIdentityServices(builder.Configuration);
 
@@ -46,6 +48,16 @@ public static class StartupExtensions
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "AdoPet API");
         });
         //}
+
+        app.Use(async (context, next) =>
+        {
+            if (context.Request.Path == "/")
+            {
+                context.Response.Redirect("/swagger");
+                return;
+            }
+            await next();
+        });
 
         app.UseHttpsRedirection();
 

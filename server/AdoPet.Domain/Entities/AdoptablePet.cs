@@ -11,7 +11,9 @@ public class AdoptablePet
     public string Location { get; set; }
     public string Notes { get; set; }
     public string PhotoUrl { get; set; }
+    /*
     public int UserId { get; set; }
     public User Owner { get; set; }
+    */
     public bool IsAdopted { get; set; }
 }

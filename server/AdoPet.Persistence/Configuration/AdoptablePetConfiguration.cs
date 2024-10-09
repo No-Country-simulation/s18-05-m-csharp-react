@@ -34,11 +34,11 @@ public class AdoptablePetConfiguration : IEntityTypeConfiguration<AdoptablePet>
 
         builder.Property(p => p.IsAdopted)
                .HasDefaultValue(false); // False default
-
+        /*
         builder.HasOne(p => p.Owner)
                .WithMany(u => u.PetsForAdoption)
                .HasForeignKey(p => p.UserId);
-
+        */
         builder.HasIndex(p => p.Name);
     }
 }
