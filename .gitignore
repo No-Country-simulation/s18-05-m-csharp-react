@@ -485,3 +485,5 @@ $RECYCLE.BIN/
 
 # Exclude appsettings.Development.json
 /server/AdoPet.API/appsettings.Development.json
+/server/AdoPET.API/appsettings.json
+
