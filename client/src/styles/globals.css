@@ -12,7 +12,9 @@
   --secondary-light: #FFDBBB;
   --dark-gray: #595959;
   --light-gray: #B3B3B3;
-  --white: #FFFFFF;
+  --white: #fff;
+
+  --primary-light-500: #af91cf8f;
 
   /* FONTS SIZES */
   --fs-title: 34pt;

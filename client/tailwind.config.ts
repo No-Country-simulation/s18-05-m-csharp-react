@@ -19,6 +19,7 @@ const config: Config = {
         "dark-gray": "var(--dark-gray)",
         "light-gray": "var(--light-gray)",
         white: "var(--white)",
+        "primary-light-500": "var(--primary-light-500)",
       },
       fontSize: {
         title: "var(--fs-title)",
@@ -33,6 +34,9 @@ const config: Config = {
       fontWeight: {
         regular: "400",
         bold: "800"
+      },
+      backgroundColor: {
+        "white-100": "#ffffff1a",
       },
       backgroundImage: {
         "custom-gradient": "linear-gradient(180deg, #9D6DD1 0%, #6D3F9E 100%)",
