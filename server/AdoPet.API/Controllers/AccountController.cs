@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AdoPet.API.Controllers
 {
-     [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class AccountController: ControllerBase
+    public class AccountController : ControllerBase
     {
-         private readonly IAuthService _authService;
-         public AccountController(IAuthService authService)
+        private readonly IAuthService _authService;
+        public AccountController(IAuthService authService)
         {
             _authService = authService;
         }

@@ -1,4 +1,6 @@
 ﻿using AdoPet.Application.Contracts.Persistence;
+using AdoPet.Application.DTOs;
+using AdoPet.Application.DTOs.AdoptablePet;
 using AdoPet.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,10 @@ namespace AdoPet.Application.Contracts.Services
     public interface IAdoptablePetService
     {
 
-        Task<AdoptablePet> AddAdoptablePet(AdoptablePet adoptablePet);
-        Task<IEnumerable<AdoptablePet>> GetAdoptablePets();
-        Task<AdoptablePet> GetAdoptablePetById(int id);
-        Task DeleteAdoptablePet(AdoptablePet adoptablePet);
+        Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet);
+        Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets();
+        Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id);
+        Task<BaseResponse<bool>> DeleteAdoptablePet(int id);
 
     }
 }

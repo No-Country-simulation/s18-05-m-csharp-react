@@ -11,7 +11,9 @@ using System.Reflection;
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         // Add services
-        
+        services.AddScoped<IAdoptablePetService, AdoptablePetService>();
+
+
         return services;
     }
     }

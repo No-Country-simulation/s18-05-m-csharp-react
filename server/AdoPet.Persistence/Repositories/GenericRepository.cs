@@ -57,6 +57,7 @@ namespace AdoPet.Persistence.Repositories
                 return false;
             }
             _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
             return true;
 
         }
