@@ -20,5 +20,6 @@ public class AdoPetDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        Seeding.Seed.IntialSeed(builder);
     }
 }
