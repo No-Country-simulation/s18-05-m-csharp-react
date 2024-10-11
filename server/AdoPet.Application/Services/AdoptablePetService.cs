@@ -118,6 +118,37 @@ namespace AdoPet.Application.Services
 
         }
 
+        public async Task<BaseResponse<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id)
+        {
+            BaseResponse<AdoptablePetDto> baseResponse = new BaseResponse<AdoptablePetDto>();
+            try
+            {
+                var petExists = await _adoptablePetRepository.PetIdExistsAsync(id);
+
+                if (!petExists)
+                {
+                    baseResponse.Success = false;
+                    baseResponse.Message = "Pet not found";
+                }
+                else
+                {
+                    var existingPet = await _adoptablePetRepository.GetByIdAsync(id);
+                    _mapper.Map(adoptablePetUpdateDto, existingPet);
+                    _adoptablePetRepository.Update(existingPet);
+                    await _adoptablePetRepository.SaveChangesAsync();
+                    baseResponse.Data = _mapper.Map<AdoptablePetDto>(existingPet);
+                    baseResponse.Success = true;
+                    baseResponse.Message = "Pet updated successfully";
+                }
+            }
+            catch (Exception ex)
+            {
+                baseResponse.Success = false;
+                baseResponse.Message = ex.Message;
+            }
+            return baseResponse;
+        }
+
         public async Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets()
         {
             var pets = await _adoptablePetRepository.GetAllAsync();

@@ -120,6 +120,55 @@ namespace AdoPet.API.Controllers
         }
 
 
+        /// <summary>
+        /// Update an existing adoptable pet.
+        /// </summary>
+        /// <remarks>
+        /// This method updates the details of an existing pet available for adoption.
+        /// </remarks>
+        /// <param name="adoptablePetUpdateDto">The updated details of the adoptable pet.</param>
+        /// <param name="id">The updated details of the adoptable pet.</param>
+        /// <response code="200">Returns the updated pet.</response>
+        /// <response code="400">The request is invalid or the pet does not exist.</response>
+        /// <response code="404">The pet was not found.</response>
+        /// <response code="500">An error occurred while updating the pet.</response>
+        /// <returns>The updated adoptable pet.</returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AdoptablePetDto))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpPut("{id}")]
+        public async Task<ActionResult<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id)
+        {
+            
+            try
+            {
+                var petExists = await _adoptablePetService.GetAdoptablePetById(id);
+                if (!petExists.Success)
+                {
+                    return NotFound($"No pet found");
+                }
+
+                var response = await _adoptablePetService.UpdateAdoptablePet(adoptablePetUpdateDto, id);
+                if (response.Success)
+                {
+                    return Ok(response.Data);
+                }
+                else
+                {
+                    return BadRequest(response.Message);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
+
+
+
 
         /// <summary>
         /// Deletes an adoptable pet by its ID.

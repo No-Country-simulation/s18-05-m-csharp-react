@@ -41,6 +41,12 @@ namespace AdoPet.Persistence.Repositories
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
+        public void Update(T entity)
+        {
+            _dbContext.Set<T>().Update(entity);
+            
+        }
+
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {

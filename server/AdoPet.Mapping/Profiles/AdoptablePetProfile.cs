@@ -14,9 +14,8 @@ namespace AdoPet.Mapping.Profiles
 
         public AdoptablePetProfile()
         {
-
-            CreateMap<AdoptablePetDto, AdoptablePet>();
             CreateMap<AdoptablePet, AdoptablePetDto>().ReverseMap();
+            CreateMap<AdoptablePetUpdateDto, AdoptablePet>().ReverseMap();
         }
 
     }
