@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Nav from "./Nav"
+import Nav from "./components/Nav"
 import Link from "next/link"
-import { InstaIcon, TwitterIcon, YoutubeIcon } from "./Icons"
+import { InstaIcon, TwitterIcon, YoutubeIcon } from "./components/Icons"
 
 const Footer = () => {
   return (

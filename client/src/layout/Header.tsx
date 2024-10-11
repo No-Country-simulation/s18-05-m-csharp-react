@@ -1,5 +1,5 @@
-import Nav from "./Nav"
-import UserNav from "./UserNav"
+import Nav from "./components/Nav"
+import UserNav from "./components/UserNav"
 import Image from "next/image"
 
 
