@@ -5,16 +5,15 @@ import { InstaIcon, TwitterIcon, YoutubeIcon } from "./Icons"
 
 const Footer = () => {
   return (
-    <footer className="bg-custom-gradient w-full md:h-[90px] h-[66px] z-50
+    <footer className="bg-custom-gradient w-full md:h-[90px] h-[66px] z-40
     md:flex md:items-center md:justify-between md:rounded-t-[22px] lg:relative
     fixed bottom-0 left-0 rounded-t-[11px]">
       <div className="md:block hidden w-3/12">
         <Image
-          className="mx-auto"
+          className="mx-auto object-contain"
           priority
           width={46.74}
           height={36.67}
-          objectFit="contain"
           alt="AdoPet"
           src="/assets/icons/icon.png"
         />

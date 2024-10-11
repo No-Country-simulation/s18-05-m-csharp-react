@@ -12,8 +12,13 @@ const sanFranciscoFont = localFont({
       style: 'normal',
     },
     {
+      path: '../../public/assets/fonts/SF-semibold.woff',
+      weight: '600',
+      style: 'normal',
+    },
+    {
       path: '../../public/assets/fonts/SF-bold.woff',
-      weight: '800',
+      weight: '700',
       style: 'normal',
     },
   ],

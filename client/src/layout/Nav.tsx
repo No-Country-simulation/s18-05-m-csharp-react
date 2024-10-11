@@ -39,8 +39,8 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
 
             if (isMobile && !isTop && item.isTop) {
               return (
-                <li className="w-auto">
-                  <button key={i} type="button" onClick={() => router.replace(item.href)}
+                <li className="w-auto" key={i}>
+                  <button type="button" onClick={() => router.replace(item.href)}
                     className={`flex flex-col items-center justify-center gap-0.5 capitalize
                       text-xs h-full px-3 w-14 transition-all duration-300 ease
                       hover:text-secondary-light focus:font-bold focus:text-secondary-light

@@ -7,7 +7,7 @@ interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
 const CustomInput: FC<CustomInputProps> = (props) => {
   const { extraClass, ...rest } = props
   return (
-    <input className={`input ${extraClass}`} {...rest} />
+    <input className={`input shadow-sm ${extraClass}`} {...rest} />
   )
 }
 
