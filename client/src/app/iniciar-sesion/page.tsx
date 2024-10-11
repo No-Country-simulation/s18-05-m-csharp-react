@@ -1,13 +1,13 @@
 import ImageWithContent from "@/components/ImageWithContent"
-import litteDog from "@/../public/assets/images/little-dog.png"
+import littleDog from "@/../public/assets/images/little-dog.png"
 import logo from "@/../public/assets/images/logo.png"
 import Image from "next/image"
 import LinkUnderline from "@/components/LinkUnderline"
-import Form from "@/components/login/Form"
+import Login from "@/components/login/Login"
 
 const page = () => {
   return (
-    <ImageWithContent src={litteDog} alt="litte-black-dog">
+    <ImageWithContent src={littleDog} alt="litte-black-dog">
       <div className="text-center">
         <Image
           alt="AdoPet Logo"
@@ -22,7 +22,7 @@ const page = () => {
         </div>
       </div>
 
-      <Form>
+      <Login>
         <div className="text-center text-small">
           <p>
             ¿Olvidaste tu contraseña?{' '}
@@ -37,7 +37,7 @@ const page = () => {
             </LinkUnderline>
           </p>
         </div>
-      </Form>
+      </Login>
 
 
     </ImageWithContent >
