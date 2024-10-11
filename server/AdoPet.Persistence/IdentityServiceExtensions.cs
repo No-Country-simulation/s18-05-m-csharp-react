@@ -13,7 +13,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 
-
 namespace AdoPet.Persistence;
 
 public static class IdentityServiceExtensions
@@ -26,10 +25,10 @@ public static class IdentityServiceExtensions
         });
 
         services.AddIdentity<User, IdentityRole<int>>()
-           .AddEntityFrameworkStores<AdoPetDbContext>()
-           .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<AdoPetDbContext>()
+            .AddDefaultTokenProviders();
 
-           // identity
+        // identity
         var jwtConfig = new JwtConfiguration();
         configuration.Bind("JwtConfiguration", jwtConfig);
         services.AddSingleton(jwtConfig);
@@ -43,20 +42,20 @@ public static class IdentityServiceExtensions
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
-                .AddJwtBearer(config =>
-                {
-                    config.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = jwtConfig.ValidateIssuerSigningKey,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
-                        ValidateIssuer = jwtConfig.ValidateIssuer,
-                        ValidateAudience = jwtConfig.ValidateAudience,
-                        ValidateLifetime = jwtConfig.ValidateLifeTime,
-                        ValidIssuer = jwtConfig.Issuer,
-                        ValidAudience = jwtConfig.Audience
-                        
-                    };
-                });
+        .AddJwtBearer(config =>
+        {
+            config.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = jwtConfig.ValidateIssuerSigningKey,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
+                ValidateIssuer = jwtConfig.ValidateIssuer,
+                ValidateAudience = jwtConfig.ValidateAudience,
+                ValidateLifetime = jwtConfig.ValidateLifeTime,
+                ValidIssuer = jwtConfig.Issuer,
+                ValidAudience = jwtConfig.Audience
+            };
+        });
+
         services.AddAuthorization(options =>
         {
             options.AddPolicy(Role.Admin.ToStringEnum(), policy =>
@@ -66,7 +65,5 @@ public static class IdentityServiceExtensions
         });        
 
         return services;
-
-
     }
 }
