@@ -63,8 +63,8 @@ namespace AdoPet.Application.Services
             try
             {
                 var deleteResult = await _adoptablePetRepository.DeleteAsync(id);
-               
-                if(deleteResult)
+
+                if (deleteResult)
                 {
                     response.Success = true;
                     response.Message = "Pet deleted successfully";

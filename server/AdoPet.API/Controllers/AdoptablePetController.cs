@@ -47,7 +47,7 @@ namespace AdoPet.API.Controllers
                 //TODO: Log error
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
-            
+
 
         }
 
@@ -69,7 +69,7 @@ namespace AdoPet.API.Controllers
         {
             try
             {
-                
+
 
                 var result = await _adoptablePetService.AddAdoptablePet(adoptablePet);
                 return Ok(result);
@@ -111,7 +111,7 @@ namespace AdoPet.API.Controllers
                     return NotFound($"No pet found with ID {id}.");
                 }
 
-                return Ok(pet); 
+                return Ok(pet);
             }
             catch (Exception ex)
             {
@@ -149,8 +149,8 @@ namespace AdoPet.API.Controllers
                     return NotFound($"No pet found with ID {id}.");
                 }
 
-               var response =  await _adoptablePetService.DeleteAdoptablePet(id);
-                if(response.Success)
+                var response = await _adoptablePetService.DeleteAdoptablePet(id);
+                if (response.Success)
                 {
                     Response.Headers.Add("X-Delete-Message", response.Message);
                     return NoContent();

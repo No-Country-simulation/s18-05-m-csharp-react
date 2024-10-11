@@ -20,13 +20,13 @@ namespace AdoPet.Persistence.Repositories
         public AdoptablePetRepository(AdoPetDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
-        
+
         public async Task<bool> PetIdExistsAsync(int id)
         {
             return await _dbContext.AdoptablePets.AnyAsync(p => p.Id == id);
 
 
         }
-        
+
     }
 }

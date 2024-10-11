@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdoPet.Application.Contracts.Persistence
 {
-    public interface IAdoptablePetRepository:IGenericRepository<AdoptablePet>
+    public interface IAdoptablePetRepository : IGenericRepository<AdoptablePet>
     {
         Task<bool> PetIdExistsAsync(int id);
     }
