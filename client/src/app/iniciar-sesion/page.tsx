@@ -32,7 +32,7 @@ const page = () => {
           </p>
           <p className="mt-2">
             ¿No tienes una cuenta?{' '}
-            <LinkUnderline href={"#"}>
+            <LinkUnderline href={"/registrarme"}>
               Crear cuenta
             </LinkUnderline>
           </p>
