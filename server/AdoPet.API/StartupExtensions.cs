@@ -1,10 +1,9 @@
-﻿using AdoPet.Application;
+﻿using AdoPet.Mapping;
 using AdoPet.Persistence;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-using AdoPet.Mapping;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace AdoPet.API;
 

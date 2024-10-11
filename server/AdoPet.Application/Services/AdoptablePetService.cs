@@ -4,156 +4,150 @@ using AdoPet.Application.DTOs;
 using AdoPet.Application.DTOs.AdoptablePet;
 using AdoPet.Domain.Entities;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AdoPet.Application.Services
+namespace AdoPet.Application.Services;
+
+public class AdoptablePetService : IAdoptablePetService
 {
-    public class AdoptablePetService : IAdoptablePetService
+
+    private readonly IAdoptablePetRepository _adoptablePetRepository;
+    private readonly IMapper _mapper;
+
+
+
+    public AdoptablePetService(IAdoptablePetRepository adoptablePetRepository, IMapper mapper)
+    {
+        _adoptablePetRepository = adoptablePetRepository;
+        _mapper = mapper;
+    }
+
+
+
+    public async Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet)
     {
 
-        private readonly IAdoptablePetRepository _adoptablePetRepository;
-        private readonly IMapper _mapper;
+        BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
 
-
-
-        public AdoptablePetService(IAdoptablePetRepository adoptablePetRepository, IMapper mapper)
+        try
         {
-            _adoptablePetRepository = adoptablePetRepository;
-            _mapper = mapper;
+
+            var mappedEntity = _mapper.Map<AdoptablePet>(adoptablePet);
+
+            var newPet = await _adoptablePetRepository.AddAsync(mappedEntity);
+            response.Data = _mapper.Map<AdoptablePetDto>(newPet);
+            response.Success = true;
+            response.Message = "Pet added successfully";
+
         }
 
-
-
-        public async Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet)
+        catch (Exception ex)
         {
+            response.Success = false;
+            response.Message = ex.Message;
+        }
+        return response;
 
-            BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
+    }
 
-            try
+
+    public async Task<BaseResponse<bool>> DeleteAdoptablePet(int id)
+    {
+
+        BaseResponse<bool> response = new BaseResponse<bool>();
+
+        try
+        {
+            var deleteResult = await _adoptablePetRepository.DeleteAsync(id);
+
+            if (deleteResult)
             {
-
-                var mappedEntity = _mapper.Map<AdoptablePet>(adoptablePet);
-
-                var newPet = await _adoptablePetRepository.AddAsync(mappedEntity);
-                response.Data = _mapper.Map<AdoptablePetDto>(newPet);
                 response.Success = true;
-                response.Message = "Pet added successfully";
-
+                response.Message = "Pet deleted successfully";
             }
-
-            catch (Exception ex)
+            else
             {
                 response.Success = false;
-                response.Message = ex.Message;
+                response.Message = "Pet not found";
             }
-            return response;
-
         }
+        catch (Exception ex)
+        {
+            response.Success = false;
+            response.Message = ex.Message;
+        }
+        return response;
 
+    }
 
-        public async Task<BaseResponse<bool>> DeleteAdoptablePet(int id)
+    public async Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id)
+    {
+        BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
+
+        try
         {
 
-            BaseResponse<bool> response = new BaseResponse<bool>();
+            var pet = await _adoptablePetRepository.PetIdExistsAsync(id);
 
-            try
-            {
-                var deleteResult = await _adoptablePetRepository.DeleteAsync(id);
-
-                if (deleteResult)
-                {
-                    response.Success = true;
-                    response.Message = "Pet deleted successfully";
-                }
-                else
-                {
-                    response.Success = false;
-                    response.Message = "Pet not found";
-                }
-            }
-            catch (Exception ex)
+            if (!pet)
             {
                 response.Success = false;
-                response.Message = ex.Message;
+                response.Message = "Pet not found";
             }
-            return response;
+            else
+            {
+                var AdoptablePet = await _adoptablePetRepository.GetByIdAsync(id);
+                response.Data = _mapper.Map<AdoptablePetDto>(AdoptablePet);
+                response.Success = true;
+                response.Message = "Pet found";
+            }
 
         }
-
-        public async Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id)
+        catch (Exception ex)
         {
-            BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
-
-            try
-            {
-
-                var pet = await _adoptablePetRepository.PetIdExistsAsync(id);
-
-                if (!pet)
-                {
-                    response.Success = false;
-                    response.Message = "Pet not found";
-                }
-                else
-                {
-                    var AdoptablePet = await _adoptablePetRepository.GetByIdAsync(id);
-                    response.Data = _mapper.Map<AdoptablePetDto>(AdoptablePet);
-                    response.Success = true;
-                    response.Message = "Pet found";
-                }
-
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.Message = ex.Message;
-
-            }
-            return response;
-
+            response.Success = false;
+            response.Message = ex.Message;
 
         }
+        return response;
 
-        public async Task<BaseResponse<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id)
+
+    }
+
+    public async Task<BaseResponse<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id)
+    {
+        BaseResponse<AdoptablePetDto> baseResponse = new BaseResponse<AdoptablePetDto>();
+        try
         {
-            BaseResponse<AdoptablePetDto> baseResponse = new BaseResponse<AdoptablePetDto>();
-            try
-            {
-                var petExists = await _adoptablePetRepository.PetIdExistsAsync(id);
+            var petExists = await _adoptablePetRepository.PetIdExistsAsync(id);
 
-                if (!petExists)
-                {
-                    baseResponse.Success = false;
-                    baseResponse.Message = "Pet not found";
-                }
-                else
-                {
-                    var existingPet = await _adoptablePetRepository.GetByIdAsync(id);
-                    _mapper.Map(adoptablePetUpdateDto, existingPet);
-                    _adoptablePetRepository.Update(existingPet);
-                    await _adoptablePetRepository.SaveChangesAsync();
-                    baseResponse.Data = _mapper.Map<AdoptablePetDto>(existingPet);
-                    baseResponse.Success = true;
-                    baseResponse.Message = "Pet updated successfully";
-                }
-            }
-            catch (Exception ex)
+            if (!petExists)
             {
                 baseResponse.Success = false;
-                baseResponse.Message = ex.Message;
+                baseResponse.Message = "Pet not found";
             }
-            return baseResponse;
+            else
+            {
+                var existingPet = await _adoptablePetRepository.GetByIdAsync(id);
+                _mapper.Map(adoptablePetUpdateDto, existingPet);
+                _adoptablePetRepository.Update(existingPet);
+                await _adoptablePetRepository.SaveChangesAsync();
+                baseResponse.Data = _mapper.Map<AdoptablePetDto>(existingPet);
+                baseResponse.Success = true;
+                baseResponse.Message = "Pet updated successfully";
+            }
         }
-
-        public async Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets()
+        catch (Exception ex)
         {
-            var pets = await _adoptablePetRepository.GetAllAsync();
-            var adoptablePetsDto = _mapper.Map<IEnumerable<AdoptablePetDto>>(pets);
-            return adoptablePetsDto;
+            baseResponse.Success = false;
+            baseResponse.Message = ex.Message;
         }
+        return baseResponse;
+    }
+
+    public async Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets()
+    {
+        var pets = await _adoptablePetRepository.GetAllAsync();
+        var adoptablePetsDto = _mapper.Map<IEnumerable<AdoptablePetDto>>(pets);
+        return adoptablePetsDto;
     }
 }
