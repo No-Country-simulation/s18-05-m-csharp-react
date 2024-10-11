@@ -52,7 +52,7 @@ namespace AdoPet.API.Controllers
         }
 
         /// <summary>
-        /// Adds a new adoptable pet.
+        /// Add a new adoptable pet.
         /// </summary>
         /// <remarks>
         /// This method creates a new pet available for adoption.
