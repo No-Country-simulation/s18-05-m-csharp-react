@@ -6,7 +6,6 @@ using AdoPet.Mapping;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-
 namespace AdoPet.API;
 
 public static class StartupExtensions
@@ -18,11 +17,8 @@ public static class StartupExtensions
         builder.Services.AddIdentityServices(builder.Configuration);
 
         builder.Services.AddHttpContextAccessor();
-
         builder.Services.AddSwagger();
-
         builder.Services.AddMappingProfiles();
-
         builder.Services.AddControllers();
 
         builder.Services.AddCors(options =>
@@ -30,12 +26,12 @@ public static class StartupExtensions
             options.AddDefaultPolicy(builder =>
             {
                 builder
-                   .AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
         });
+
         builder.Services.Configure<RouteOptions>(options =>
         {
             options.LowercaseUrls = true;
@@ -46,14 +42,11 @@ public static class StartupExtensions
 
     public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        //if (app.Environment.IsDevelopment())
-        //{
         app.UseSwagger();
         app.UseSwaggerUI(options =>
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "AdoPet API");
         });
-        //}
 
         app.Use(async (context, next) =>
         {
@@ -66,14 +59,10 @@ public static class StartupExtensions
         });
 
         app.UseHttpsRedirection();
-
         app.UseRouting();
-
         app.UseCors();
-
         app.UseAuthentication();
         app.UseAuthorization();
-
         app.MapControllers();
 
         return app;
@@ -87,10 +76,9 @@ public static class StartupExtensions
             {
                 Version = "v1",
                 Title = "AdoPet",
-
             });
 
-             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
@@ -100,27 +88,26 @@ public static class StartupExtensions
             });
 
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
+                    new OpenApiSecurityScheme
                     {
-                        new OpenApiSecurityScheme
+                        Reference = new OpenApiReference
                         {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },new string[]{ }
-                    }
-                });
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[]{ }
+                }
+            });
 
-
-            //Configuration comments in XML
+            // XML comments for Swagger
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
 
-             c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
-
+            c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
         });
     }
 
@@ -140,7 +127,6 @@ public static class StartupExtensions
                     .Distinct();
 
                 var rolesText = roles.Any() ? $"Roles: {string.Join(", ", roles)}" : "Authorization required";
-
                 operation.Description += $"<br/><b>{rolesText}</b>";
             }
         }

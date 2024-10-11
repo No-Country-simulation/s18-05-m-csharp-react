@@ -2,18 +2,15 @@ using AdoPet.Domain.Enums;
 
 namespace AdoPet.Domain.Utilities;
 
-    public static class RoleExtensions
+public static class RoleExtensions
+{
+    public static string ToStringEnum(this Role role)
     {
-        public static string ToStringEnum(this Role role)
-    {
-        switch(role)
+        return role switch
         {
-            case Role.Admin:
-                return "Admin";
-            case Role.User:
-                return "User";    
-            default:
-                return role.ToString();
-        }
+            Role.Admin => "Admin",
+            Role.User => "User",
+            _ => role.ToString()
+        };
     }
-    }
+}

@@ -1,12 +1,9 @@
-using AdoPet.Domain.Enums;
+namespace AdoPet.Application.DTOs.Identity;
 
-namespace AdoPet.Application.DTOs.Identity
+public class RegisterDto
 {
-    public class RegisterDto
-    {
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
+    public string Name { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
 }

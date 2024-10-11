@@ -8,7 +8,7 @@ namespace AdoPet.Persistence.Data;
 
 public class AdoPetDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
-    public AdoPetDbContext(DbContextOptions<AdoPetDbContext> options) 
+    public AdoPetDbContext(DbContextOptions<AdoPetDbContext> options)
         : base(options)
     {
     }

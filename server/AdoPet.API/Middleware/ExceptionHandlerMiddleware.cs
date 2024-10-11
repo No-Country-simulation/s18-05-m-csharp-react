@@ -17,8 +17,7 @@ public class ExceptionHandlerMiddleware
     {
         try
         {
-            await _next(context);
-        }
+            await _next(context);       }
         catch (Exception ex)
         {
             await ConvertException(context, ex);

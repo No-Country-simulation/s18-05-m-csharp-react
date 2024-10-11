@@ -7,21 +7,20 @@ using AdoPet.Domain.Helpers;
 using AdoPet.Domain.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace AdoPet.Persistence.Identity
-{
-    internal class AuthService:IAuthService
-    {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly JwtConfiguration _jwtConfiguration;
-        private readonly IMapper _mapper;
+namespace AdoPet.Persistence.Identity;
 
-        public AuthService(
+internal class AuthService : IAuthService
+{
+    private readonly UserManager<User> _userManager;
+    private readonly SignInManager<User> _signInManager;
+    private readonly JwtConfiguration _jwtConfiguration;
+    private readonly IMapper _mapper;
+
+    public AuthService(
         SignInManager<User> signInManager,
         UserManager<User> userManager,
         JwtConfiguration jwtConfiguration,
@@ -33,12 +32,12 @@ namespace AdoPet.Persistence.Identity
         _mapper = mapper;
     }
 
-     public async Task<(IdentityResult, string?)> LoginAsync(LoginDto login)
+    public async Task<(IdentityResult, string?)> LoginAsync(LoginDto login)
     {
         var emailExist = await _userManager.FindByEmailAsync(login.Email);
 
         if (emailExist is null || !(await _userManager.CheckPasswordAsync(emailExist, login.Password)))
-            return (IdentityResult.Failed(new IdentityError()
+            return (IdentityResult.Failed(new IdentityError
             {
                 Description = "Invalid email and/or password"
             }), null);
@@ -46,7 +45,7 @@ namespace AdoPet.Persistence.Identity
         var signInResult = await _signInManager.PasswordSignInAsync(emailExist, login.Password, false, false);
 
         if (!signInResult.Succeeded)
-            return (IdentityResult.Failed(new IdentityError()
+            return (IdentityResult.Failed(new IdentityError
             {
                 Description = "Error to attempt sign-in"
             }), null);
@@ -56,7 +55,7 @@ namespace AdoPet.Persistence.Identity
         return (IdentityResult.Success, GetToken(emailExist, roleUser.First()));
     }
 
-     public string GetToken(User user, string role)
+    public string GetToken(User user, string role)
     {
         byte[] key = Encoding.ASCII.GetBytes(_jwtConfiguration.Key);
 
@@ -72,41 +71,39 @@ namespace AdoPet.Persistence.Identity
 
     public List<Claim> GetClaims(User user, string role)
     {
-        var claimList = new List<Claim>()
+        var claimList = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim("name", user.Name),
             new Claim("lastName", user.LastName),
             new Claim("email", user.Email),
-            new Claim(ClaimTypes.Role,role)
+            new Claim(ClaimTypes.Role, role)
         };
         return claimList;
     }
 
-     public async Task<IdentityResult> RegisterAsync(RegisterDto register)
+    public async Task<IdentityResult> RegisterAsync(RegisterDto register)
     {
         var userExists = await _userManager.FindByEmailAsync(register.Email);
 
         if (userExists is not null)
-            return IdentityResult.Failed(new IdentityError()
+            return IdentityResult.Failed(new IdentityError
             {
                 Description = "Email already in use"
             });
-            
-        var userToRegister = _mapper.Map<User>(register);
 
+        var userToRegister = _mapper.Map<User>(register);
         var createUserResult = await _userManager.CreateAsync(userToRegister, register.Password);
 
         if (!createUserResult.Succeeded)
         {
-            return IdentityResult.Failed(new IdentityError()
+            return IdentityResult.Failed(new IdentityError
             {
                 Description = string.Join(", ", createUserResult.Errors.Select(e => e.Description))
             });
         }
 
-
-        var addRoleResult = await AddRoleToUser(userToRegister,Role.User);
+        var addRoleResult = await AddRoleToUser(userToRegister, Role.User);
 
         if (!addRoleResult.Succeeded)
             return addRoleResult;
@@ -114,28 +111,25 @@ namespace AdoPet.Persistence.Identity
         return IdentityResult.Success;
     }
 
-     public async Task<IdentityResult> AddRoleToUser(User user, Role role)
+    public async Task<IdentityResult> AddRoleToUser(User user, Role role)
     {
         var addRoleResult = await _userManager.AddToRoleAsync(user, role.ToStringEnum());
+
         if (!addRoleResult.Succeeded)
         {
             var deleteUserResult = await _userManager.DeleteAsync(user);
             if (!deleteUserResult.Succeeded)
-                return IdentityResult.Failed(new IdentityError()
+                return IdentityResult.Failed(new IdentityError
                 {
-                    Description = string.Join(", ",
-                        deleteUserResult.Errors.Select(e => e.Description),
-                        addRoleResult.Errors.Select(e => e.Description))
+                    Description = string.Join(", ", deleteUserResult.Errors.Select(e => e.Description), addRoleResult.Errors.Select(e => e.Description))
                 });
 
-            return IdentityResult.Failed(new IdentityError()
+            return IdentityResult.Failed(new IdentityError
             {
                 Description = string.Join(", ", addRoleResult.Errors.Select(e => e.Description))
             });
         }
+
         return IdentityResult.Success;
-    }
-
-
     }
 }
