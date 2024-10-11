@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AdoPet.Application\AdoPet.Application.csproj" />
     <ProjectReference Include="..\AdoPet.Persistence\AdoPet.Persistence.csproj" />
+    <ProjectReference Include="..\AdoPet.Mapping\AdoPet.Mapping.csproj" />
   </ItemGroup>
 
 </Project>
