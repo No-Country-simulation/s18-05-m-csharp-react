@@ -1,15 +1,14 @@
 "use client"
-import { FC, ReactNode } from "react"
+import { FC, PropsWithChildren, useState } from "react"
 import Form from "../Form"
 import CustomInput from "../CustomInput"
 import { useForm } from "react-hook-form"
 import { emailValidation, passwordValidation, confirmPasswordValidation, namesValidation } from "@/validations/common"
+import fetchRegister from "@/data/account/register"
+import SuccesModal from "./SuccesModal"
 
-type Props = {
-  children: ReactNode
-}
-
-const Register: FC<Props> = ({ children }) => {
+const Register: FC<PropsWithChildren> = ({ children }) => {
+  const [openModal, setOpenModal] = useState(false)
   const {
     register,
     handleSubmit,
@@ -17,13 +16,15 @@ const Register: FC<Props> = ({ children }) => {
     formState: { errors },
   } = useForm<RegisterFormValues>()
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
+  const onSubmit = handleSubmit(async (data: RegisterFormValues) => {
+    const register = await fetchRegister(data)
+    if (register) {
+      setOpenModal(true)
+    }
   })
 
-  return (
+  return (<>
     <Form extraChildren={children} onSubmit={onSubmit} textSubmit="Registrarme">
-
       <CustomInput
         id="name"
         error={errors.name?.message}
@@ -72,6 +73,8 @@ const Register: FC<Props> = ({ children }) => {
         Acepto terminos y condiciones
       </label>
     </Form>
+    {openModal && <SuccesModal setOpenModal={setOpenModal} />}
+  </>
   )
 }
 

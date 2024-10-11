@@ -1,23 +1,25 @@
 "use client"
-import { FC, ReactNode } from "react"
+import { FC, PropsWithChildren } from "react"
 import Form from "../Form"
 import CustomInput from "../CustomInput"
 import { useForm } from "react-hook-form"
 import { emailValidation, passwordValidation } from "@/validations/common"
+import fetchLogin from "@/data/account/login"
+import useUser from "@/hooks/UseUser"
 
-type Props = {
-  children: ReactNode
-}
-
-const Login: FC<Props> = ({ children }) => {
+const Login: FC<PropsWithChildren> = ({ children }) => {
+  const { setToken } = useUser()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
+  const onSubmit = handleSubmit(async (data: LoginFormValues) => {
+    const login = await fetchLogin(data)
+    if (login?.token) {
+      setToken(login.token)
+    }
   })
 
   return (

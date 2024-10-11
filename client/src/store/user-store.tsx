@@ -6,10 +6,13 @@ interface IUserStore {
   name: String | null;
   lastName: String | null;
   email: String | null;
+
+  setToken: (token: string) => void;
+
   logIn: (user: IUser) => void;
   logOut: () => void;
 }
-interface IUser extends Omit<IUserStore, "logOut" | "logIn"> { }
+interface IUser extends Omit<IUserStore, "logOut" | "logIn" | "setToken"> { }
 
 const initialValues: IUser = {
   token: null,
@@ -22,6 +25,8 @@ const UseUserStore = createWithEqualityFn<IUserStore>()(
   persist(
     (set) => ({
       ...initialValues,
+      setToken: (token: string) => set((state) => ({ ...state, token })),
+
       logIn: (user: IUser) => set({ ...user }),
       logOut: () => set({ ...initialValues }),
     }),

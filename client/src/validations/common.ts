@@ -30,7 +30,11 @@ export const passwordValidation: any = Object.freeze({
     hasLowercase: (value: string) =>
       /[a-z]/.test(value) || "Debe contener al menos una letra minúscula.",
     hasUppercase: (value: string) =>
-      /[A-Z]/.test(value) || "Debe contener al menos una letra mayúscula."
+      /[A-Z]/.test(value) || "Debe contener al menos una letra mayúscula.",
+    hasNumber: (value: string) =>
+      /[0-9]/.test(value) || "Debe contener al menos un número (0-9).",
+    hasSpecialChar: (value: string) =>
+      /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Debe contener al menos un carácter especial (!@#$%^&*(),.?\":{}|<>)."
   }
 })
 
