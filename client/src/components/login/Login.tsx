@@ -5,10 +5,13 @@ import CustomInput from "../CustomInput"
 import { useForm } from "react-hook-form"
 import { emailValidation, passwordValidation } from "@/validations/common"
 import fetchLogin from "@/data/account/login"
+import { useRouter } from "next/navigation"
+import { setCookie } from 'cookies-next';
 import useUser from "@/hooks/UseUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
-  const { setToken } = useUser()
+  const router = useRouter()
+  const { logIn } = useUser()
   const {
     register,
     handleSubmit,
@@ -18,7 +21,9 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
   const onSubmit = handleSubmit(async (data: LoginFormValues) => {
     const login = await fetchLogin(data)
     if (login?.token) {
-      setToken(login.token)
+      setCookie('token', login.token, { maxAge: 60 * 60 * 24 * 7 }); // Expira en 7 día
+      logIn()
+      router.push("/")
     }
   })
 
