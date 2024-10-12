@@ -1,3 +1,6 @@
+"use client"
+
+import useUser from "@/hooks/UseUser";
 import Link from "next/link"
 
 const links: { href: string; label: string }[] = [
@@ -7,6 +10,9 @@ const links: { href: string; label: string }[] = [
 
 
 const UserNav = () => {
+  const { isLogged } = useUser();
+
+  if (isLogged) return null;
   return (
     <div className="flex gap-1">
       {

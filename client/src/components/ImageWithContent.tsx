@@ -20,7 +20,7 @@ const ImageWithContent: FC<Props> = ({ src, alt, children }) => {
         />
       </aside>
 
-      <div className="w-full md:w-1/2 flex justify-center items-center py-10">
+      <div className="w-full md:w-1/2 flex justify-center items-center py-12 md:py-3">
         <div className="max-w-md w-full">
           {children}
         </div>
