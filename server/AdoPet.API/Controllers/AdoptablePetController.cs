@@ -2,6 +2,7 @@
 using AdoPet.Application.DTOs.AdoptablePet;
 using AdoPet.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AdoPet.API.Controllers;
 
@@ -67,9 +68,8 @@ public class AdoptablePetController : ControllerBase
     {
         try
         {
-
-
-            var result = await _adoptablePetService.AddAdoptablePet(adoptablePet);
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var result = await _adoptablePetService.AddAdoptablePet(adoptablePet, int.Parse(userId));
             return Ok(result);
         }
         catch (Exception ex)

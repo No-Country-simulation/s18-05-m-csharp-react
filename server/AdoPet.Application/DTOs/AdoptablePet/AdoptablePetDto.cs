@@ -4,7 +4,6 @@ namespace AdoPet.Application.DTOs.AdoptablePet;
 
 public class AdoptablePetDto
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public string Breed { get; set; }
     public Gender Gender { get; set; }

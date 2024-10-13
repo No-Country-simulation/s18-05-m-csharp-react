@@ -6,7 +6,7 @@ namespace AdoPet.Application.Contracts.Services;
 public interface IAdoptablePetService
 {
 
-    Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet);
+    Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet, int idUser);
     Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets();
     Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id);
     Task<BaseResponse<bool>> DeleteAdoptablePet(int id);

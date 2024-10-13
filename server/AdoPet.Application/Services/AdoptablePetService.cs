@@ -23,7 +23,7 @@ public class AdoptablePetService : IAdoptablePetService
 
 
 
-    public async Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet)
+    public async Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet, int idUser)
     {
 
         BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
@@ -32,7 +32,7 @@ public class AdoptablePetService : IAdoptablePetService
         {
 
             var mappedEntity = _mapper.Map<AdoptablePet>(adoptablePet);
-
+            mappedEntity.UserId = idUser;
             var newPet = await _adoptablePetRepository.AddAsync(mappedEntity);
             response.Data = _mapper.Map<AdoptablePetDto>(newPet);
             response.Success = true;
