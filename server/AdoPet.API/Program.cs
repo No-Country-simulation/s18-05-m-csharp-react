@@ -6,6 +6,6 @@ var app = builder
     .ConfigureServices()
     .ConfigurePipeline();
 
-app.MapGet("/", () => "Ado Pet API");
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.Run();
