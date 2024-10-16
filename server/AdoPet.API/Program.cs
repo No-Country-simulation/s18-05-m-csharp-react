@@ -6,6 +6,6 @@ var app = builder
     .ConfigureServices()
     .ConfigurePipeline();
 
-app.MapGet("/", () => "Junior Hub");
+app.MapGet("/", () => "Ado Pet API");
 
 app.Run();
