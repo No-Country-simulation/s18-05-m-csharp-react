@@ -1,5 +1,4 @@
-﻿using AdoPet.Domain.Entities;
-using AdoPet.Domain.Enums;
+﻿using AdoPet.Domain.Enums;
 using System.Text.Json.Serialization;
 
 namespace AdoPet.Application.DTOs.AdoptablePet;
