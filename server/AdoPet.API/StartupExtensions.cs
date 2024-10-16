@@ -1,9 +1,10 @@
-﻿using AdoPet.Mapping;
-using AdoPet.Persistence;
-using Microsoft.AspNetCore.Authorization;
+﻿using AdoPet.Persistence;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using AdoPet.Mapping;
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using AdoPet.Cloudinary;
 
 namespace AdoPet.API;
 
@@ -14,6 +15,7 @@ public static class StartupExtensions
         builder.Services.AddApplicationServices();
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddIdentityServices(builder.Configuration);
+        builder.Services.AddCloudServiceExtensions(builder.Configuration);
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddSwagger();
@@ -45,16 +47,6 @@ public static class StartupExtensions
         app.UseSwaggerUI(options =>
         {
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "AdoPet API");
-        });
-
-        app.Use(async (context, next) =>
-        {
-            if (context.Request.Path == "/")
-            {
-                context.Response.Redirect("/swagger");
-                return;
-            }
-            await next();
         });
 
         app.UseHttpsRedirection();

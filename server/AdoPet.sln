@@ -13,15 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B0C682FC-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3C3971D0-0F14-4213-9C0A-24ECE7C3F2AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Persistence", "AdoPet.Persistence\AdoPet.Persistence.csproj", "{55BD6DE6-A733-43A8-8777-80228EBC036A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Persistence", "AdoPet.Persistence\AdoPet.Persistence.csproj", "{55BD6DE6-A733-43A8-8777-80228EBC036A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Application", "AdoPet.Application\AdoPet.Application.csproj", "{BD78B3CA-82BC-47A2-BF7B-D68DBFB46DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Application", "AdoPet.Application\AdoPet.Application.csproj", "{BD78B3CA-82BC-47A2-BF7B-D68DBFB46DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Domain", "AdoPet.Domain\AdoPet.Domain.csproj", "{640496D7-84CA-4F70-B2B3-43A5C6F5EA07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Domain", "AdoPet.Domain\AdoPet.Domain.csproj", "{640496D7-84CA-4F70-B2B3-43A5C6F5EA07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Mapping", "AdoPet.Mapping\AdoPet.Mapping.csproj", "{E140497C-616C-40B5-A262-0285D9BEFE0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Mapping", "AdoPet.Mapping\AdoPet.Mapping.csproj", "{E140497C-616C-40B5-A262-0285D9BEFE0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.API", "AdoPet.API\AdoPet.API.csproj", "{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.API", "AdoPet.API\AdoPet.API.csproj", "{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Cloudinary", "AdoPet.Cloudinary\AdoPet.Cloudinary.csproj", "{C7255270-8C09-4141-87CB-916AB11C0EFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{640496D7-84CA-4F70-B2B3-43A5C6F5EA07} = {B0C682FC-BC3E-40E8-99AC-7E46631766F1}
 		{E140497C-616C-40B5-A262-0285D9BEFE0D} = {B0C682FC-BC3E-40E8-99AC-7E46631766F1}
 		{4AAED456-67EB-4FFE-B18B-0F14A0B0B725} = {63B2058F-03C5-4B09-B270-0147EE0E1772}
+		{C7255270-8C09-4141-87CB-916AB11C0EFC} = {3C3971D0-0F14-4213-9C0A-24ECE7C3F2AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48AA8E66-78A9-48AB-ADC5-BCFE4FDE347C}
