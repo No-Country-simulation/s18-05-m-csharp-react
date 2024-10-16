@@ -7,8 +7,8 @@ public interface IAdoptablePetService
 {
 
     Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet, int idUser);
-    Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets();
-    Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id);
+    Task<IEnumerable<AdoptablePetGetAllDto>> GetAdoptablePets();
+    Task<BaseResponse<AdoptablePetIdDto>> GetAdoptablePetById(int id);
     Task<BaseResponse<bool>> DeleteAdoptablePet(int id);
     Task<BaseResponse<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id);
 

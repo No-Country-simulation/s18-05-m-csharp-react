@@ -20,7 +20,11 @@ public class AdoptablePetRepository : GenericRepository<AdoptablePet>, IAdoptabl
     {
         return await _dbContext.AdoptablePets.AnyAsync(p => p.Id == id);
 
+    }
 
+    public async Task<AdoptablePet> GetById(int id)
+    {
+        return await _dbContext.AdoptablePets.Include(p => p.Owner).FirstOrDefaultAsync(p => p.Id == id);
     }
 
 }

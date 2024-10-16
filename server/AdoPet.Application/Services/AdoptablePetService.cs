@@ -2,6 +2,7 @@
 using AdoPet.Application.Contracts.Services;
 using AdoPet.Application.DTOs;
 using AdoPet.Application.DTOs.AdoptablePet;
+using AdoPet.Application.DTOs.User;
 using AdoPet.Domain.Entities;
 using AutoMapper;
 
@@ -79,9 +80,9 @@ public class AdoptablePetService : IAdoptablePetService
 
     }
 
-    public async Task<BaseResponse<AdoptablePetDto>> GetAdoptablePetById(int id)
+    public async Task<BaseResponse<AdoptablePetIdDto>> GetAdoptablePetById(int id)
     {
-        BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
+        BaseResponse<AdoptablePetIdDto> response = new BaseResponse<AdoptablePetIdDto>();
 
         try
         {
@@ -95,8 +96,11 @@ public class AdoptablePetService : IAdoptablePetService
             }
             else
             {
-                var AdoptablePet = await _adoptablePetRepository.GetByIdAsync(id);
-                response.Data = _mapper.Map<AdoptablePetDto>(AdoptablePet);
+                var AdoptablePet = await _adoptablePetRepository.GetById(id);
+                var User = _mapper.Map<UserDto>(AdoptablePet.Owner);
+                var AdoptablePetDto = _mapper.Map<AdoptablePetIdDto>(AdoptablePet);
+                AdoptablePetDto.Owner = User;
+                response.Data = AdoptablePetDto;
                 response.Success = true;
                 response.Message = "Pet found";
             }
@@ -144,10 +148,10 @@ public class AdoptablePetService : IAdoptablePetService
         return baseResponse;
     }
 
-    public async Task<IEnumerable<AdoptablePetDto>> GetAdoptablePets()
+    public async Task<IEnumerable<AdoptablePetGetAllDto>> GetAdoptablePets()
     {
         var pets = await _adoptablePetRepository.GetAllAsync();
-        var adoptablePetsDto = _mapper.Map<IEnumerable<AdoptablePetDto>>(pets);
+        var adoptablePetsDto = _mapper.Map<IEnumerable<AdoptablePetGetAllDto>>(pets);
         return adoptablePetsDto;
     }
 }
