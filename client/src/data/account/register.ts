@@ -14,7 +14,6 @@ const register = (data: RegisterFormValues): Promise<boolean> => {
   }
   return fetchData(props)
     .then((res) => true)
-    .catch((err) => false)
 }
 
 export default register

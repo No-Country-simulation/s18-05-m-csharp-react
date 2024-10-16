@@ -8,7 +8,8 @@ import fetchRegister from "@/data/account/register"
 import SuccesModal from "./SuccesModal"
 
 const Register: FC<PropsWithChildren> = ({ children }) => {
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const {
     register,
     handleSubmit,
@@ -16,11 +17,10 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
     formState: { errors },
   } = useForm<RegisterFormValues>()
 
-  const onSubmit = handleSubmit(async (data: RegisterFormValues) => {
-    const register = await fetchRegister(data)
-    if (register) {
-      setOpenModal(true)
-    }
+  const onSubmit = handleSubmit((data: RegisterFormValues) => {
+    fetchRegister(data)
+      .then((res) => setOpenModal(true))
+      .catch((error: Error) => setErrorMessage(error.message))
   })
 
   return (<>
@@ -72,6 +72,12 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         <input type="checkbox" className="mr-2" id="terms" {...register("terms")} />
         Acepto terminos y condiciones
       </label>
+      {
+        errorMessage &&
+        <span className="text-red-500 text-center text-body mt-2">
+          {errorMessage}
+        </span>
+      }
     </Form>
     {openModal && <SuccesModal setOpenModal={setOpenModal} />}
   </>

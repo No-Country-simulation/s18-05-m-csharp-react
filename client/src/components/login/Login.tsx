@@ -1,5 +1,5 @@
 "use client"
-import { FC, PropsWithChildren } from "react"
+import { FC, PropsWithChildren, useState } from "react"
 import Form from "../Form"
 import CustomInput from "../CustomInput"
 import { useForm } from "react-hook-form"
@@ -10,6 +10,7 @@ import { setCookie } from 'cookies-next';
 import useUser from "@/hooks/UseUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const { logIn } = useUser()
   const {
@@ -18,13 +19,16 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = handleSubmit(async (data: LoginFormValues) => {
-    const login = await fetchLogin(data)
-    if (login?.token) {
-      setCookie('token', login.token, { maxAge: 60 * 60 * 24 * 7 }); // Expira en 7 día
-      logIn()
-      router.push("/")
-    }
+  const onSubmit = handleSubmit((data: LoginFormValues) => {
+    fetchLogin(data)
+      .then(res => {
+        if (res.token) {
+          setCookie('token', res.token, { maxAge: 60 * 60 * 24 * 7 }); // Expira en 7 día
+          logIn()
+          router.push("/")
+        }
+      })
+      .catch(err => setError(err.message))
   })
 
   return (
@@ -47,6 +51,13 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         extraClass={`w-full`}
         {...register("password", passwordValidation)}
       />
+
+      {
+        error &&
+        <span className="text-red-500 text-center text-body mt-1">
+          {error}
+        </span>
+      }
     </Form>
   )
 }
