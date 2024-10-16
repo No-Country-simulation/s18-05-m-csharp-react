@@ -1,6 +1,7 @@
 ﻿using AdoPet.Application.Contracts.Services;
 using AdoPet.Application.DTOs.AdoptablePet;
 using AdoPet.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -64,6 +65,7 @@ public class AdoptablePetController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpPost]
+    [Authorize(Roles = "User")]
     public async Task<ActionResult> AddAdoptablePet(AdoptablePetDto adoptablePet)
     {
         try
