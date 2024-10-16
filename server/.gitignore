@@ -486,6 +486,7 @@ $RECYCLE.BIN/
 # Exclude Migrations folder in Persistence layer
 AdoPet.Persistence/Migrations
 
+
 # Ignorar launch.json y tasks.json
 .vscode/launch.json
 .vscode/tasks.json

@@ -20,10 +20,11 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.PhotoUrl)
                .IsRequired(false);
-
+        /*
         builder.HasMany(u => u.PetsForAdoption)
                .WithOne(p => p.Owner)
                .HasForeignKey(p => p.UserId);
+        */
 
         builder.HasMany(u => u.AdoptionRequests)
                .WithOne(ar => ar.Adopter)
