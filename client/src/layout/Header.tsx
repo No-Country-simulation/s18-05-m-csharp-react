@@ -10,10 +10,11 @@ const Header = () => {
       <div className="flex items-center h-[calc(100%-22px)] justify-between px-4">
         <Image
           priority
-          width={40.74}
-          height={30.67}
-          alt="AdoPet-header-icon"
-          src="/assets/icons/icon.png"
+          width={168}
+          height={30}
+          className="object-contain"
+          alt="AdoPet-logo"
+          src="/assets/icons/adoPet-logo.png"
         />
 
         <Nav isTop />
