@@ -9,7 +9,7 @@ import SuccesModal from "./SuccesModal"
 
 const Register: FC<PropsWithChildren> = ({ children }) => {
   const [openModal, setOpenModal] = useState<boolean>(false)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [message, setMessage] = useState<StateMessage>({ text: null, error: false })
   const {
     register,
     handleSubmit,
@@ -18,11 +18,10 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
   } = useForm<RegisterFormValues>()
 
   const onSubmit = handleSubmit((data: RegisterFormValues) => {
-    console.log(errors);
-    
+    setMessage({ text: "Conectando...", error: false })
     fetchRegister(data)
       .then((res) => setOpenModal(true))
-      .catch((error: Error) => setErrorMessage(error.message))
+      .catch((error: Error) => setMessage({ text: error.message, error: true }))
   })
 
   return (<>
@@ -80,9 +79,9 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         </span>
       </label>
       {
-        errorMessage &&
-        <span className="text-red-500 text-center text-body mt-2">
-          {errorMessage}
+        message.text &&
+        <span className={`${message.error ? "text-red-500" : "text-secondary"} text-center text-[10pt] mt-1`}>
+          {message.text}
         </span>
       }
     </Form>

@@ -10,7 +10,7 @@ import { setCookie } from 'cookies-next';
 import useUser from "@/hooks/UseUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
-  const [error, setError] = useState<string | null>(null)
+  const [message, setMessage] = useState<StateMessage>({ text: null, error: false })
   const router = useRouter()
   const { logIn } = useUser()
   const {
@@ -20,6 +20,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
   } = useForm<LoginFormValues>()
 
   const onSubmit = handleSubmit((data: LoginFormValues) => {
+    setMessage({ text: "Conectando...", error: false })    
     fetchLogin(data)
       .then(res => {
         if (res.token) {
@@ -28,7 +29,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
           router.push("/")
         }
       })
-      .catch(err => setError(err.message))
+      .catch(err => setMessage({text: err.message, error: true}))
   })
 
   return (
@@ -53,9 +54,9 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
       />
 
       {
-        error &&
-        <span className="text-red-500 text-center text-[10pt] mt-1">
-          {error}
+        message.text &&
+        <span className={`${message.error ? "text-red-500" : "text-secondary"} text-center text-[10pt] mt-1`}>
+          {message.text}
         </span>
       }
     </Form>
