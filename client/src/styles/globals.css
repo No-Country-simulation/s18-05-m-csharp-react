@@ -53,5 +53,11 @@ h3 {
   font-size: var(--fs-subtitle);
 }
 
+@media (width <=768px) {
+  body {
+    justify-content: start
+  }
+}
+
 
 @import url("./utiilities.css");

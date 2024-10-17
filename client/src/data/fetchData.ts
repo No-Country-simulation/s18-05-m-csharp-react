@@ -16,7 +16,13 @@ export const fetchData = async (props: fetchDataProps): Promise<any> => {
 
     const res = await fetch(`${api_path}/${path}`, options)
 
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || error.error || "Error en la solicitud");
+    }
+
     return await res.json()
+
   } catch (error: Error | any) {
     if (process.env.MODE === "dev") console.error(error);
     error.name = "ERROR DURANTE EL FETCH"
