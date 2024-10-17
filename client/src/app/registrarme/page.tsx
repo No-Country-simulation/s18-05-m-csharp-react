@@ -1,6 +1,6 @@
-import ImageWithContent from "@/components/ImageWithContent"
+import ImageWithContent from "@/components/shared/ImageWithContent"
 import littleCat from "@/../public/assets/images/little-cat.png"
-import LinkUnderline from "@/components/LinkUnderline"
+import LinkUnderline from "@/components/shared/LinkUnderline"
 import Register from "@/components/register/Register"
 
 const page = () => {

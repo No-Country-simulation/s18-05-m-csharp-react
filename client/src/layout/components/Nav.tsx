@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import navigation from "./navigation"
-import LinkItem from "@/components/LinkItem"
+import LinkItem from "@/components/shared/LinkItem"
 
 interface NavProps {
   isTop?: boolean
