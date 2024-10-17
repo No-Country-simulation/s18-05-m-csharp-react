@@ -1,12 +1,8 @@
-interface DetailAdoptablePet {
-  name: string;
+type DetailAdoptablePet = AdoptablePet & {
   gender: number;
-  photoUrl: string;
   location: string;
   animalType: number;
   notes: string;
-  datePublished: string;
-  dateBirth: string;
   neutered: boolean;
   vaccines: boolean;
   sterilized: boolean;
@@ -17,7 +13,6 @@ interface DetailAdoptablePet {
     lastName: string;
     photoUrl: string | null;
   };
-  isAdopted: boolean;
 }
 
 type ResponseDetailAdoptablePet = {
