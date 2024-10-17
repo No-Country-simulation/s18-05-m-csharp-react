@@ -1,7 +1,7 @@
 "use client"
-import { FC, PropsWithChildren } from "react"
-import Form from "../Form"
-import CustomInput from "../CustomInput"
+import { FC, PropsWithChildren, useState } from "react"
+import Form from "../shared/Form"
+import CustomInput from "../shared/CustomInput"
 import { useForm } from "react-hook-form"
 import { emailValidation, passwordValidation } from "@/validations/common"
 import fetchLogin from "@/data/account/login"
@@ -10,6 +10,7 @@ import { setCookie } from 'cookies-next';
 import useUser from "@/hooks/UseUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
+  const [message, setMessage] = useState<StateMessage>({ text: null, error: false })
   const router = useRouter()
   const { logIn } = useUser()
   const {
@@ -18,13 +19,17 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
     formState: { errors },
   } = useForm<LoginFormValues>()
 
-  const onSubmit = handleSubmit(async (data: LoginFormValues) => {
-    const login = await fetchLogin(data)
-    if (login?.token) {
-      setCookie('token', login.token, { maxAge: 60 * 60 * 24 * 7 }); // Expira en 7 día
-      logIn()
-      router.push("/")
-    }
+  const onSubmit = handleSubmit((data: LoginFormValues) => {
+    setMessage({ text: "Conectando...", error: false })    
+    fetchLogin(data)
+      .then(res => {
+        if (res.token) {
+          setCookie('token', res.token, { maxAge: Number(process.env.EXPIRATION_TIME) }); // Expira en 7 día
+          logIn()
+          router.push("/")
+        }
+      })
+      .catch(err => setMessage({text: err.message, error: true}))
   })
 
   return (
@@ -47,6 +52,13 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         extraClass={`w-full`}
         {...register("password", passwordValidation)}
       />
+
+      {
+        message.text &&
+        <span className={`${message.error ? "text-red-500" : "text-secondary"} text-center text-[10pt] mt-1`}>
+          {message.text}
+        </span>
+      }
     </Form>
   )
 }

@@ -1,8 +1,8 @@
-import ImageWithContent from "@/components/ImageWithContent"
+import ImageWithContent from "@/components/shared/ImageWithContent"
 import littleDog from "@/../public/assets/images/little-dog.png"
 import logo from "@/../public/assets/images/logo.png"
 import Image from "next/image"
-import LinkUnderline from "@/components/LinkUnderline"
+import LinkUnderline from "@/components/shared/LinkUnderline"
 import Login from "@/components/login/Login"
 
 const page = () => {

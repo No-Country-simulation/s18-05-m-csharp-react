@@ -10,10 +10,10 @@ const CustomButton: FC<CustomButtonProps> = (props) => {
 
   return (
     <button
-      className={`btn text-white active:bg-active bg-custom-gradient transition-all duration-300 ease ${props.extraClass}`}
+      className={`btn text-white active:bg-active bg-custom-gradient transition-all duration-300 ease ${extraClass}`}
       {...rest}
     >
-      {props.text}
+      {text}
     </button>
   )
 }

@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import navigation from "./navigation"
-import LinkItem from "@/components/LinkItem"
+import LinkItem from "@/components/shared/LinkItem"
 
 interface NavProps {
   isTop?: boolean
@@ -12,6 +12,7 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
   const router = useRouter()
   const pathname = usePathname()
   const [isMobile, setIsMobile] = useState(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     // Aquí defines que sea "chico" si es <= 768px
@@ -22,9 +23,11 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
     // Agregar listener para detectar cambios
     window.addEventListener("resize", checkScreenSize)
     // Limpiar el listener al desmontar el componente
+    setLoading(false)
     return () => window.removeEventListener("resize", checkScreenSize)
   }, [])
 
+  if (loading) return null
   if (isMobile && isTop) return null;
 
   return (

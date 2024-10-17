@@ -1,14 +1,15 @@
 "use client"
 import { FC, PropsWithChildren, useState } from "react"
-import Form from "../Form"
-import CustomInput from "../CustomInput"
+import Form from "../shared/Form"
+import CustomInput from "../shared/CustomInput"
 import { useForm } from "react-hook-form"
-import { emailValidation, passwordValidation, confirmPasswordValidation, namesValidation } from "@/validations/common"
+import { emailValidation, passwordValidation, confirmPasswordValidation, namesValidation, defaultRequireValidation } from "@/validations/common"
 import fetchRegister from "@/data/account/register"
 import SuccesModal from "./SuccesModal"
 
 const Register: FC<PropsWithChildren> = ({ children }) => {
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState<boolean>(false)
+  const [message, setMessage] = useState<StateMessage>({ text: null, error: false })
   const {
     register,
     handleSubmit,
@@ -16,11 +17,11 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
     formState: { errors },
   } = useForm<RegisterFormValues>()
 
-  const onSubmit = handleSubmit(async (data: RegisterFormValues) => {
-    const register = await fetchRegister(data)
-    if (register) {
-      setOpenModal(true)
-    }
+  const onSubmit = handleSubmit((data: RegisterFormValues) => {
+    setMessage({ text: "Conectando...", error: false })
+    fetchRegister(data)
+      .then(() => setOpenModal(true))
+      .catch((error: Error) => setMessage({ text: error.message, error: true }))
   })
 
   return (<>
@@ -68,10 +69,21 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         {...register("confirmPassword", confirmPasswordValidation(watch))}
       />
 
-      <label htmlFor="terms" className="text-light-gray flex cursor-pointer mx-auto mt-3 align-middle">
-        <input type="checkbox" className="mr-2" id="terms" {...register("terms")} />
-        Acepto terminos y condiciones
+      <label htmlFor="terms" className="text-center flex flex-col gap-1 cursor-pointer mx-auto mt-3 align-middle">
+        <span className="text-light-gray">
+          <input type="checkbox" className="mr-2" id="terms" {...register("terms", defaultRequireValidation)} />
+          Acepto terminos y condiciones
+        </span>
+        <span className="text-red-500">
+          {errors.terms && "Es necesario aceptar los terminos y condiciones"}
+        </span>
       </label>
+      {
+        message.text &&
+        <span className={`${message.error ? "text-red-500" : "text-secondary"} text-center text-[10pt] mt-1`}>
+          {message.text}
+        </span>
+      }
     </Form>
     {openModal && <SuccesModal setOpenModal={setOpenModal} />}
   </>
