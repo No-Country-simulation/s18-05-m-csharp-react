@@ -20,6 +20,7 @@ const config: Config = {
         "light-gray": "var(--light-gray)",
         white: "var(--white)",
         "primary-light-500": "var(--primary-light-500)",
+        gray: "var(--gray)",
       },
       fontSize: {
         title: "var(--fs-title)",

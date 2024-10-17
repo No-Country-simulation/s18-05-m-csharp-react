@@ -2,8 +2,8 @@ type AdoptablePet = {
   id: number,
   name: string,
   photoUrl: string,
-  datePublished: Date,
-  dateBirth: Date,
+  datePublished: string,
+  dateBirth: string,
   isAdopted: boolean
 }
 
