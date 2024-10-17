@@ -20,6 +20,10 @@ const PetCard = ({ pet }: { pet: AdoptablePet }) => {
           width={157}
           height={157}
           className="rounded-full"
+          onError={(e) => {
+            e.currentTarget.src = "/assets/icons/icon.png"
+            console.error(e.target)
+          }}
         />
 
       </header>
