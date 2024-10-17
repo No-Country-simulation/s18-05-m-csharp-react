@@ -1,5 +1,6 @@
 import { createWithEqualityFn } from "zustand/traditional";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { deleteCookie } from "cookies-next";
 
 interface IUserStore {
   isLogged: boolean;
@@ -38,7 +39,10 @@ const UseUserStore = createWithEqualityFn<IUserStore>()(
         });
       },
 
-      logOut: () => set({ ...initialValues, isLogged: false }),
+      logOut: () => {
+        deleteCookie("token")
+        set({ ...initialValues })
+      },
     }),
     {
       name: "user",
