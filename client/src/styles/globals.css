@@ -58,6 +58,10 @@ h3 {
   body {
     justify-content: start
   }
+
+  main{
+    padding-bottom: 90px
+  }
 }
 
 

@@ -12,14 +12,14 @@ const PetCard = ({ pet }: { pet: AdoptablePet }) => {
   const { name, dateBirth, datePublished, isAdopted, photoUrl } = pet;
 
   return (
-    <div className="w-[174px] text-gray flex flex-col items-center">
-      <header className="w-full h-[168px] flex align-middle justify-center items-end  border-gray border-t-[1px] border-x-[1px] rounded-t-full">
+    <div className="w-[174px] text-gray flex flex-col items-center shadow-light-gray hover:shadow-lg transition-all ease duration-300" style={{ borderRadius: "70% 70% 14px 14px" }}>
+      <header className="w-full h-[168px] flex align-middle justify-center items-end border-t-[1px] border-x-[1px] border-light-gray rounded-t-full">
         <Image
           src={photoUrl}
           alt={name}
           width={157}
           height={157}
-          className="rounded-full"
+          className="rounded-full object-contain"
           onError={(e) => {
             e.currentTarget.src = "/assets/icons/icon.png"
             console.error(e.target)
@@ -29,7 +29,7 @@ const PetCard = ({ pet }: { pet: AdoptablePet }) => {
       </header>
 
 
-      <footer className="flex justify-between items-end w-full px-2 pb-2 border-gray border-x-[1px] border-b-[1px] rounded-b-xl">
+      <footer className="flex justify-between items-end w-full px-2 pb-2 border-light-gray border-x-[1px] border-b-[1px] rounded-b-xl">
         <div className="text-sm leading-4">
           <p className="font-bold">{name}</p>
 
