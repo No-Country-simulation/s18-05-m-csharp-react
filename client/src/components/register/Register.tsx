@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, useState } from "react"
 import Form from "../Form"
 import CustomInput from "../CustomInput"
 import { useForm } from "react-hook-form"
-import { emailValidation, passwordValidation, confirmPasswordValidation, namesValidation } from "@/validations/common"
+import { emailValidation, passwordValidation, confirmPasswordValidation, namesValidation, defaultRequireValidation } from "@/validations/common"
 import fetchRegister from "@/data/account/register"
 import SuccesModal from "./SuccesModal"
 
@@ -68,9 +68,14 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         {...register("confirmPassword", confirmPasswordValidation(watch))}
       />
 
-      <label htmlFor="terms" className="text-light-gray flex cursor-pointer mx-auto mt-3 align-middle">
-        <input type="checkbox" className="mr-2" id="terms" {...register("terms")} />
-        Acepto terminos y condiciones
+      <label htmlFor="terms" className="text-center flex flex-col gap-1 cursor-pointer mx-auto mt-3 align-middle">
+        <span className="text-light-gray">
+          <input type="checkbox" className="mr-2" id="terms" {...register("terms", defaultRequireValidation)} />
+          Acepto terminos y condiciones
+        </span>
+        <span className="text-red-500">
+          {errors.terms && "Es necesario aceptar los terminos y condiciones"}
+        </span>
       </label>
       {
         errorMessage &&

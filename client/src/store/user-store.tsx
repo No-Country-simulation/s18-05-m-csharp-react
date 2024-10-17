@@ -22,7 +22,7 @@ const initialValues: IUser = {
   email: null,
 };
 
-const expirationTime = 7 * 24 * 60 * 60 * 1000; // 7 días en milisegundos
+const expirationTime: number = Number(process.env.EXPIRATION_TIME) * 1000; // 7 días en milisegundos
 
 const UseUserStore = createWithEqualityFn<IUserStore>()(
   persist(

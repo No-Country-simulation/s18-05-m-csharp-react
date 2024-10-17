@@ -23,7 +23,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
     fetchLogin(data)
       .then(res => {
         if (res.token) {
-          setCookie('token', res.token, { maxAge: 60 * 60 * 24 * 7 }); // Expira en 7 día
+          setCookie('token', res.token, { maxAge: Number(process.env.EXPIRATION_TIME) }); // Expira en 7 día
           logIn()
           router.push("/")
         }

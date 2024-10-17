@@ -13,7 +13,10 @@ const register = (data: RegisterFormValues): Promise<boolean> => {
     method: "POST"
   }
   return fetchData(props)
-    .then((res) => true)
+    .then((res) => {
+      if (res.error) throw new Error(res.error)
+      return true
+    })
 }
 
 export default register
