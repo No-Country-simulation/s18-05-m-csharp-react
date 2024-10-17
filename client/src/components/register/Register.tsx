@@ -20,7 +20,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
   const onSubmit = handleSubmit((data: RegisterFormValues) => {
     setMessage({ text: "Conectando...", error: false })
     fetchRegister(data)
-      .then((res) => setOpenModal(true))
+      .then(() => setOpenModal(true))
       .catch((error: Error) => setMessage({ text: error.message, error: true }))
   })
 

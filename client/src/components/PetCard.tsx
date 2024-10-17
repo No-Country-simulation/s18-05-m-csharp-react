@@ -9,7 +9,7 @@ const options: Intl.DateTimeFormatOptions = {
 };
 
 const PetCard = ({ pet }: { pet: AdoptablePet }) => {
-  const { name, id, dateBirth, datePublished, isAdopted, photoUrl } = pet;
+  const { name, dateBirth, datePublished, isAdopted, photoUrl } = pet;
 
   return (
     <div className="w-[174px] text-gray flex flex-col items-center">

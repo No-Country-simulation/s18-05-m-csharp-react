@@ -12,7 +12,7 @@ export default async function Home() {
         <h3 className="text-primary mb-4">En adopción</h3>
 
         {data.success && data.data?.map((pet) => (
-          <PetCard pet={pet} />
+          <PetCard pet={pet} key={`${pet.id}-adopcion`}/>
         ))
         }
       </div>
@@ -21,7 +21,7 @@ export default async function Home() {
       <div>
         <h3 className="text-primary mb-4">Encontrados</h3>
         {data.success && data.data?.map((pet) => (
-          <PetCard pet={pet} />
+          <PetCard pet={pet} key={`${pet.id}-encontrados`}/>
         ))
         }
       </div>

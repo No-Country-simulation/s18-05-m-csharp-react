@@ -12,7 +12,9 @@ export const fetchData = async (props: fetchDataProps): Promise<any> => {
 
     const options: RequestInit = { method, headers }
 
-    body && method != "GET" && (options.body = JSON.stringify(body))
+    if (body && method != "GET") {
+      options.body = JSON.stringify(body)
+    }
 
     const res = await fetch(`${api_path}/${path}`, options)
 

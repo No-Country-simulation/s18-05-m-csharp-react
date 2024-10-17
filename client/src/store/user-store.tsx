@@ -2,18 +2,19 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { deleteCookie } from "cookies-next";
 
-interface IUserStore {
+interface IUser {
   isLogged: boolean;
   name: string | null;
   lastName: string | null;
   email: string | null;
   expirationDate: number;
+}
 
+interface IUserStore extends IUser {
   logIn: (user?: IUser) => void;
   logOut: () => void;
 }
 
-interface IUser extends Omit<IUserStore, "logOut" | "logIn"> { }
 
 const initialValues: IUser = {
   expirationDate: 0,
