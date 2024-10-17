@@ -19,7 +19,7 @@ const UserNav = () => {
 
       <CustomPopover
         aria-label="Messages"
-        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[{ href: "/#", label: "Ver mensajes" }, { href: "/#", label: "Nuevo mensaje" }]}
       >
         <Image
@@ -34,7 +34,7 @@ const UserNav = () => {
 
       <CustomPopover
         aria-label="Notifications"
-        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[{ href: "/#", label: "Ver notificaciones" }, { href: "/#", label: "Marcar todo como leído" }]}
       >
         <Image
@@ -49,7 +49,7 @@ const UserNav = () => {
 
       <CustomPopover
         aria-label="Profile"
-        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[{ href: "/#", label: "Ver perfil" }, { href: "/#", label: "Ajustes" }]}
         specialContent={
           <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left" onClick={logOut} >
@@ -65,7 +65,7 @@ const UserNav = () => {
           className="w-6 h-6 object-contain"
         />
       </CustomPopover>
-      
+
     </div>
   )
 
