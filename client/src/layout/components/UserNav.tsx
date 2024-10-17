@@ -12,12 +12,16 @@ const links: { href: string; label: string }[] = [
 
 
 const UserNav = () => {
-  const { isLogged } = useUser();
+  const { isLogged, logOut } = useUser();
 
   if (isLogged) return (
     <div className="flex items-center space-x-2">
 
-      <CustomPopover aria-label="Messages" className="p-2 hover:bg-white-100 rounded-full transition-colors">
+      <CustomPopover
+        aria-label="Messages"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        options={[{ href: "/#", label: "Ver mensajes" }, { href: "/#", label: "Nuevo mensaje" }]}
+      >
         <Image
           src={"/assets/icons/chat.svg"}
           alt={"chat-icon"}
@@ -27,16 +31,12 @@ const UserNav = () => {
         />
       </CustomPopover>
 
-      <button aria-label="Messages" className="p-2 hover:bg-white-100 rounded-full transition-colors">
-        <Image
-          src={"/assets/icons/chat.svg"}
-          alt={"chat-icon"}
-          width={23}
-          height={22}
-          className="w-6 h-6 object-contain"
-        />
-      </button>
-      <button aria-label="Notifications" className="p-2 hover:bg-white-100 rounded-full transition-colors">
+
+      <CustomPopover
+        aria-label="Notifications"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        options={[{ href: "/#", label: "Ver notificaciones" }, { href: "/#", label: "Marcar todo como leído" }]}
+      >
         <Image
           src={"/assets/icons/notification.svg"}
           alt={"notification-icon"}
@@ -44,8 +44,19 @@ const UserNav = () => {
           height={22}
           className="w-6 h-6 object-contain"
         />
-      </button>
-      <button aria-label="Profile" className="p-2 hover:bg-white-100 rounded-full transition-colors">
+      </CustomPopover>
+
+
+      <CustomPopover
+        aria-label="Profile"
+        className="p-2 hover:bg-white-100 rounded-full transition-colors"
+        options={[{ href: "/#", label: "Ver perfil" }, { href: "/#", label: "Ajustes" }]}
+        specialContent={
+          <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left" onClick={logOut} >
+            Cerrar sesión
+          </button>
+        }
+      >
         <Image
           src={"/assets/icons/user.svg"}
           alt={"user-icon"}
@@ -53,7 +64,8 @@ const UserNav = () => {
           height={22}
           className="w-6 h-6 object-contain"
         />
-      </button>
+      </CustomPopover>
+      
     </div>
   )
 
