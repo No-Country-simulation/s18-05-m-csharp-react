@@ -18,6 +18,8 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
   } = useForm<RegisterFormValues>()
 
   const onSubmit = handleSubmit((data: RegisterFormValues) => {
+    console.log(errors);
+    
     fetchRegister(data)
       .then((res) => setOpenModal(true))
       .catch((error: Error) => setErrorMessage(error.message))

@@ -54,7 +54,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
 
       {
         error &&
-        <span className="text-red-500 text-center text-body mt-1">
+        <span className="text-red-500 text-center text-[10pt] mt-1">
           {error}
         </span>
       }
