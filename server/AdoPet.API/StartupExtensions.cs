@@ -5,6 +5,7 @@ using AdoPet.Mapping;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using AdoPet.Cloudinary;
+using AdoPet.SendGrid;
 
 namespace AdoPet.API;
 
@@ -16,6 +17,8 @@ public static class StartupExtensions
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddIdentityServices(builder.Configuration);
         builder.Services.AddCloudServiceExtensions(builder.Configuration);
+        builder.Services.AddSendGridServiceExtensions(builder.Configuration);
+
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddSwagger();
