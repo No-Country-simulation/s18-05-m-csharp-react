@@ -2,17 +2,18 @@ import { FC } from "react"
 import { HomeIcon, PostIcon, HandIcon, FootprintIcon, SearchPetIcon } from "./Icons"
 
 
-interface Item {
+export interface Item {
   href: string,
   label: string,
   Icon?: FC,
-  isTop: boolean
+  isTop: boolean,
+  handleClick?: () => void
 }
 
 const navigation: Item[] = [
   { isTop: true, Icon: HomeIcon, href: '/', label: 'inicio' },
   { isTop: true, Icon: SearchPetIcon, href: '/#perdidos', label: 'perdidos' },
-  { isTop: true, Icon: PostIcon, href: '/publicar', label: 'publicar' },
+  { isTop: true, Icon: PostIcon, href: '#', label: 'publicar' },
   { isTop: true, Icon: FootprintIcon, href: '/#adoptar', label: 'adoptar' },
   { isTop: true, Icon: HandIcon, href: '/#donar', label: 'donar' },
   { isTop: false, href: '/', label: 'inicio' },

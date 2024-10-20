@@ -7,7 +7,7 @@ import { emailValidation, passwordValidation } from "@/validations/common"
 import fetchLogin from "@/data/account/login"
 import { useRouter } from "next/navigation"
 import { setCookie } from 'cookies-next';
-import useUser from "@/hooks/UseUser"
+import useUser from "@/hooks/useUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
   const [message, setMessage] = useState<StateMessage>({ text: null, error: false })

@@ -1,7 +1,7 @@
 "use client"
 
 import CustomPopover from "@/components/shared/CustomPopover";
-import useUser from "@/hooks/UseUser";
+import useUser from "@/hooks/useUser";
 import Image from "next/image";
 import Link from "next/link"
 

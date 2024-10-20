@@ -1,4 +1,5 @@
 "use client"
+import useModal from "@/hooks/useModal"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FC } from "react"
@@ -7,9 +8,11 @@ import { FC } from "react"
 
 const CardMenu: FC<CardMenuProps> = (props) => {
   const { text, label, href, icon, alt } = props
+  const { closeModal } = useModal()
   const router = useRouter()
 
   const handleClick = () => {
+    closeModal()
     router.push(href)
   }
 

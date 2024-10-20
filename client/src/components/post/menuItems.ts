@@ -4,7 +4,7 @@ const menuItems: CardMenuProps[] = [
     text: "Animal en adopción",
     label: "¿Hallaste un animal abandonado? ¡Encuentrale una familia!",
     alt: "adopt pet",
-    href: "#"
+    href: "/publicar/adopcion"
   },
   {
     icon: "/assets/images/post-menu/found.svg",

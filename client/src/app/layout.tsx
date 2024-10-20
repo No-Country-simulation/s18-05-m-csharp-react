@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "@/styles/globals.css";
 import Header from "@/layout/Header";
 import Footer from "@/layout/Footer";
+import ModalPost from "@/components/post/ModalPost";
 
 const sanFranciscoFont = localFont({
   src: [
@@ -43,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${sanFranciscoFont.variable} antialiased`}  >
+        <ModalPost />
         <Header />
         <main>
           {children}
