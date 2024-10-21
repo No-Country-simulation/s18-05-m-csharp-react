@@ -147,18 +147,6 @@ public class AdoptionRequestController : ControllerBase
                 return NotFound($"No adoption request found.");
             }
             
-            var existingUserAdopter = await _userManager.FindByIdAsync(adoptionRequestUpdateDto.UserId.ToString());
-            if (existingUserAdopter == null)
-            {
-                return NotFound($"No user found.");
-            }
-
-            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            if (userId==adoptionExists.Data.Adoptable.Id)
-            {
-                return BadRequest("The adopter cannot update the adoption transaction");
-            }
-
             var response = await _adoptionRequestService.UpdateAdoptionRequest(adoptionRequestUpdateDto, id);
             if (response.Success)
             {

@@ -96,8 +96,9 @@ public class AdoptionRequestService : IAdoptionRequestService
             }
 
             var existingAdoption = await _adoptionRequestRepository.GetByIdAsync(id);
+                existingAdoption.Pet.IsAdopted=true;
             _mapper.Map(adoptionRequestUpdateDto, existingAdoption);
-
+        
             _adoptionRequestRepository.Update(existingAdoption);
             await _adoptionRequestRepository.SaveChangesAsync();
 

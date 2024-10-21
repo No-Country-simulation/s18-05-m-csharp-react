@@ -9,6 +9,8 @@ namespace AdoPet.Application.DTOs.AdoptionRequest
         public Gender Gender { get; set; }
         public string PhotoUrl { get; set; }
         public AnimalType AnimalType { get; set; }
+        public DateTime DatePublished { get; set; }
+        public DateTime? DateBirth { get; set; }
         public bool IsAdopted { get; set; }
         public UserDto Adoptable { get; set; }
         public AdoptionRequestStatus Status { get; set; }

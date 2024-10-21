@@ -13,23 +13,23 @@ public class AdoptionRequestProfile : Profile
         CreateMap<AdoptionRequestIdDto, AdoptionRequest>().ReverseMap();
         CreateMap<AdoptionRequest, AdoptionRequestGetAllDto>()
     .ForMember(dest => dest.Name, 
-               opt => opt.MapFrom(src => src.Pet.Name)) // Asumiendo que src.Pet tiene una propiedad Name
+               opt => opt.MapFrom(src => src.Pet.Name))
     .ForMember(dest => dest.PhotoUrl, 
-               opt => opt.MapFrom(src => src.Pet.PhotoUrl)) // Asumiendo que src.Pet tiene una propiedad PhotoUrl
+               opt => opt.MapFrom(src => src.Pet.PhotoUrl))
     .ForMember(dest => dest.DatePublished, 
-               opt => opt.MapFrom(src => src.Pet.DatePublished)) // Ajusta según la propiedad correcta
+               opt => opt.MapFrom(src => src.Pet.DatePublished))
     .ForMember(dest => dest.DateBirth, 
-               opt => opt.MapFrom(src => src.Pet.DateBirth)) // Asumiendo que src.Pet tiene una propiedad DateBirth
+               opt => opt.MapFrom(src => src.Pet.DateBirth))
     .ForMember(dest => dest.IsAdopted, 
-               opt => opt.MapFrom(src => src.Pet.IsAdopted)) // Asumiendo que src.Pet tiene una propiedad IsAdopted         
+               opt => opt.MapFrom(src => src.Pet.IsAdopted))     
     .ForMember(dest => dest.Adoptable, 
-               opt => opt.MapFrom(src => src.Adopter)) // Mapea directamente el adoptador
+               opt => opt.MapFrom(src => src.Adopter))
     .ForMember(dest => dest.Owner, 
                opt => opt.MapFrom(src => src.Pet.Owner))           
     .ForMember(dest => dest.Status, 
-               opt => opt.MapFrom(src => src.Status)) // Asumiendo que la propiedad Status está disponible en src
+               opt => opt.MapFrom(src => src.Status))
     .ForMember(dest => dest.RequestDate, 
-               opt => opt.MapFrom(src => src.RequestDate)); // Ajusta según la propiedad correcta
+               opt => opt.MapFrom(src => src.RequestDate));
 
 
         CreateMap<AdoptionRequest, AdoptionRequestIdDto>()
@@ -37,7 +37,10 @@ public class AdoptionRequestProfile : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Pet.Name))
             .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Pet.Gender))
             .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Pet.PhotoUrl))
-            .ForMember(dest => dest.AnimalType, opt => opt.MapFrom(src => src.Pet.AnimalType))
+            .ForMember(dest => dest.DatePublished, opt => opt.MapFrom(src => src.Pet.DatePublished))
+            .ForMember(dest => dest.DateBirth, opt => opt.MapFrom(src => src.Pet.DateBirth))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            .ForMember(dest => dest.RequestDate, opt => opt.MapFrom(src => src.RequestDate))     
             .ForMember(dest => dest.IsAdopted, opt => opt.MapFrom(src => src.Pet.IsAdopted))
             .ReverseMap();
     }
