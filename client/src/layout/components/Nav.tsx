@@ -4,6 +4,7 @@ import { useRouter, usePathname } from "next/navigation"
 import links, { Item } from "./navigation"
 import LinkItem from "@/components/shared/LinkItem"
 import useModal from "@/hooks/useModal"
+import useUser from "@/hooks/useUser"
 
 interface NavProps {
   isTop?: boolean
@@ -15,7 +16,7 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
   const [isMobile, setIsMobile] = useState(false)
   const [loading, setLoading] = useState<boolean>(true)
   const { openModal } = useModal()
-
+  const { isLogged } = useUser()
   const navigation: Item[] = links.map((item) => {
     if (item.label === "publicar") {
       return { ...item, handleClick: openModal }
@@ -48,11 +49,15 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
           navigation.map((item, i) => {
             const isActive = pathname.endsWith(item.href)
 
-            if (isMobile && !isTop && item.isTop) {
+            if (isLogged && isMobile && !isTop && item.isTop) {
               return (
                 <li className="w-auto" key={i}>
                   <button type="button" onClick={() => {
-                    item.handleClick ? item.handleClick() : router.replace(item.href)
+                    if (item.handleClick) {
+                      item.handleClick();
+                    } else {
+                      router.replace(item.href);
+                    }
                   }
                   }
                     className={`flex flex-col items-center justify-center gap-0.5 capitalize
@@ -71,7 +76,7 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
               )
             }
 
-            else if (isTop && item.isTop) return <LinkItem isActive={isActive} item={item} i={i} key={i} />
+            else if (isLogged && isTop && item.isTop) return <LinkItem isActive={isActive} item={item} i={i} key={i} />
 
             else if (!isTop && !item.isTop && !isMobile) return <LinkItem isActive={isActive} item={item} i={i} key={i} />
           })
