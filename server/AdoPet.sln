@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Mapping", "AdoPet.Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.API", "AdoPet.API\AdoPet.API.csproj", "{4AAED456-67EB-4FFE-B18B-0F14A0B0B725}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.Cloudinary", "AdoPet.Cloudinary\AdoPet.Cloudinary.csproj", "{C7255270-8C09-4141-87CB-916AB11C0EFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoPet.Cloudinary", "AdoPet.Cloudinary\AdoPet.Cloudinary.csproj", "{C7255270-8C09-4141-87CB-916AB11C0EFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoPet.RealTime", "AdoPet.RealTime\AdoPet.RealTime.csproj", "{0E642D50-4980-4623-9A9D-4E43DB8C262D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7255270-8C09-4141-87CB-916AB11C0EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E642D50-4980-4623-9A9D-4E43DB8C262D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E642D50-4980-4623-9A9D-4E43DB8C262D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E642D50-4980-4623-9A9D-4E43DB8C262D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E642D50-4980-4623-9A9D-4E43DB8C262D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{E140497C-616C-40B5-A262-0285D9BEFE0D} = {B0C682FC-BC3E-40E8-99AC-7E46631766F1}
 		{4AAED456-67EB-4FFE-B18B-0F14A0B0B725} = {63B2058F-03C5-4B09-B270-0147EE0E1772}
 		{C7255270-8C09-4141-87CB-916AB11C0EFC} = {3C3971D0-0F14-4213-9C0A-24ECE7C3F2AE}
+		{0E642D50-4980-4623-9A9D-4E43DB8C262D} = {3C3971D0-0F14-4213-9C0A-24ECE7C3F2AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48AA8E66-78A9-48AB-ADC5-BCFE4FDE347C}
