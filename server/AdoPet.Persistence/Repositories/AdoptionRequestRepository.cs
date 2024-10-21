@@ -35,7 +35,8 @@ public class AdoptionRequestRepository : GenericRepository<AdoptionRequest>, IAd
         return await _dbContext.AdoptionRequests
             .Include(ar => ar.Adopter)
             .Include(ar => ar.Pet)
-           .Where(ar => ar.Status == AdoptionRequestStatus.Pending)
+            .ThenInclude(p => p.Owner)
+            .Where(ar => ar.Status == AdoptionRequestStatus.Pending)
             .ToListAsync();
     }
 }

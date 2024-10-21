@@ -73,6 +73,12 @@ public class AdoptionRequestController : ControllerBase
             }
 
             var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (petExists.Data.Owner.Id == userId)
+            {
+                return BadRequest("The user who published the adoption cannot make the transaction.");
+            }
+
             var result = await _adoptionRequestService.AddAdoptionRequest(adoptionRequestDto, int.Parse(userId));
             return Ok(result);
         }
@@ -130,10 +136,11 @@ public class AdoptionRequestController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpPut("{id}")]
+    [Authorize(Roles = "User")]
     public async Task<ActionResult> UpdateAdoptionRequest(AdoptionRequestUpdateDto adoptionRequestUpdateDto, int id)
     {
         try
-        {
+        {   
             var adoptionExists = await _adoptionRequestService.GetAdoptionRequestById(id);
             if (!adoptionExists.Success)
             {
@@ -144,6 +151,12 @@ public class AdoptionRequestController : ControllerBase
             if (existingUserAdopter == null)
             {
                 return NotFound($"No user found.");
+            }
+
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            if (userId==adoptionExists.Data.Adoptable.Id)
+            {
+                return BadRequest("The adopter cannot update the adoption transaction");
             }
 
             var response = await _adoptionRequestService.UpdateAdoptionRequest(adoptionRequestUpdateDto, id);

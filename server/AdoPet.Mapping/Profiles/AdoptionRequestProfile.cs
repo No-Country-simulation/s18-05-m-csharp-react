@@ -21,9 +21,11 @@ public class AdoptionRequestProfile : Profile
     .ForMember(dest => dest.DateBirth, 
                opt => opt.MapFrom(src => src.Pet.DateBirth)) // Asumiendo que src.Pet tiene una propiedad DateBirth
     .ForMember(dest => dest.IsAdopted, 
-               opt => opt.MapFrom(src => src.Pet.IsAdopted)) // Asumiendo que src.Pet tiene una propiedad IsAdopted
+               opt => opt.MapFrom(src => src.Pet.IsAdopted)) // Asumiendo que src.Pet tiene una propiedad IsAdopted         
     .ForMember(dest => dest.Adoptable, 
                opt => opt.MapFrom(src => src.Adopter)) // Mapea directamente el adoptador
+    .ForMember(dest => dest.Owner, 
+               opt => opt.MapFrom(src => src.Pet.Owner))           
     .ForMember(dest => dest.Status, 
                opt => opt.MapFrom(src => src.Status)) // Asumiendo que la propiedad Status está disponible en src
     .ForMember(dest => dest.RequestDate, 
