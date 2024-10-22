@@ -5,14 +5,14 @@ import Image from "next/image"
 
 const Header = () => {
   return (
-    <header className="bg-custom-gradient h-[80px]">
+    <header className="bg-custom-gradient h-[85px]">
 
       <div className="flex items-center h-[calc(100%-22px)] justify-between px-4">
         <Image
           priority
           width={147}
           height={27}
-          className="object-contain"
+          className="object-contain z-20"
           alt="AdoPet-logo"
           src="/assets/icons/adoPet-logo.png"
         />

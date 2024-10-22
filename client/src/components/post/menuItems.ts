@@ -11,14 +11,14 @@ const menuItems: CardMenuProps[] = [
     text: "Animal encontrado",
     label: "¿Encontraste a un animal perdido? ¡Ayúdanos a reunirlos!",
     alt: "found pet",
-    href: "#"
+    href: "/publicar/encontrado"
   },
   {
     icon: "/assets/images/post-menu/lost.svg",
     text: "Animal perdido",
     label: "¿Perdiste a tu mascota? ¡Ayúdanos a encontrarla!",
     alt: "lost pet",
-    href: "#"
+    href: "/publicar/perdido"
   },
 ]
 

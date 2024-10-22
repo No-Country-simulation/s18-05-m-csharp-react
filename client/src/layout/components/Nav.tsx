@@ -40,7 +40,7 @@ const BottomNav: FC<NavProps> = ({ isTop }) => {
   if (isMobile && isTop) return null;
 
   return (
-    <nav className="h-full w-full md:w-6/12">
+    <nav className="h-full w-full md:w-6/12 z-20">
       <ul className="flex h-full w-full items-center justify-evenly">
 
         {

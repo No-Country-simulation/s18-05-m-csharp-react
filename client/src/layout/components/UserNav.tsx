@@ -15,7 +15,7 @@ const UserNav = () => {
   const { isLogged, logOut } = useUser();
 
   if (isLogged) return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 z-20">
 
       <CustomPopover
         aria-label="Messages"
@@ -70,7 +70,7 @@ const UserNav = () => {
   )
 
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 z-20">
       {
         links.map(({ href, label }, i) => (
           <Link href={href} key={i} className={`

@@ -11,7 +11,7 @@ interface Props extends ComponentPropsWithoutRef<typeof PopoverButton> {
 const CustomPopover: FC<Props> = (props) => {
   const { children, options, specialContent, ...rest } = props
   return (
-    <Popover>
+    <Popover className={"z-20"}>
       <PopoverButton {...rest}>
         {children}
       </PopoverButton>
