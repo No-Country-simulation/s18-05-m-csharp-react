@@ -54,12 +54,16 @@ h3 {
   font-size: var(--fs-subtitle);
 }
 
+textarea {
+  field-sizing: content;
+}
+
 @media (width <=768px) {
   body {
     justify-content: start
   }
 
-  main{
+  main {
     padding-bottom: 90px
   }
 }

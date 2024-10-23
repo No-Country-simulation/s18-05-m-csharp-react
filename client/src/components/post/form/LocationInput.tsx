@@ -1,4 +1,4 @@
-import CustomInput from '@/components/shared/CustomInput'
+import CustomInput from '@/components/shared/form/CustomInput'
 import Image from 'next/image'
 import { useState } from 'react'
 

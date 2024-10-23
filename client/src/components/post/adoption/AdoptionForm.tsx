@@ -1,13 +1,14 @@
 "use client"
 import { useState } from "react"
 import ImageUpload from "../form/ImageUpload"
-import SexSelection from "../form/SexSelection"
+import SexSelection from "../form/select/SexSelection"
 import LocationInput from "../form/LocationInput"
-import { Listbox } from "@headlessui/react"
-import CustomInput from "@/components/shared/CustomInput"
-import CustomButton from "@/components/shared/CustomButton"
+import CustomInput from "@/components/shared/form/CustomInput"
+import CustomButton from "@/components/shared/form/CustomButton"
 import ListBoxType from "../form/ListBoxType"
-// import { ChevronUpDownIcon } from "@heroicons/react/20/solid"
+import SizeSelection from "../form/select/SizeSelection"
+import CustomCheckbox from "@/components/shared/form/CustomCheckbox"
+import CustomTextArea from "@/components/shared/form/CustomTextarea"
 
 const animalTypes = ["Perro", "Gato", "Otro"]
 
@@ -17,6 +18,7 @@ export default function AnimalAdoptionForm() {
   const [animalType, setAnimalType] = useState(animalTypes[0])
   const [image, setImage] = useState<string | null>(null)
   const [sex, setSex] = useState<"Macho" | "Hembra" | "No sé" | null>(null)
+  const [size, setSize] = useState<"Grande" | "Mediano" | "Chico" | null>(null)
   const [location, setLocation] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,11 +45,6 @@ export default function AnimalAdoptionForm() {
             topLabel={"Edad"}
             placeholder={"2 años (o edad estimada)"}
           />
-          {/* <CustomInput
-              extraClass=" rounded-xl"
-              topLabel={"Animal"}
-              placeholder={"Seleccione el correspondiente"}
-            /> */}
 
           <ListBoxType />
 
@@ -58,6 +55,31 @@ export default function AnimalAdoptionForm() {
           </div>
 
         </div>
+
+        <hr className="my-6" />
+
+        <div className="my-5 space-y-5">
+          <SizeSelection onSizeChange={setSize} />
+
+          <CustomTextArea
+            placeholder={"¿Qué información extra desea agregar?"}
+            label="Notas"
+          />
+
+          <div className="flex justify-evenly">
+            {["Esterilizado", "Vacunas al día", "Castrado"].map(item => (
+              <CustomCheckbox label={item} key={item} />
+            ))}
+          </div>
+
+          <CustomTextArea
+            placeholder={"¿Tiene alguna enfermedad relevante? ¿Toma alguna medicación?"}
+            label="Enfermedades"
+          />
+
+        </div>
+
+        <hr className="my-6" />
 
         <CustomButton
           text="siguiente"
