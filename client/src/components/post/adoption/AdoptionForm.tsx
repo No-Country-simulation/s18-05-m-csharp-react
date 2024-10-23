@@ -1,20 +1,21 @@
 "use client"
-import { useState } from 'react'
-import ImageUpload from '../form/ImageUpload'
-import SexSelection from '../form/SexSelection'
-import LocationInput from '../form/LocationInput'
-import { Listbox } from '@headlessui/react'
-// import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { useState } from "react"
+import ImageUpload from "../form/ImageUpload"
+import SexSelection from "../form/SexSelection"
+import LocationInput from "../form/LocationInput"
+import { Listbox } from "@headlessui/react"
+import CustomInput from "@/components/shared/CustomInput"
+// import { ChevronUpDownIcon } from "@heroicons/react/20/solid"
 
-const animalTypes = ['Perro', 'Gato', 'Otro']
+const animalTypes = ["Perro", "Gato", "Otro"]
 
 export default function AnimalAdoptionForm() {
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
+  const [name, setName] = useState("")
+  const [age, setAge] = useState("")
   const [animalType, setAnimalType] = useState(animalTypes[0])
   const [image, setImage] = useState<string | null>(null)
-  const [sex, setSex] = useState<'Macho' | 'Hembra' | 'No sé' | null>(null)
-  const [location, setLocation] = useState('')
+  const [sex, setSex] = useState<"Macho" | "Hembra" | "No sé" | null>(null)
+  const [location, setLocation] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,12 +24,28 @@ export default function AnimalAdoptionForm() {
   }
 
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-xl mx-auto p-6">
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <ImageUpload onImageUpload={setImage} />
-
         <div>
+          <div className="sm:grid sm:grid-cols-2 sm:gap-4">
+            <CustomInput
+              extraClass="rounded-xl"
+              topLabel={"Nombre"} />
+
+            <CustomInput
+              extraClass=" rounded-xl"
+              topLabel={"Edad"} />
+            <CustomInput
+              extraClass=" rounded-xl"
+              topLabel={"Animal"} />
+
+            <SexSelection onSexChange={setSex} />
+            
+            <LocationInput onLocationChange={setLocation} />
+          </div>
+
           <label htmlFor="name" className="block text-sm font-medium text-purple-700">Nombre</label>
           <input
             type="text"
@@ -65,14 +82,14 @@ export default function AnimalAdoptionForm() {
                   <Listbox.Option
                     key={type}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-purple-100 text-purple-900' : 'text-gray-900'
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-purple-100 text-purple-900" : "text-gray-900"
                       }`
                     }
                     value={type}
                   >
                     {({ selected }) => (
                       <>
-                        <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
                           {type}
                         </span>
                       </>
@@ -84,17 +101,13 @@ export default function AnimalAdoptionForm() {
           </Listbox>
         </div>
 
-        <SexSelection onSexChange={setSex} />
-
-        <LocationInput onLocationChange={setLocation} />
-
         <button
           type="submit"
           className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         >
           SIGUIENTE
         </button>
-      </form>
-    </div>
+      </form >
+    </div >
   )
 }

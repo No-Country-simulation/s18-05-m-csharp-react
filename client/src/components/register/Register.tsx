@@ -31,7 +31,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         error={errors.name?.message}
         type="text"
         placeholder="Nombre"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("name", namesValidation)}
       />
       <CustomInput
@@ -39,7 +39,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         error={errors.lastName?.message}
         type="text"
         placeholder="Apellido"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("lastName", namesValidation)}
       />
 
@@ -48,7 +48,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         error={errors.email?.message}
         type="text"
         placeholder="Correo electrónico"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("email", emailValidation)}
       />
       <CustomInput
@@ -56,7 +56,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         error={errors.password?.message}
         type="password"
         placeholder="Contraseña"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("password", passwordValidation)}
       />
 
@@ -65,7 +65,7 @@ const Register: FC<PropsWithChildren> = ({ children }) => {
         error={errors.confirmPassword?.message}
         type="password"
         placeholder="Repetir contraseña"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("confirmPassword", confirmPasswordValidation(watch))}
       />
 

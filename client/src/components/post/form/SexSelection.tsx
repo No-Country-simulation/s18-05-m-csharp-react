@@ -29,7 +29,7 @@ export default function SexSelection({ onSexChange }: SexSelectionProps) {
               `${hover ? ' ring-primary ' : 'ring-primary-light'}
               ${focus ? 'ring-primary ' : ''}
               ${checked ? 'bg-primary text-white ring-0' : 'bg-white'}
-              relative flex cursor-pointer rounded-lg px-5 py-2 shadow-md focus:outline-none
+              relative flex cursor-pointer rounded-lg px-3 py-2 shadow-md focus:outline-none
               ring-1 ring-opacity-60 ring-offset-0
               `
             }

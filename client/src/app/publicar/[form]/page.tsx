@@ -4,10 +4,10 @@ type typeForm = "adopcion" | "perdido" | "encontrado"
 
 const page = ({ params: { form } }: { params: { form: typeForm } }) => {
   return (
-    <div className="z-10">
-      <div className=" mt-[-85px] pt-[70px] bg-custom-gradient text-white">
-        <div className="w-10/12 mx-auto pb-16">
-          <h1 className="text-left">Publicar</h1>
+    <div className="">
+      <div className="z-10 mt-[-85px] pt-[70px] bg-custom-gradient text-white">
+        <div className="w-10/12 mx-auto pb-14">
+          <h1 className="text-left text-title-secondary">Publicar</h1>
           <h3 className="text-center">
             {
               form === "adopcion"

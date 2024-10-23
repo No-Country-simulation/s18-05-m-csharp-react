@@ -17,10 +17,7 @@ export default function ImageUpload({ onImageUpload }: ImageUploadProps) {
         onImageUpload(reader.result as string)
       }
       reader.readAsDataURL(file)
-    } else {
-      setPreviewUrl(null)
-      onImageUpload(null)
-    }
+    } 
   }
 
   const handleClick = () => {
@@ -31,7 +28,7 @@ export default function ImageUpload({ onImageUpload }: ImageUploadProps) {
     <div
       onClick={handleClick}
       className={`w-full h-48 ${previewUrl ? 'hover:h-80' : ''}
-        transition-all ease duration-300 border-2 border-primary-light-500 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-white mt-[-100px]`}
+        transition-all ease duration-300 border-2 border-primary-light-500 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-white mt-[-96px]`}
     >
       {previewUrl ? (
         <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />

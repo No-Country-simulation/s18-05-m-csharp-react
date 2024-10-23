@@ -40,7 +40,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         error={errors.email?.message}
         type="text"
         placeholder="Correo electrónico"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("email", emailValidation)}
       />
       <CustomInput
@@ -49,7 +49,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         error={errors.password?.message}
         type="password"
         placeholder="Contraseña"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("password", passwordValidation)}
       />
 
