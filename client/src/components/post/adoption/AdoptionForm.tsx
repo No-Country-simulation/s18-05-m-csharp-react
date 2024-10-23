@@ -5,6 +5,7 @@ import SexSelection from "../form/SexSelection"
 import LocationInput from "../form/LocationInput"
 import { Listbox } from "@headlessui/react"
 import CustomInput from "@/components/shared/CustomInput"
+import CustomButton from "@/components/shared/CustomButton"
 // import { ChevronUpDownIcon } from "@heroicons/react/20/solid"
 
 const animalTypes = ["Perro", "Gato", "Otro"]
@@ -29,7 +30,7 @@ export default function AnimalAdoptionForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <ImageUpload onImageUpload={setImage} />
         <div>
-          <div className="sm:grid sm:grid-cols-2 sm:gap-4">
+          <div className="sm:grid sm:grid-cols-2 sm:gap-3">
             <CustomInput
               extraClass="rounded-xl"
               topLabel={"Nombre"} />
@@ -42,9 +43,18 @@ export default function AnimalAdoptionForm() {
               topLabel={"Animal"} />
 
             <SexSelection onSexChange={setSex} />
-            
-            <LocationInput onLocationChange={setLocation} />
+
+            <div className="col-span-2">
+              <LocationInput onLocationChange={setLocation} />
+            </div>
+
           </div>
+
+          <CustomButton
+            text="siguiente"
+            extraClass="uppercase h-[48px] w-full my-8"
+            disabled={true}
+          />
 
           <label htmlFor="name" className="block text-sm font-medium text-purple-700">Nombre</label>
           <input
