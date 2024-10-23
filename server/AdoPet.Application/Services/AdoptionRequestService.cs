@@ -6,18 +6,21 @@ using AdoPet.Application.DTOs;
 using AdoPet.Application.DTOs.User;
 using AdoPet.Domain.Enums;
 using AutoMapper;
+using AdoPet.Application.SendGrid;
 
 namespace AdoPet.Application.Services;
 
 public class AdoptionRequestService : IAdoptionRequestService
 {
     private readonly IAdoptionRequestRepository _adoptionRequestRepository;
+    private readonly IEmailService _emailService;
     private readonly IMapper _mapper;
-   
-    public AdoptionRequestService(IAdoptionRequestRepository adoptionRequestRepository, IMapper mapper)
+
+    public AdoptionRequestService(IAdoptionRequestRepository adoptionRequestRepository, IMapper mapper, IEmailService emailService)
     {
         _adoptionRequestRepository = adoptionRequestRepository;
         _mapper = mapper;
+        _emailService = emailService;
     }
 
     public async Task<BaseResponse<AdoptionRequestDto>> AddAdoptionRequest(AdoptionRequestDto adoptionRequest, int idUser)
@@ -87,7 +90,7 @@ public class AdoptionRequestService : IAdoptionRequestService
 
         try
         {
-            
+
             if (!await _adoptionRequestRepository.AdoptionRequestIdExistsAsync(id))
             {
                 response.Success = false;
@@ -95,14 +98,24 @@ public class AdoptionRequestService : IAdoptionRequestService
                 return response;
             }
 
-            var existingAdoption = await _adoptionRequestRepository.GetByIdAsync(id);
-            if  (existingAdoption.Status==AdoptionRequestStatus.Approved)
+            var existingAdoption = await _adoptionRequestRepository.GetByIdWithOwner(id);
+            if (adoptionRequestUpdateDto.Status == AdoptionRequestStatus.Approved)
             {
-                existingAdoption.Pet.IsAdopted=true;
+                var sendMailResult = await _emailService.SendEmailWithReplyTo(existingAdoption);
+
+                if (!sendMailResult)
+                {
+                    response.Success = false;
+                    response.Message = "Failed to send email.";
+                    return response;
+                }
+                existingAdoption.Pet.IsAdopted = true;
+
+
             }
-                
+
             _mapper.Map(adoptionRequestUpdateDto, existingAdoption);
-        
+
             _adoptionRequestRepository.Update(existingAdoption);
             await _adoptionRequestRepository.SaveChangesAsync();
 

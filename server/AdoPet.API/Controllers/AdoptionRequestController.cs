@@ -16,7 +16,7 @@ public class AdoptionRequestController : ControllerBase
     private readonly UserManager<User> _userManager;
     private readonly IAdoptablePetService _adoptablePetService;
 
-    public AdoptionRequestController(IAdoptionRequestService adoptionRequestService,UserManager<User> userManager,IAdoptablePetService adoptablePetService)
+    public AdoptionRequestController(IAdoptionRequestService adoptionRequestService, UserManager<User> userManager, IAdoptablePetService adoptablePetService)
     {
         _adoptionRequestService = adoptionRequestService;
         _userManager = userManager;
@@ -140,13 +140,12 @@ public class AdoptionRequestController : ControllerBase
     public async Task<ActionResult> UpdateAdoptionRequest(AdoptionRequestUpdateDto adoptionRequestUpdateDto, int id)
     {
         try
-        {   
+        {
             var adoptionExists = await _adoptionRequestService.GetAdoptionRequestById(id);
             if (!adoptionExists.Success)
             {
                 return NotFound($"No adoption request found.");
             }
-            
             var response = await _adoptionRequestService.UpdateAdoptionRequest(adoptionRequestUpdateDto, id);
             if (response.Success)
             {

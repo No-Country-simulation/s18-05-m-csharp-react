@@ -26,7 +26,18 @@ public class AdoptionRequestRepository : GenericRepository<AdoptionRequest>, IAd
         return await _dbContext.AdoptionRequests
             .Include(p => p.Adopter)
             .Include(p => p.Pet)
-            .Where(p=>p.Status==AdoptionRequestStatus.Pending)
+            .Where(p => p.Status == AdoptionRequestStatus.Pending)
+            .FirstOrDefaultAsync(p => p.Id == id);
+    }
+
+
+    public async Task<AdoptionRequest> GetByIdWithOwner(int id)
+    {
+        return await _dbContext.AdoptionRequests
+            .Include(p => p.Adopter)
+            .Include(p => p.Pet)
+            .Include(p => p.Pet.Owner)
+            .Where(p => p.Status == AdoptionRequestStatus.Pending)
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
