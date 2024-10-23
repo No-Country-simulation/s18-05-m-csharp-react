@@ -19,7 +19,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
       )}
       <input
         ref={ref} autoComplete={props.autoComplete ?? "off"}
-        className={`input shadow-sm ${extraClass} mb-1`}
+        className={`input shadow-md ${extraClass} mb-1`}
         {...props}
       />
       {children}

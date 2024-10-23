@@ -6,6 +6,7 @@ import LocationInput from "../form/LocationInput"
 import { Listbox } from "@headlessui/react"
 import CustomInput from "@/components/shared/CustomInput"
 import CustomButton from "@/components/shared/CustomButton"
+import ListBoxType from "../form/ListBoxType"
 // import { ChevronUpDownIcon } from "@heroicons/react/20/solid"
 
 const animalTypes = ["Perro", "Gato", "Otro"]
@@ -27,85 +28,43 @@ export default function AnimalAdoptionForm() {
   return (
     <div className="max-w-xl mx-auto p-6">
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="">
         <ImageUpload onImageUpload={setImage} />
-        <div>
-          <div className="sm:grid sm:grid-cols-2 sm:gap-3">
-            <CustomInput
-              extraClass="rounded-xl"
-              topLabel={"Nombre"}
-              placeholder={"Pepito"}
-            />
 
-            <CustomInput
-              extraClass=" rounded-xl"
-              topLabel={"Edad"}
-              placeholder={"2 años (o edad estimada)"}
-            />
-            <CustomInput
+        <div className="sm:grid sm:grid-cols-2 sm:gap-3 flex flex-col gap-4">
+          <CustomInput
+            extraClass="rounded-xl"
+            topLabel={"Nombre"}
+            placeholder={"Pepito"}
+          />
+
+          <CustomInput
+            extraClass=" rounded-xl"
+            topLabel={"Edad"}
+            placeholder={"2 años (o edad estimada)"}
+          />
+          {/* <CustomInput
               extraClass=" rounded-xl"
               topLabel={"Animal"}
               placeholder={"Seleccione el correspondiente"}
-            />
+            /> */}
 
-            <SexSelection onSexChange={setSex} />
+          <ListBoxType />
 
-            <div className="col-span-2">
-              <LocationInput onLocationChange={setLocation} />
-            </div>
+          <SexSelection onSexChange={setSex} />
 
+          <div className="col-span-2">
+            <LocationInput onLocationChange={setLocation} />
           </div>
 
-          <CustomButton
-            text="siguiente"
-            extraClass="uppercase h-[48px] w-full my-8"
-            disabled={true}
-          />
-
-
         </div>
 
+        <CustomButton
+          text="siguiente"
+          extraClass="uppercase h-[48px] w-full my-12 hover:ring-primary hover:ring-1 hover:ring-offset-2 focus:outline-none "
+          disabled={true}
+        />
 
-        <div>
-          <label htmlFor="animal-type" className="block text-sm font-medium text-purple-700">Animal</label>
-          <Listbox value={animalType} onChange={setAnimalType}>
-            <div className="relative mt-1">
-              <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-purple-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-purple-300 sm:text-sm">
-                <span className="block truncate">{animalType}</span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  {/* <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" /> */}
-                </span>
-              </Listbox.Button>
-              <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {animalTypes.map((type) => (
-                  <Listbox.Option
-                    key={type}
-                    className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-purple-100 text-purple-900" : "text-gray-900"
-                      }`
-                    }
-                    value={type}
-                  >
-                    {({ selected }) => (
-                      <>
-                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                          {type}
-                        </span>
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </div>
-          </Listbox>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-        >
-          SIGUIENTE
-        </button>
       </form >
     </div >
   )

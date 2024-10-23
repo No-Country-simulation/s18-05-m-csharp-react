@@ -42,6 +42,7 @@ const config: Config = {
       backgroundImage: {
         "custom-gradient": "linear-gradient(180deg, #9D6DD1 0%, #6D3F9E 100%)",
         "custom-gradient-2": "linear-gradient(120deg, #9D6DD1 0%, #6D3F9E 100%)",
+        "custom-gradient-3": "linear-gradient(120deg, #6D3F9E 0%, #9D6DD1 100%)",
         "active": "linear-gradient(180deg, #9D6DD1 0%, var(--primary) 100%)",
       },
       screens: {
