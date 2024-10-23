@@ -4,7 +4,11 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
 
-  if (token) {
+  if (request.url.includes("publicar") && !token) {
+    return NextResponse.redirect(new URL('/iniciar-sesion', request.url))
+  }
+
+  if (token && request.url.includes("iniciar-sesion") || request.url.includes("registrarme")) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
@@ -13,5 +17,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/iniciar-sesion", "/registrarme"],
+  matcher: ["/iniciar-sesion", "/registrarme", "/publicar/(.*)"],
 }
