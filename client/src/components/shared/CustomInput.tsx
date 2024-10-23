@@ -1,15 +1,16 @@
-import { forwardRef, InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   extraClass?: string;
   containClass?: string;
   error?: string;
-  topLabel?: string
+  topLabel?: string;
+  children?: ReactNode
 }
 
 const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
-  ({ extraClass, error, topLabel, containClass, ...props }, ref) => (
-    <div className={`flex flex-col ${containClass ?? ""}`}>
+  ({ extraClass, error, topLabel, containClass, children, ...props }, ref) => (
+    <div className={`relative flex flex-col ${containClass ?? ""}`}>
       {topLabel && (
         <label htmlFor={props.name}
           className="text-dark-gray text-subtitle">
@@ -21,6 +22,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         className={`input shadow-sm ${extraClass} mb-1`}
         {...props}
       />
+      {children}
       <label about="text-error-helper" htmlFor={props.name} className={`${error && "text-red-600"} text - [10pt]`}>
         {error && error}
       </label>

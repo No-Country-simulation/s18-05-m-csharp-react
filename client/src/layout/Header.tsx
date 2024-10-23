@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="bg-custom-gradient h-[85px]">
 
-      <div className="flex items-center h-[calc(100%-22px)] justify-between px-4">
+      <div className="flex items-center h-[calc(100%-22px)] justify-between md:px-10 px-2">
         <Image
           priority
           width={147}

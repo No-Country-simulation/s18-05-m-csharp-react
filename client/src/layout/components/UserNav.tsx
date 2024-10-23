@@ -74,9 +74,9 @@ const UserNav = () => {
       {
         links.map(({ href, label }, i) => (
           <Link href={href} key={i} className={`
-          rounded-full py-1.5 px-4 text-small
+          rounded-full py-1.5 md:px-4 px-2.5 text-small
           duration-300 text-white hover:text-secondary-light
-          ${!(i % 2) && "bg-white-100"} transition-all ease  
+          ${!(i % 2) && "bg-white-100"} transition-all ease text-nowrap text-ellipsis overflow-hidden whitespace-nowrap md:max-w-none max-w-[100px]
           `}>
             {label}
           </Link>

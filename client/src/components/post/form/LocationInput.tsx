@@ -1,3 +1,4 @@
+import CustomInput from '@/components/shared/CustomInput'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -14,27 +15,18 @@ export default function LocationInput({ onLocationChange }: LocationInputProps) 
   }
 
   return (
-    <div>
-      <label htmlFor="location" className="block text-sm font-medium text-purple-700 mb-2">
-        Ubicación
-      </label>
-      <div className="relative">
-        <input
-          type="text"
-          id="location"
-          value={location}
-          onChange={handleChange}
-          placeholder="Ingresa tu dirección"
-          className="w-full pl-10 pr-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
-        />
-        <Image
-          src="/assets/icons/location.svg"
-          alt="Location Icon"
-          width={21}
-          height={21}
-          className="absolute left-3 top-1/2 transform -translate-y-1/2"
-        />
-      </div>
-    </div>
+    <CustomInput
+      topLabel={"Ubicación"}
+      extraClass="rounded-xl pl-[35px!important]"
+      placeholder="Ingresa tu dirección"
+    >
+      <Image
+        src="/assets/icons/location.svg"
+        alt="Location Icon"
+        width={21}
+        height={21}
+        className="absolute left-2 top-2/3 transform -translate-y-1/2"
+      />
+    </CustomInput>
   )
 }

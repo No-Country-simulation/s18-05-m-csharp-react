@@ -33,14 +33,20 @@ export default function AnimalAdoptionForm() {
           <div className="sm:grid sm:grid-cols-2 sm:gap-3">
             <CustomInput
               extraClass="rounded-xl"
-              topLabel={"Nombre"} />
+              topLabel={"Nombre"}
+              placeholder={"Pepito"}
+            />
 
             <CustomInput
               extraClass=" rounded-xl"
-              topLabel={"Edad"} />
+              topLabel={"Edad"}
+              placeholder={"2 años (o edad estimada)"}
+            />
             <CustomInput
               extraClass=" rounded-xl"
-              topLabel={"Animal"} />
+              topLabel={"Animal"}
+              placeholder={"Seleccione el correspondiente"}
+            />
 
             <SexSelection onSexChange={setSex} />
 
@@ -56,26 +62,9 @@ export default function AnimalAdoptionForm() {
             disabled={true}
           />
 
-          <label htmlFor="name" className="block text-sm font-medium text-purple-700">Nombre</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
-          />
+
         </div>
 
-        <div>
-          <label htmlFor="age" className="block text-sm font-medium text-purple-700">Edad</label>
-          <input
-            type="text"
-            id="age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
-          />
-        </div>
 
         <div>
           <label htmlFor="animal-type" className="block text-sm font-medium text-purple-700">Animal</label>

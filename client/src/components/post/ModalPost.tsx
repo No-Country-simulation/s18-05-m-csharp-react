@@ -14,10 +14,10 @@ export default function ModalPost() {
   return (
     <Dialog open={isOpen} as="div" className="relative z-50 focus:outline-none" onClose={closeModal} >
       <div className="fixed inset-0 z-10 w-screen h-screen overflow-y-auto bg-black/50">
-        <div className="flex min-h-full items-center justify-center md:px-4 px-2">
+        <div className="flex min-h-full items-center justify-center px-4">
           <DialogPanel
             transition
-            className="w-full max-w-md md:max-w-xl rounded-2xl bg-custom-gradient overflow-y-auto md:h-[95vh] h-[85vh]  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 px-2 py-4"
+            className="w-full max-w-md md:max-w-xl rounded-2xl bg-custom-gradient overflow-y-auto md:max-h-[95vh] max-h-[80vh] duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0 px-3 py-6"
           >
             <div className="relative">
               <button className={"absolute font-semibold top-2 right-2 text-white hover:bg-red-400 transition rounded-xl px-4 py-2"} onClick={closeModal} >
@@ -31,7 +31,7 @@ export default function ModalPost() {
               ¿Qué quieres publicar hoy?
             </h4>
 
-            <div className="flex py-2 md:px-6 px-3 flex-col justify-center items-center gap-4">
+            <div className="flex py-2 md:px-6 px-1.5 flex-col justify-center items-center gap-4">
               {menuItems.map((item) => (
                 <CardMenu
                   icon={item.icon}
