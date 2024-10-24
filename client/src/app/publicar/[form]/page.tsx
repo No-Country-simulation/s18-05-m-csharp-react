@@ -30,7 +30,7 @@ const page = ({ params: { form } }: { params: { form: typeForm } }) => {
           </p>
         </div>
 
-        <div className="h-[22px] bg-white w-full rounded-t-[22px]"></div>
+        <div className="h-[24px] bg-white w-full rounded-t-[24px]"></div>
       </div>
       {
         form === "adopcion"

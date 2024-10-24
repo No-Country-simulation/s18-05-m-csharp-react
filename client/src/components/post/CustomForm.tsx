@@ -20,7 +20,7 @@ const CustomForm: FC<Props> = (props) => {
   const [step, setStep] = useState<number>(1)
   const handleStep = (e: React.FormEvent) => {
     e.preventDefault()
-    setStep(2)
+    setStep(step === 1 ? 2 : 1)
   }
 
   const [image, setImage] = useState<string | null>(null)
@@ -33,8 +33,14 @@ const CustomForm: FC<Props> = (props) => {
       {
         step === 1 && <ImageUpload onImageUpload={setImage} />
       }
+      {
+        hasMoreSteps && step === 2 && (
+          <button onClick={handleStep} className="relative block mb-5 mt-[-30px] md:ml-[-20px] ml-0 hover:underline underline-offset-2 hover:text-secondary transition text-dark-gray">
+            ‹ Volver
+          </button>
+        )
 
-
+      }
       {
         hasMoreSteps && step === 2
           ? (<>

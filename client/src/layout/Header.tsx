@@ -25,7 +25,7 @@ const Header = () => {
         <UserNav />
       </div>
 
-      <div className="h-[22px] bg-white w-full rounded-t-[22px]"></div>
+      <div className="h-[24px] bg-white w-full rounded-t-[24px]"></div>
     </header>
   )
 }
