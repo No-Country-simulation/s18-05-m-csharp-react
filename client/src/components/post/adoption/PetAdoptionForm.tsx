@@ -22,7 +22,7 @@ export default function PetAdoptionForm() {
             label="Notas"
           />
 
-          <div className="flex justify-evenly">
+          <div className="flex md:justify-evenly justify-between md:flex-nowrap flex-wrap gap-y-2">
             {["Esterilizado", "Vacunas al día", "Castrado"].map(item => (
               <CustomCheckbox label={item} key={item} />
             ))}

@@ -17,7 +17,7 @@ const CustomTextArea: FC<PropsCustomTextArea> = (props) => {
         <Textarea
           placeholder={props.placeholder}
           className={clsx(
-            'input min-h-20 max-h-52',
+            'input min-h-28 max-h-52 shadow-md',
             'block w-full resize-none rounded-xl p-3',
             'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
           )}

@@ -5,7 +5,7 @@ const CustomCheckbox: FC<{ label: string }> = ({ label }) => {
   const [enabled, setEnabled] = useState(false)
 
   return (
-    <Field className={`flex items-center gap-2 ${!enabled ? "opacity-55" : ""} text-dark-gray`}>
+    <Field className={`flex items-center gap-1.5 ${!enabled ? "opacity-55" : ""} text-dark-gray`}>
       <Checkbox
         checked={enabled}
         onChange={setEnabled}
@@ -16,7 +16,7 @@ const CustomCheckbox: FC<{ label: string }> = ({ label }) => {
         </svg>
 
       </Checkbox>
-      <Label className={"text-small"}>
+      <Label className={"md:text-small text-sm text-ellipsis text-nowrap whitespace-nowrap max-w-fit overflow-hidden"}>
         {label}
       </Label>
     </Field>
