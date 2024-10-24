@@ -1,7 +1,7 @@
 "use client"
 
-import CustomPopover from "@/components/shared/CustomPopover";
-import useUser from "@/hooks/UseUser";
+import CustomPopover from "@/components/shared/form/CustomPopover";
+import useUser from "@/hooks/useUser";
 import Image from "next/image";
 import Link from "next/link"
 
@@ -15,7 +15,7 @@ const UserNav = () => {
   const { isLogged, logOut } = useUser();
 
   if (isLogged) return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 z-20">
 
       <CustomPopover
         aria-label="Messages"
@@ -52,7 +52,7 @@ const UserNav = () => {
         className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[{ href: "/#", label: "Ver perfil" }, { href: "/#", label: "Ajustes" }]}
         specialContent={
-          <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left" onClick={logOut} >
+          <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left text-small" onClick={logOut} >
             Cerrar sesión
           </button>
         }
@@ -70,13 +70,13 @@ const UserNav = () => {
   )
 
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 z-20">
       {
         links.map(({ href, label }, i) => (
           <Link href={href} key={i} className={`
-          rounded-full py-1.5 px-4 text-small
+          rounded-full py-1.5 md:px-4 px-2.5 text-small
           duration-300 text-white hover:text-secondary-light
-          ${!(i % 2) && "bg-white-100"} transition-all ease  
+          ${!(i % 2) && "bg-white-100"} transition-all ease text-nowrap text-ellipsis overflow-hidden whitespace-nowrap md:max-w-none max-w-[100px]
           `}>
             {label}
           </Link>

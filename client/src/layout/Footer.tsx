@@ -5,9 +5,9 @@ import { InstaIcon, TwitterIcon, YoutubeIcon } from "./components/Icons"
 
 const Footer = () => {
   return (
-    <footer className="bg-custom-gradient w-full md:h-[90px] h-[66px] z-40
-    md:flex md:items-center md:justify-between md:rounded-t-[22px] lg:relative
-    fixed bottom-0 left-0 rounded-t-[11px] mt-auto">
+    <footer className="bg-custom-gradient w-full md:h-[90px] h-[60px] z-40
+    md:flex md:items-center md:justify-between md:rounded-t-[22px] md:relative
+    fixed bottom-0 left-0 rounded-t-[11px] md:mt-[22px] mt-auto">
       <div className="md:block hidden w-3/12">
         <Image
           className="mx-auto object-contain"

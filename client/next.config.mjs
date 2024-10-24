@@ -12,7 +12,14 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         port: "",
         pathname: "/dqozzngu1/image/upload/**/**"
-      }],
+      },
+      {
+        protocol: "https",
+        hostname: "img.freepik.com",
+        port: "",
+        pathname: "/foto-gratis/**"
+      },
+    ],
   },
 };
 

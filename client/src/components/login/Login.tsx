@@ -1,13 +1,13 @@
 "use client"
 import { FC, PropsWithChildren, useState } from "react"
-import Form from "../shared/Form"
-import CustomInput from "../shared/CustomInput"
+import Form from "../shared/form/Form"
+import CustomInput from "../shared/form/CustomInput"
 import { useForm } from "react-hook-form"
 import { emailValidation, passwordValidation } from "@/validations/common"
 import fetchLogin from "@/data/account/login"
 import { useRouter } from "next/navigation"
 import { setCookie } from 'cookies-next';
-import useUser from "@/hooks/UseUser"
+import useUser from "@/hooks/useUser"
 
 const Login: FC<PropsWithChildren> = ({ children }) => {
   const [message, setMessage] = useState<StateMessage>({ text: null, error: false })
@@ -40,7 +40,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         error={errors.email?.message}
         type="text"
         placeholder="Correo electrónico"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("email", emailValidation)}
       />
       <CustomInput
@@ -49,7 +49,7 @@ const Login: FC<PropsWithChildren> = ({ children }) => {
         error={errors.password?.message}
         type="password"
         placeholder="Contraseña"
-        extraClass={`w-full`}
+        extraClass={`w-full custom-rounded`}
         {...register("password", passwordValidation)}
       />
 

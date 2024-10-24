@@ -19,7 +19,7 @@
 
   /* FONTS SIZES */
   --fs-title: 34pt;
-  --fs-title-secondary: 28pt;
+  --fs-title-secondary: 27pt;
   --fs-subtitle: 17pt;
   --fs-body: 13pt;
   --fs-small: 12pt;
@@ -54,9 +54,17 @@ h3 {
   font-size: var(--fs-subtitle);
 }
 
+textarea {
+  field-sizing: content;
+}
+
 @media (width <=768px) {
   body {
     justify-content: start
+  }
+
+  main {
+    padding-bottom: 90px
   }
 }
 

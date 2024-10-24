@@ -20,9 +20,12 @@
     }
   }
 
+  .custom-rounded {
+    border-radius: 25px;
+  }
+
   .input {
     background-color: var(--white);
-    border-radius: 25px;
     border: solid 1px var(--primary-light);
     padding: 10px 16px;
     min-width: 200px;

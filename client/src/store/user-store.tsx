@@ -26,7 +26,7 @@ const initialValues: IUser = {
 
 const expirationTime: number = Number(process.env.EXPIRATION_TIME) * 1000; // 7 días en milisegundos
 
-const UseUserStore = createWithEqualityFn<IUserStore>()(
+const useUserStore = createWithEqualityFn<IUserStore>()(
   persist(
     (set) => ({
       ...initialValues,
@@ -60,4 +60,4 @@ const UseUserStore = createWithEqualityFn<IUserStore>()(
   ),
 );
 
-export default UseUserStore;
+export default useUserStore;

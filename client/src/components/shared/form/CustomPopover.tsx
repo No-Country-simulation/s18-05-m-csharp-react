@@ -11,7 +11,7 @@ interface Props extends ComponentPropsWithoutRef<typeof PopoverButton> {
 const CustomPopover: FC<Props> = (props) => {
   const { children, options, specialContent, ...rest } = props
   return (
-    <Popover>
+    <Popover className={"z-20"}>
       <PopoverButton {...rest}>
         {children}
       </PopoverButton>
@@ -21,12 +21,12 @@ const CustomPopover: FC<Props> = (props) => {
       <PopoverPanel
         transition
         anchor="bottom"
-        className="rounded-xl text-body transition duration-200 ease-in-out data-[closed]:-translate-y-1 data-[closed]:opacity-0 text-black divide-y-2 divide-primary-light-500 bg-white shadow-lg min-w-52"
+        className="rounded-xl text-body transition duration-200 ease-in-out data-[closed]:-translate-y-1 data-[closed]:opacity-0 text-black divide-y-2 divide-opacity-5 divide-black bg-white shadow-lg min-w-44"
       >
         <div className="p-2">
           {
             options.map(({ label, href }, i) => (
-              <Link key={label + "-" + i} className="rounded-lg py-2 px-4 transition hover:bg-primary-light hover:text-white block" href={href}>
+              <Link key={label + "-" + i} className="rounded-lg text-small py-2 px-4 transition hover:bg-primary-light hover:text-white block" href={href}>
                 {label}
               </Link>
             ))
