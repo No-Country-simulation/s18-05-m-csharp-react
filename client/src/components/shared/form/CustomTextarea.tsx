@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { FC } from 'react'
 
 interface PropsCustomTextArea extends TextareaProps {
-  label: string
+  label?: string
 }
 
 const CustomTextArea: FC<PropsCustomTextArea> = (props) => {
