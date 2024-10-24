@@ -28,7 +28,7 @@ export default function ImageUpload({ onImageUpload }: ImageUploadProps) {
     <div
       onClick={handleClick}
       className={`w-full h-48 ${previewUrl ? 'hover:h-80' : ''}
-        transition-all ease duration-300 border-2 border-primary-light-500 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-white mt-[-96px] mb-6`}
+        transition-all ease duration-300 border-2 border-primary-light-500 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-white mt-[-96px] mb-5`}
     >
       {previewUrl ? (
         <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
