@@ -6,6 +6,7 @@ namespace AdoPet.Application.Contracts.Persistence
     {
         Task<bool> AdoptionRequestIdExistsAsync(int id);
         Task<AdoptionRequest> GetById(int id);
+        Task<AdoptionRequest> GetByIdWithOwner(int id);
         Task<IReadOnlyList<AdoptionRequest>> GetAllWithDetailsAsync();
     }
 }
