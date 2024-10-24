@@ -41,7 +41,7 @@ const CustomForm: FC<Props> = (props) => {
             {children}
           </>)
 
-          : (<div className="sm:grid sm:grid-cols-2 gap-y-5 sm:gap-x-2 flex flex-col">
+          : (<div className="sm:grid sm:grid-cols-2 gap-y-5 sm:gap-x-3 flex flex-col">
             {
               hasNameAndAge && (<>
                 <CustomInput
@@ -66,6 +66,13 @@ const CustomForm: FC<Props> = (props) => {
             <div className="col-span-2">
               <LocationInput onLocationChange={setLocation} />
             </div>
+
+            {
+              !hasMoreSteps && children
+              && <>
+                {children}
+              </>
+            }
           </div>)
       }
 

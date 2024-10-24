@@ -1,4 +1,6 @@
-import AnimalAdoptionForm from "@/components/post/adoption/AdoptionForm"
+import PetAdoptionForm from "@/components/post/adoption/PetAdoptionForm"
+import FoundPetForm from "@/components/post/found/FoundPetForm"
+import LostPetForm from "@/components/post/lost/LostPetForm"
 
 type typeForm = "adopcion" | "perdido" | "encontrado"
 
@@ -32,10 +34,10 @@ const page = ({ params: { form } }: { params: { form: typeForm } }) => {
       </div>
       {
         form === "adopcion"
-          ? <AnimalAdoptionForm />
+          ? <PetAdoptionForm />
           : form === "perdido"
-            ? "Animal perdido"
-            : "Animal encontrado"
+            ? <LostPetForm />
+            : <FoundPetForm />
       }
 
 
