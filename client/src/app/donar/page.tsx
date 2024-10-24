@@ -3,10 +3,10 @@ import CustomButton from '@/components/shared/form/CustomButton'
 import CustomInput from '@/components/shared/form/CustomInput'
 
 const donationImpact = [
-  { amount: "25€", impact: "alimenta a un animal rescatado durante un mes" },
-  { amount: "50€", impact: "proporciona vacunas para cinco animales" },
-  { amount: "100€", impact: "cubre la cirugía de esterilización para un animal" },
-  { amount: "250€", impact: "financia atención médica de emergencia" },
+  { amount: "25$", impact: "alimenta a un animal rescatado durante un mes" },
+  { amount: "50$", impact: "proporciona vacunas para cinco animales" },
+  { amount: "100$", impact: "cubre la cirugía de esterilización para un animal" },
+  { amount: "250$", impact: "financia atención médica de emergencia" },
 ]
 
 export default function Donar() {
@@ -53,7 +53,7 @@ export default function Donar() {
               <div>
                 <label htmlFor="amount" className="block text-sm font-medium text-gray mb-2">Cantidad de Donación</label>
                 <div className="flex space-x-4">
-                  {['25€', '50€', '100€', '250€'].map((amount) => (
+                  {['25$', '50$', '100$', '250$'].map((amount) => (
                     <CustomButton
                       key={amount} type="button"
                       className="flex-1"
