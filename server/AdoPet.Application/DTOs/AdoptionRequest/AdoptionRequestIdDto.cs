@@ -5,6 +5,7 @@ namespace AdoPet.Application.DTOs.AdoptionRequest
 {
     public class AdoptionRequestIdDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public Gender Gender { get; set; }
         public string PhotoUrl { get; set; }
@@ -13,6 +14,7 @@ namespace AdoPet.Application.DTOs.AdoptionRequest
         public DateTime? DateBirth { get; set; }
         public bool IsAdopted { get; set; }
         public UserDto Adoptable { get; set; }
+        public UserDto Owner { get; set; }
         public AdoptionRequestStatus Status { get; set; }
         public DateTime RequestDate { get; set; }
     }

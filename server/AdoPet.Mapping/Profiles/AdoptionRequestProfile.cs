@@ -14,6 +14,8 @@ public class AdoptionRequestProfile : Profile
         CreateMap<AdoptionRequest, AdoptionRequestGetAllDto>()
     .ForMember(dest => dest.Name, 
                opt => opt.MapFrom(src => src.Pet.Name))
+    .ForMember(dest => dest.Gender, 
+               opt => opt.MapFrom(src => src.Pet.Gender))           
     .ForMember(dest => dest.PhotoUrl, 
                opt => opt.MapFrom(src => src.Pet.PhotoUrl))
     .ForMember(dest => dest.DatePublished, 
@@ -34,6 +36,7 @@ public class AdoptionRequestProfile : Profile
 
         CreateMap<AdoptionRequest, AdoptionRequestIdDto>()
             .ForMember(dest => dest.Adoptable, opt => opt.MapFrom(src => src.Adopter))
+            .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Pet.Owner))    
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Pet.Name))
             .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Pet.Gender))
             .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Pet.PhotoUrl))

@@ -21,12 +21,13 @@ public class AdoptionRequestRepository : GenericRepository<AdoptionRequest>, IAd
         return await _dbContext.AdoptionRequests.AnyAsync(p => p.Id == id);
     }
 
-    public async Task<AdoptionRequest> GetById(int id)
+    public async Task<AdoptionRequest> GetById(int id,int userId)
     {
         return await _dbContext.AdoptionRequests
             .Include(p => p.Adopter)
             .Include(p => p.Pet)
-            .Where(p => p.Status == AdoptionRequestStatus.Pending)
+            .Include(p => p.Pet.Owner)
+            .Where(p => p.Status == AdoptionRequestStatus.Pending && p.Pet.Owner.Id == userId)
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
@@ -41,13 +42,13 @@ public class AdoptionRequestRepository : GenericRepository<AdoptionRequest>, IAd
             .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task<IReadOnlyList<AdoptionRequest>> GetAllWithDetailsAsync()
+    public async Task<IReadOnlyList<AdoptionRequest>> GetAllWithDetailsAsync(int userId)
     {
         return await _dbContext.AdoptionRequests
             .Include(ar => ar.Adopter)
             .Include(ar => ar.Pet)
             .ThenInclude(p => p.Owner)
-            .Where(ar => ar.Status == AdoptionRequestStatus.Pending)
+            .Where(ar => ar.Status == AdoptionRequestStatus.Pending && ar.Pet.Owner.Id == userId)
             .ToListAsync();
     }
 }

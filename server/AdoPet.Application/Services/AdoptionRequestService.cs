@@ -47,13 +47,14 @@ public class AdoptionRequestService : IAdoptionRequestService
         return response;
     }
 
-    public async Task<IEnumerable<AdoptionRequestGetAllDto>> GetAdoptionRequest()
+    public async Task<IEnumerable<AdoptionRequestGetAllDto>> GetAdoptionRequest(int userId)
     {
-        var adoptionRequests = await _adoptionRequestRepository.GetAllWithDetailsAsync();
+       
+        var adoptionRequests = await _adoptionRequestRepository.GetAllWithDetailsAsync(userId);
         return _mapper.Map<IEnumerable<AdoptionRequestGetAllDto>>(adoptionRequests);
     }
 
-    public async Task<BaseResponse<AdoptionRequestIdDto>> GetAdoptionRequestById(int id)
+    public async Task<BaseResponse<AdoptionRequestIdDto>> GetAdoptionRequestById(int id, int userId)
     {
         var response = new BaseResponse<AdoptionRequestIdDto>();
 
@@ -65,8 +66,8 @@ public class AdoptionRequestService : IAdoptionRequestService
                 response.Message = "Adoption request not found.";
                 return response;
             }
-
-            var adoption = await _adoptionRequestRepository.GetById(id);
+            
+            var adoption = await _adoptionRequestRepository.GetById(id,userId);
             var userDto = _mapper.Map<UserDto>(adoption.Adopter);
             var adoptionDto = _mapper.Map<AdoptionRequestIdDto>(adoption);
             adoptionDto.Adoptable = userDto;
@@ -131,13 +132,13 @@ public class AdoptionRequestService : IAdoptionRequestService
         return response;
     }
 
-    public async Task<BaseResponse<bool>> DeleteAdoptionRequest(int id)
+    public async Task<BaseResponse<bool>> DeleteAdoptionRequest(int id,int userId)
     {
         var response = new BaseResponse<bool>();
 
         try
         {
-            var result = await _adoptionRequestRepository.GetById(id);
+            var result = await _adoptionRequestRepository.GetById(id,userId);
 
             if (result.Status != AdoptionRequestStatus.Pending)
             {
