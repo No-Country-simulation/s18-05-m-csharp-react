@@ -3,15 +3,15 @@ import { RadioGroup, Label, Radio } from '@headlessui/react'
 import sexOptions from './sex'
 
 interface SexSelectionProps {
-  onSexChange: (sex: 'Macho' | 'Hembra' | 'No sé') => void
+  onSexChange: (sex: 0 | 1 | 2) => void
 }
 
 
 
 export default function SexSelection({ onSexChange }: SexSelectionProps) {
-  const [selected, setSelected] = useState<'Macho' | 'Hembra' | 'No sé'>('Macho')
+  const [selected, setSelected] = useState<0 | 1 | 2>(0)
 
-  const handleChange = (value: 'Macho' | 'Hembra' | 'No sé') => {
+  const handleChange = (value: 0 | 1 | 2) => {
     setSelected(value)
     onSexChange(value)
   }
@@ -34,7 +34,7 @@ export default function SexSelection({ onSexChange }: SexSelectionProps) {
             }
           >
             {({ checked }) => (
-              <div className="flex flex-col items-center justify-center gap-0.5">
+              <div className="flex flex-col items-center justify-evenly gap-0.5">
                 <span>
                   <option.Icon />
                 </span>

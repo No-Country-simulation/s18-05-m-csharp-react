@@ -6,16 +6,24 @@ import ListBoxType from "./form/ListBoxType"
 import SexSelection from "./form/select/SexSelection"
 import LocationInput from "./form/LocationInput"
 import CustomInput from "../shared/form/CustomInput"
+import { UseFormRegister } from "react-hook-form"
 
 interface Props {
   children?: ReactNode,
   handleSubmit?: (e: React.FormEvent) => void,
   hasNameAndAge?: boolean,
-  hasMoreSteps?: boolean
+  hasMoreSteps?: boolean,
+  register: UseFormRegister<AdoptionForm> | VoidFunction,
 }
 
 const CustomForm: FC<Props> = (props) => {
-  const { handleSubmit = () => { }, hasNameAndAge = false, hasMoreSteps = false, children } = props
+  const {
+    handleSubmit = () => { },
+    register = () => { },
+    hasNameAndAge = false,
+    hasMoreSteps = false,
+    children
+  } = props
 
   const [step, setStep] = useState<number>(1)
   const handleStep = (e: React.FormEvent) => {
@@ -24,7 +32,7 @@ const CustomForm: FC<Props> = (props) => {
   }
 
   const [image, setImage] = useState<string | null>(null)
-  const [sex, setSex] = useState<"Macho" | "Hembra" | "No sé" | null>(null)
+  const [sex, setSex] = useState<0 | 1 | 2>(0)
   const [location, setLocation] = useState("")
 
 
@@ -55,12 +63,14 @@ const CustomForm: FC<Props> = (props) => {
                   topLabel={"Nombre"}
                   placeholder={"Pepito"}
                   key={"name"}
+                  {...register("name")}
                 />
                 <CustomInput
                   extraClass=" rounded-xl"
                   topLabel={"Edad"}
                   placeholder={"2 años (o edad estimada)"}
-                  key={"birthdate"}
+                  key={"dateBirth"}
+                  {...register("dateBirth")}
                 />
               </>)
             }

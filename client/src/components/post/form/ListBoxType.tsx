@@ -2,7 +2,14 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headless
 import Image from "next/image"
 import { useState } from "react"
 
-const animalTypes = ["Perro", "Gato", "Otro"]
+const animalTypes = [
+  { label: "Perro", value: 0 },
+  { label: "Gato", value: 1 },
+  { label: "Hamster", value: 2 },
+  { label: "Ave", value: 3 },
+  { label: "Conejo", value: 4 },
+  { label: "No sé", value: 5 },
+]
 
 
 const ListBoxType = () => {
@@ -17,7 +24,7 @@ const ListBoxType = () => {
 
           <ListboxButton className="input w-full relative rounded-xl text-left shadow-md">
 
-            <span className="block truncate">{animalType}</span>
+            <span className="block truncate">{animalType.label}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <span>
                 <Image
@@ -35,19 +42,20 @@ const ListBoxType = () => {
 
           <ListboxOptions className="absolute max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-small shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 
-            {animalTypes.map((type) => (
+            {animalTypes.map((animal) => (
               <ListboxOption
-                key={type}
+                key={animal.label}
                 className={({ active }) =>
                   `cursor-pointer relative select-none py-2 pl-10 pr-4 ${active ? "bg-custom-gradient-3 text-white" : "text-gray-900"
                   }`
                 }
-                value={type}
+                value={animal}
+
               >
                 {({ selected }) => (
                   <>
                     <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
-                      {type}
+                      {animal.label}
                     </span>
                   </>
                 )}

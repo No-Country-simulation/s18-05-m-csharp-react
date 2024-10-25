@@ -43,6 +43,7 @@ const useUserStore = createWithEqualityFn<IUserStore>()(
       logOut: () => {
         deleteCookie("token")
         set({ ...initialValues })
+        document.location.reload()
       },
     }),
     {
