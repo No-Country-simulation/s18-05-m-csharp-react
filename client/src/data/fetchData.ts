@@ -17,9 +17,12 @@ export const fetchData = async (props: fetchDataProps): Promise<any> => {
     }
 
     const res = await fetch(`${api_path}/${path}`, options)
+    if (process.env.MODE === "dev") console.log("FETCH DATA - RESPUESTA:", res);
 
     if (!res.ok) {
       const error = await res.json();
+      if (process.env.MODE === "dev") console.log("FETCH DATA - RESPUESTA DE ERROR:", error);
+
       throw new Error(error.message || error.error || "Error en la solicitud");
     }
 

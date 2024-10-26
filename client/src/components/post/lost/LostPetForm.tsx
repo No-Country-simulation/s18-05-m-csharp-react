@@ -2,7 +2,7 @@
 import { useState } from "react"
 import SizeSelection from "../form/select/SizeSelection"
 import CustomTextArea from "@/components/shared/form/CustomTextarea"
-import CustomForm from "../CustomForm"
+import CustomForm from "../form/CustomForm"
 
 
 export default function LostPetForm() {

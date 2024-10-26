@@ -1,24 +1,22 @@
-import { useState } from 'react'
 import { RadioGroup, Label, Radio } from '@headlessui/react'
 
 interface SizeSelectionProps {
-  onSizeChange: (sex: 0 | 1 | 2) => void
+  onSizeChange: (sex: 0 | 1 | 2) => void,
+  size: 0 | 1 | 2
 }
 // 0 = big, 1 = medium, 2 = small
 const sizes = [{ value: 0, label: 'Grande' }, { value: 1, label: 'Mediano' }, { value: 2, label: 'Pequeño' }]
 
-export default function SizeSelection({ onSizeChange }: SizeSelectionProps) {
-  const [selected, setSelected] = useState<0 | 1 | 2>(1)
+export default function SizeSelection({ size, onSizeChange }: SizeSelectionProps) {
 
   const handleChange = (value: 0 | 1 | 2) => {
-    setSelected(value)
     onSizeChange(value)
   }
 
   return (
     <div>
       <label className="block text-sm font-medium text-dark-gray text-subtitle mb-2">Tamaño</label>
-      <RadioGroup value={selected} onChange={handleChange} className="flex space-x-4">
+      <RadioGroup value={size} onChange={handleChange} className="flex space-x-4">
         {sizes.map(({ value: option, label }) => (
           <Radio
             key={option}

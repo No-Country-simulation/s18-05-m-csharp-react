@@ -1,6 +1,6 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 
-interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   extraClass?: string;
   containClass?: string;
   error?: string;
@@ -23,7 +23,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         {...props}
       />
       {children}
-      <label about="text-error-helper" htmlFor={props.name} className={`${error && "text-red-600"} text - [10pt]`}>
+      <label about="text-error-helper" htmlFor={props.name} className={`${error && "text-red-600"} text-[10pt]`}>
         {error && error}
       </label>
     </div>

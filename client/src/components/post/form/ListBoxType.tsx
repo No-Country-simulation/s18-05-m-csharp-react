@@ -8,23 +8,32 @@ const animalTypes = [
   { label: "Hamster", value: 2 },
   { label: "Ave", value: 3 },
   { label: "Conejo", value: 4 },
-  { label: "No sé", value: 5 },
+  // { label: "No sé", value: 5 },
 ]
 
+interface PropsListBoxType {
+  animalType: {
+    state: { label: string, value: number },
+    setState: (value: { label: string, value: number }) => void
+  }
+}
 
-const ListBoxType = () => {
-  const [animalType, setAnimalType] = useState(animalTypes[0])
+
+
+
+
+const ListBoxType = ({ animalType: { state, setState } }: PropsListBoxType) => {
 
   return (
     <div>
       <label htmlFor="animal-type" className="block text-subtitle text-dark-gray">Animal</label>
-      <Listbox value={animalType} onChange={setAnimalType}>
+      <Listbox value={state} onChange={setState}>
 
         <div className="relative z-20">
 
           <ListboxButton className="input w-full relative rounded-xl text-left shadow-md">
 
-            <span className="block truncate">{animalType.label}</span>
+            <span className="block truncate">{state.label}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <span>
                 <Image

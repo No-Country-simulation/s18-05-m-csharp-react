@@ -1,29 +1,29 @@
-import { useState } from 'react'
 import { RadioGroup, Label, Radio } from '@headlessui/react'
 import sexOptions from './sex'
 
 interface SexSelectionProps {
-  onSexChange: (sex: 0 | 1 | 2) => void
+  gender: {
+    state: 0 | 1 | 2,
+    setState: (value: 0 | 1 | 2) => void
+  }
 }
 
 
 
-export default function SexSelection({ onSexChange }: SexSelectionProps) {
-  const [selected, setSelected] = useState<0 | 1 | 2>(0)
+export default function SexSelection({ gender: { state, setState } }: SexSelectionProps) {
 
   const handleChange = (value: 0 | 1 | 2) => {
-    setSelected(value)
-    onSexChange(value)
+    setState(value)
   }
 
   return (
     <div>
       <label className="block text-sm font-medium text-dark-gray text-subtitle mb-2">Sexo</label>
-      <RadioGroup value={selected} onChange={handleChange} className="flex space-x-4">
+      <RadioGroup value={state} onChange={handleChange} className="flex space-x-4">
         {sexOptions.map((option) => (
           <Radio
             key={option.label}
-            value={option.label}
+            value={option.value}
             className={({ focus, hover, checked }) =>
               `${hover ? ' ring-primary ' : 'ring-primary-light'}
               ${focus ? 'ring-primary ' : ''}

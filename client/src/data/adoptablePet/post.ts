@@ -3,7 +3,7 @@ import { fetchData } from "../fetchData"
 import { getCookie } from "cookies-next";
 
 
-const createOne = async (pet: DetailAdoptablePet): Promise<ResponseDetailAdoptablePet> => {
+const createOne = async (pet: any): Promise<ResponseDetailAdoptablePet> => {
   try {
     const res = await fetchData({
       path: "adoptablepet",
