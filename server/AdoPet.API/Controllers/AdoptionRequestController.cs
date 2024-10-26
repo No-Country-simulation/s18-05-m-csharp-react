@@ -16,7 +16,7 @@ public class AdoptionRequestController : ControllerBase
     private readonly UserManager<User> _userManager;
     private readonly IAdoptablePetService _adoptablePetService;
 
-    public AdoptionRequestController(IAdoptionRequestService adoptionRequestService, UserManager<User> userManager, IAdoptablePetService adoptablePetService)
+    public AdoptionRequestController(IAdoptionRequestService adoptionRequestService,UserManager<User> userManager,IAdoptablePetService adoptablePetService)
     {
         _adoptionRequestService = adoptionRequestService;
         _userManager = userManager;
@@ -35,11 +35,19 @@ public class AdoptionRequestController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [HttpGet]
+    [Authorize(Roles = "User")]
     public async Task<ActionResult> GetAdoptionRequest()
     {
         try
         {
-            var adoptablePets = await _adoptionRequestService.GetAdoptionRequest();
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var adoptablePets = await _adoptionRequestService.GetAdoptionRequest(int.Parse(userId));
+
+            if (adoptablePets?.Count()==0)
+            {
+                return NotFound($"No adoption request found.");
+            }
+
             return Ok(adoptablePets);
         }
         catch (Exception ex)
@@ -102,11 +110,13 @@ public class AdoptionRequestController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet("{id}")]
+    [Authorize(Roles = "User")]
     public async Task<ActionResult<AdoptionRequestIdDto>> GetAdoptionPetById(int id)
     {
         try
         {
-            var adoptionRequest = await _adoptionRequestService.GetAdoptionRequestById(id);
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var adoptionRequest = await _adoptionRequestService.GetAdoptionRequestById(id,int.Parse(userId));
 
             if (!adoptionRequest.Success)
             {
@@ -140,12 +150,14 @@ public class AdoptionRequestController : ControllerBase
     public async Task<ActionResult> UpdateAdoptionRequest(AdoptionRequestUpdateDto adoptionRequestUpdateDto, int id)
     {
         try
-        {
-            var adoptionExists = await _adoptionRequestService.GetAdoptionRequestById(id);
+        {   
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var adoptionExists = await _adoptionRequestService.GetAdoptionRequestById(id,int.Parse(userId));
             if (!adoptionExists.Success)
             {
                 return NotFound($"No adoption request found.");
             }
+
             var response = await _adoptionRequestService.UpdateAdoptionRequest(adoptionRequestUpdateDto, id);
             if (response.Success)
             {
@@ -177,14 +189,15 @@ public class AdoptionRequestController : ControllerBase
     public async Task<ActionResult> DeleteAdoptionRequest(int id)
     {
         try
-        {
-            var adoptionRequestExists = await _adoptionRequestService.GetAdoptionRequestById(id);
+        {   
+            var userId = User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var adoptionRequestExists = await _adoptionRequestService.GetAdoptionRequestById(id,int.Parse(userId));
             if (!adoptionRequestExists.Success)
             {
                 return NotFound($"No adoption request found with ID {id}.");
             }
 
-            var response = await _adoptionRequestService.DeleteAdoptionRequest(id);
+            var response = await _adoptionRequestService.DeleteAdoptionRequest(id,int.Parse(userId));
             if (response.Success)
             {
                 Response.Headers.Add("X-Delete-Message", response.Message);
