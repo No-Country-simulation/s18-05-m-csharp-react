@@ -34,7 +34,7 @@ public static class StartupExtensions
             });
             options.AddPolicy("AllowSpecificOrigin", policy =>
             {
-                policy.WithOrigins("http://localhost:5500", "https://adopet-maidana07-projects.vercel.app/")
+                policy.WithOrigins("https://adopet-maidana07-projects.vercel.app/")
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials();
