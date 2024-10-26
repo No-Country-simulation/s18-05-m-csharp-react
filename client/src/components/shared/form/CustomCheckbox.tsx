@@ -11,7 +11,7 @@ const CustomCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) => {
   const { label, checked, setChecked } = props
 
   return (
-    <Field className={`flex items-center gap-1.5 ${!!props.checked ? "opacity-55" : ""} text-dark-gray`}>
+    <Field className={`flex items-center gap-1.5 ${!props.checked ? "opacity-55" : ""} text-dark-gray`}>
       <Checkbox
         ref={ref}
         checked={checked}

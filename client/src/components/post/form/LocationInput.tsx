@@ -13,7 +13,7 @@ const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(
         ref={ref}
         topLabel={"Ubicación*"}
         extraClass="rounded-xl pl-[35px!important]"
-        placeholder="Ingresa tu dirección"
+        placeholder="Ingresa tu dirección. Ej. Buenos Aires, Morón."
       >
         <Image
           src="/assets/icons/location.svg"
