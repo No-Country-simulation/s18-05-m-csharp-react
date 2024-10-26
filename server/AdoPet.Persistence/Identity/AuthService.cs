@@ -73,6 +73,7 @@ internal class AuthService : IAuthService
     {
         var claimList = new List<Claim>
         {
+            new Claim("id", user.Id.ToString()),
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim("name", user.Name),
             new Claim("lastName", user.LastName),

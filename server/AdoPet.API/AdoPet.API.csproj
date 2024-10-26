@@ -21,6 +21,7 @@
     <ProjectReference Include="..\AdoPet.Cloudinary\AdoPet.Cloudinary.csproj" />
     <ProjectReference Include="..\AdoPet.Persistence\AdoPet.Persistence.csproj" />
     <ProjectReference Include="..\AdoPet.Mapping\AdoPet.Mapping.csproj" />
+    <ProjectReference Include="..\AdoPet.RealTime\AdoPet.RealTime.csproj" />
     <ProjectReference Include="..\SendGrid\AdoPet.SendGrid.csproj" />
   </ItemGroup>
 

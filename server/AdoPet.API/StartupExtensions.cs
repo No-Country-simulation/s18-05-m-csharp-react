@@ -5,6 +5,7 @@ using AdoPet.Mapping;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using AdoPet.Cloudinary;
+using AdoPet.RealTime;
 using AdoPet.SendGrid;
 
 namespace AdoPet.API;
@@ -17,8 +18,8 @@ public static class StartupExtensions
         builder.Services.AddPersistenceServices(builder.Configuration);
         builder.Services.AddIdentityServices(builder.Configuration);
         builder.Services.AddCloudServiceExtensions(builder.Configuration);
+        builder.Services.AddRealTimeServices();
         builder.Services.AddSendGridServiceExtensions(builder.Configuration);
-
 
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddSwagger();
@@ -27,12 +28,18 @@ public static class StartupExtensions
 
         builder.Services.AddCors(options =>
         {
-            options.AddDefaultPolicy(builder =>
+            options.AddDefaultPolicy(policy =>
             {
-                builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
+            options.AddPolicy("AllowSpecificOrigin", policy =>
+            {
+                policy.WithOrigins("https://adopet-maidana07-projects.vercel.app/")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials();
             });
         });
 
@@ -53,10 +60,15 @@ public static class StartupExtensions
         });
 
         app.UseHttpsRedirection();
-        app.UseRouting();
+
         app.UseCors();
+        app.UseRouting();
+
         app.UseAuthentication();
         app.UseAuthorization();
+
+        // RealTime 
+        app.MapHubs();
         app.MapControllers();
 
         return app;
