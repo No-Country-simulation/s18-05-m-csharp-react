@@ -8,6 +8,7 @@ public static class ApplicationServiceExtensions
     {
         // Add services
         services.AddScoped<IAdoptablePetService, AdoptablePetService>();
+        services.AddScoped<IAdoptionRequestService,AdoptionRequestService>();
 
 
         return services;
