@@ -50,7 +50,10 @@ const UserNav = () => {
       <CustomPopover
         aria-label="Profile"
         className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
-        options={[{ href: "/#", label: "Ver perfil" }, { href: "/#", label: "Ajustes" }]}
+        options={[
+          { href: "/mi-perfil", label: "Ver perfil" },
+          { href: "/#", label: "Ajustes" }
+        ]}
         specialContent={
           <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left text-small" onClick={logOut} >
             Cerrar sesión
