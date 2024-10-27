@@ -1,17 +1,18 @@
-import { forwardRef, useState } from 'react'
+import { forwardRef } from 'react'
 import { Checkbox, Field, Label } from '@headlessui/react'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   checked: boolean;
+  extraClassName?: string;
   setChecked: (checked: boolean) => void
 }
 
 const CustomCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) => {
-  const { label, checked, setChecked } = props
+  const { label, checked, extraClassName, setChecked } = props
 
   return (
-    <Field className={`flex items-center gap-1.5 ${!props.checked ? "opacity-55" : ""} text-dark-gray`}>
+    <Field className={`flex items-center gap-1.5 ${!props.checked ? "opacity-55" : ""} text-dark-gray ${extraClassName}`}>
       <Checkbox
         ref={ref}
         checked={checked}

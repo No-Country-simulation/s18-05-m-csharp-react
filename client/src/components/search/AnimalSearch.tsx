@@ -1,51 +1,9 @@
 'use client'
-
 import { useState } from 'react'
-// import { Search, Sliders } from 'lucide-react'
 import Image from 'next/image'
-
-type FilterOption = {
-  type: 'button' | 'checkbox' | 'slider'
-  label: string
-  options?: string[]
-  min?: number
-  max?: number
-  step?: number
-}
-
-const filterOptions: Record<string, FilterOption[]> = {
-  'Tipo de animal': [
-    { type: 'button', label: 'Perro' },
-    { type: 'button', label: 'Gato' },
-    { type: 'button', label: 'Hamster' },
-    { type: 'button', label: 'Pájaro' },
-    { type: 'button', label: 'Conejo' },
-    { type: 'button', label: 'Otros' },
-  ],
-  'Tamaño': [
-    { type: 'button', label: 'Grande' },
-    { type: 'button', label: 'Mediano' },
-    { type: 'button', label: 'Chico' },
-  ],
-  'Sexo': [
-    { type: 'button', label: 'Macho' },
-    { type: 'button', label: 'Hembra' },
-  ],
-  'Edad': [
-    { type: 'button', label: 'Cachorro' },
-    { type: 'button', label: 'Entre 1 a 3 años' },
-    { type: 'button', label: 'Entre 3 a 5 años' },
-    { type: 'button', label: 'Más de 5 años' },
-  ],
-  'Estado': [
-    { type: 'checkbox', label: 'Esterilizado' },
-    { type: 'checkbox', label: 'Vacunas al día' },
-    { type: 'checkbox', label: 'Castrado' },
-  ],
-  'Ubicación': [
-    { type: 'slider', label: 'Distancia', min: 10, max: 60, step: 10 },
-  ],
-}
+import filterOptions from './filterOptions'
+import CustomCheckbox from '../shared/form/CustomCheckbox'
+import CustomButton from '../shared/form/CustomButton'
 
 export default function AnimalSearch() {
   const [showFilters, setShowFilters] = useState(false)
@@ -54,17 +12,19 @@ export default function AnimalSearch() {
   const [sliderValue, setSliderValue] = useState(10)
 
   const handleFilterClick = (category: string, option: string) => {
-    setSelectedFilters(prev => {
+    setSelectedFilters((prev) => {
       const updatedFilters = { ...prev }
       if (!updatedFilters[category]) {
         updatedFilters[category] = []
       }
-      const index = updatedFilters[category].indexOf(option)
-      if (index > -1) {
-        updatedFilters[category].splice(index, 1)
+
+      // Toggle the option in the selected filters for the specified category
+      if (updatedFilters[category].includes(option)) {
+        updatedFilters[category] = updatedFilters[category].filter((item) => item !== option)
       } else {
-        updatedFilters[category].push(option)
+        updatedFilters[category] = [...updatedFilters[category], option]
       }
+
       return updatedFilters
     })
   }
@@ -88,18 +48,18 @@ export default function AnimalSearch() {
         <input
           type="text"
           placeholder="¿Qué animal te gustaría adoptar hoy?"
-          className="w-full pl-10 pr-10 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-purple-600"
+          className="w-full pl-10 pr-10 py-2 border border-light-gray rounded-full focus:outline-none focus:ring-2 focus:ring-primary-light"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <Image
-          src={"/assets/icons/search.svg"} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          src={"/assets/icons/search.svg"}
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
           width={20}
           height={20}
           alt="Search Icon"
         />
 
-        {/* <Search /> */}
         <button
           onClick={() => setShowFilters(!showFilters)}
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -110,16 +70,26 @@ export default function AnimalSearch() {
             height={20}
             alt="Filter Icon"
           />
-          {/* <Sliders /> */}
         </button>
       </div>
 
-      {showFilters && (
-        <div className="mt-4 p-4 border rounded-lg">
-          <h2 className="text-lg font-semibold mb-2">Filtros</h2>
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-in-out ${showFilters ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+          }`}
+      >
+        <div className="bg-white p-5 border border-primary-light shadow-xl rounded-md max-h-[80vh] overflow-y-auto w-full max-w-lg mx-2">
+          <div className="text-primary flex justify-between mb-2 align-middle items-center">
+            <h2>Filtros</h2>
+            <span
+              className="text-subtitle cursor-pointer p-2 pr-0"
+              onClick={() => setShowFilters(false)}
+            >
+              X
+            </span>
+          </div>
           {Object.entries(filterOptions).map(([category, options]) => (
             <div key={category} className="mb-4">
-              <h3 className="font-medium mb-2">{category}</h3>
+              <h3 className="font-medium mb-2 text-dark-gray">{category}</h3>
               <div className="flex flex-wrap gap-2">
                 {options.map((option) => {
                   if (option.type === 'button') {
@@ -127,8 +97,8 @@ export default function AnimalSearch() {
                       <button
                         key={option.label}
                         onClick={() => handleFilterClick(category, option.label)}
-                        className={`px-3 py-1 rounded-full text-sm ${selectedFilters[category]?.includes(option.label)
-                          ? 'bg-purple-600 text-white'
+                        className={`px-3 py-2 rounded-full text-sm ${selectedFilters[category]?.includes(option.label)
+                          ? 'bg-custom-gradient text-white'
                           : 'bg-gray-200 text-gray-800'
                           }`}
                       >
@@ -137,15 +107,13 @@ export default function AnimalSearch() {
                     )
                   } else if (option.type === 'checkbox') {
                     return (
-                      <label key={option.label} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          checked={selectedFilters[category]?.includes(option.label) || false}
-                          onChange={() => handleCheckboxChange(category, option.label)}
-                          className="mr-2"
-                        />
-                        {option.label}
-                      </label>
+                      <CustomCheckbox
+                        key={option.label}
+                        label={option.label}
+                        checked={selectedFilters[category]?.includes(option.label) || false}
+                        setChecked={() => handleCheckboxChange(category, option.label)}
+                        extraClassName="mx-4"
+                      />
                     )
                   } else if (option.type === 'slider') {
                     return (
@@ -160,7 +128,7 @@ export default function AnimalSearch() {
                           className="w-full"
                         />
                         <div className="flex justify-between text-sm text-gray-600">
-                          <span>-{sliderValue}km</span>
+                          <span>{sliderValue}km</span>
                           <span>+60km</span>
                         </div>
                       </div>
@@ -170,16 +138,16 @@ export default function AnimalSearch() {
               </div>
             </div>
           ))}
-          <div className="flex justify-between mt-4">
-            <button onClick={clearFilters} className="text-gray-600 underline">
+          <div className="flex justify-between items-center mt-4">
+            <button onClick={clearFilters} className="text-gray underline hover:text-secondary">
               Borrar todo
             </button>
-            <button className="px-4 py-2 bg-purple-600 text-white rounded-full">
+            <CustomButton onClick={() => setShowFilters(false)} extraClass="h-11"      >
               Buscar
-            </button>
+            </CustomButton>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </div >
   )
 }
