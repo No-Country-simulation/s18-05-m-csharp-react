@@ -1,29 +1,29 @@
-import { useState } from 'react'
 import { RadioGroup, Label, Radio } from '@headlessui/react'
 import sexOptions from './sex'
 
 interface SexSelectionProps {
-  onSexChange: (sex: 'Macho' | 'Hembra' | 'No sé') => void
+  gender: {
+    state: 0 | 1 | 2,
+    setState: (value: 0 | 1 | 2) => void
+  }
 }
 
 
 
-export default function SexSelection({ onSexChange }: SexSelectionProps) {
-  const [selected, setSelected] = useState<'Macho' | 'Hembra' | 'No sé'>('Macho')
+export default function SexSelection({ gender: { state, setState } }: SexSelectionProps) {
 
-  const handleChange = (value: 'Macho' | 'Hembra' | 'No sé') => {
-    setSelected(value)
-    onSexChange(value)
+  const handleChange = (value: 0 | 1 | 2) => {
+    setState(value)
   }
 
   return (
     <div>
       <label className="block text-sm font-medium text-dark-gray text-subtitle mb-2">Sexo</label>
-      <RadioGroup value={selected} onChange={handleChange} className="flex space-x-4">
+      <RadioGroup value={state} onChange={handleChange} className="flex space-x-4">
         {sexOptions.map((option) => (
           <Radio
             key={option.label}
-            value={option.label}
+            value={option.value}
             className={({ focus, hover, checked }) =>
               `${hover ? ' ring-primary ' : 'ring-primary-light'}
               ${focus ? 'ring-primary ' : ''}
@@ -34,7 +34,7 @@ export default function SexSelection({ onSexChange }: SexSelectionProps) {
             }
           >
             {({ checked }) => (
-              <div className="flex flex-col items-center justify-center gap-0.5">
+              <div className="flex flex-col items-center justify-evenly gap-0.5">
                 <span>
                   <option.Icon />
                 </span>

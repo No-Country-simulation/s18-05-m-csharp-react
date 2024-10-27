@@ -1,12 +1,12 @@
 type DetailAdoptablePet = AdoptablePet & {
-  gender: number;
+  gender: 0 | 1 | 2;
   location: string;
   animalType: number;
   notes: string;
   neutered: boolean;
   vaccines: boolean;
   sterilized: boolean;
-  size: number;
+  size: 0 | 1 | 2;
   userId: number;
   owner: {
     name: string;

@@ -1,32 +1,32 @@
-import CustomInput from '@/components/shared/form/CustomInput'
+import CustomInput, { CustomInputProps } from '@/components/shared/form/CustomInput'
 import Image from 'next/image'
-import { useState } from 'react'
+import { forwardRef } from 'react'
 
-interface LocationInputProps {
-  onLocationChange: (location: string) => void
+interface LocationInputProps extends CustomInputProps {
 }
 
-export default function LocationInput({ onLocationChange }: LocationInputProps) {
-  const [location, setLocation] = useState('')
+const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(
+  (props, ref) => {
+    return (
+      <CustomInput
+        {...props}
+        ref={ref}
+        topLabel={"Ubicación*"}
+        extraClass="rounded-xl pl-[35px!important]"
+        placeholder="Ingresa tu dirección"
+      >
+        <Image
+          src="/assets/icons/location.svg"
+          alt="Location Icon"
+          width={21}
+          height={21}
+          className="absolute left-2 top-[57px] transform -translate-y-1/2"
+        />
+      </CustomInput>
+    )
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocation(e.target.value)
-    onLocationChange(e.target.value)
-  }
+LocationInput.displayName = "LocationInput";
 
-  return (
-    <CustomInput
-      topLabel={"Ubicación"}
-      extraClass="rounded-xl pl-[35px!important]"
-      placeholder="Ingresa tu dirección"
-    >
-      <Image
-        src="/assets/icons/location.svg"
-        alt="Location Icon"
-        width={21}
-        height={21}
-        className="absolute left-2 top-2/3 transform -translate-y-1/2"
-      />
-    </CustomInput>
-  )
-}
+
+export default LocationInput

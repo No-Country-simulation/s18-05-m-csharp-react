@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react"
 import CustomTextArea from "@/components/shared/form/CustomTextarea"
-import CustomForm from "../CustomForm"
+import CustomForm from "../form/CustomForm"
 
 
 export default function FoundPetForm() {
