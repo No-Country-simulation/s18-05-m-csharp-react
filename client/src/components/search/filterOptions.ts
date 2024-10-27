@@ -27,9 +27,9 @@ const filterOptions: Record<string, FilterOption[]> = {
     { type: 'checkbox', label: 'Vacunas al día' },
     { type: 'checkbox', label: 'Castrado' },
   ],
-  'Ubicación': [
-    { type: 'slider', label: 'Distancia', min: 10, max: 60, step: 10 },
-  ],
+  // 'Ubicación': [
+  //   { type: 'slider', label: 'Distancia', min: 10, max: 60, step: 10 },
+  // ],
 }
 
 export default filterOptions

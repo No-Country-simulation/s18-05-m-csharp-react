@@ -74,12 +74,12 @@ export default function AnimalSearch() {
       </div>
 
       <div
-        className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-in-out ${showFilters ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ease-in-out ${showFilters ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           }`}
       >
-        <div className="bg-white p-5 border border-primary-light shadow-xl rounded-md max-h-[80vh] overflow-y-auto w-full max-w-lg mx-2">
-          <div className="text-primary flex justify-between mb-2 align-middle items-center">
-            <h2>Filtros</h2>
+        <div className="bg-white p-5 shadow-2xl rounded-xl max-h-[90vh] overflow-y-auto w-full max-w-lg mx-2">
+          <div className="text-primary flex justify-between align-middle items-center">
+            <h3>Filtros</h3>
             <span
               className="text-subtitle cursor-pointer p-2 pr-0"
               onClick={() => setShowFilters(false)}
@@ -89,7 +89,7 @@ export default function AnimalSearch() {
           </div>
           {Object.entries(filterOptions).map(([category, options]) => (
             <div key={category} className="mb-4">
-              <h3 className="font-medium mb-2 text-dark-gray">{category}</h3>
+              <p className="text-body font-medium mb-2 text-dark-gray">{category}</p>
               <div className="flex flex-wrap gap-2">
                 {options.map((option) => {
                   if (option.type === 'button') {
@@ -97,9 +97,9 @@ export default function AnimalSearch() {
                       <button
                         key={option.label}
                         onClick={() => handleFilterClick(category, option.label)}
-                        className={`px-3 py-2 rounded-full text-sm ${selectedFilters[category]?.includes(option.label)
+                        className={`px-3 border border-primary-light py-2 rounded-full text-sm ${selectedFilters[category]?.includes(option.label)
                           ? 'bg-custom-gradient text-white'
-                          : 'bg-gray-200 text-gray-800'
+                          : 'text-dark-gray'
                           }`}
                       >
                         {option.label}
@@ -115,30 +115,31 @@ export default function AnimalSearch() {
                         extraClassName="mx-4"
                       />
                     )
-                  } else if (option.type === 'slider') {
-                    return (
-                      <div key={option.label} className="w-full">
-                        <input
-                          type="range"
-                          min={option.min}
-                          max={option.max}
-                          step={option.step}
-                          value={sliderValue}
-                          onChange={(e) => handleSliderChange(Number(e.target.value))}
-                          className="w-full"
-                        />
-                        <div className="flex justify-between text-sm text-gray-600">
-                          <span>{sliderValue}km</span>
-                          <span>+60km</span>
-                        </div>
-                      </div>
-                    )
                   }
+                  // else if (option.type === 'slider') {
+                  //   return (
+                  //     <div key={option.label} className="w-full">
+                  //       <input
+                  //         type="range"
+                  //         min={option.min}
+                  //         max={option.max}
+                  //         step={option.step}
+                  //         value={sliderValue}
+                  //         onChange={(e) => handleSliderChange(Number(e.target.value))}
+                  //         className="w-full"
+                  //       />
+                  //       <div className="flex justify-between text-sm text-gray-600">
+                  //         <span>{sliderValue}km</span>
+                  //         <span>+60km</span>
+                  //       </div>
+                  //     </div>
+                  //   )
+                  // }
                 })}
               </div>
             </div>
           ))}
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex justify-between items-center mt-8">
             <button onClick={clearFilters} className="text-gray underline hover:text-secondary">
               Borrar todo
             </button>
