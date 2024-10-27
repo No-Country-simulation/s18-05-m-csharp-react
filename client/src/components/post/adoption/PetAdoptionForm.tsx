@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form"
 import uploadPhoto from "@/data/cloudinary/post"
 import { createOneAdoptablePet } from "@/data/adoptablePet/post"
 import Loading from "@/components/shared/Loading"
+import SuccessCard from "../SuccessCard"
 
 type initialStateType = {
   vaccines: boolean, sterilized: boolean, neutered: boolean, size: 0 | 1 | 2, gender: 0 | 1 | 2,
@@ -48,18 +49,16 @@ export default function PetAdoptionForm() {
     // console.log(res);
 
     setIsLoading(true)
-    // setTimeout(() => {
-    //   setIsLoading(false)
-    //   setIsComplete(true)
-    // }, 2000)
+    setTimeout(() => {
+      setIsLoading(false)
+      setIsComplete(true)
+    }, 2000)
 
   })
 
-return <Loading />
+  if (isLoading) return <Loading />
 
-  if (isComplete) {
-
-  }
+  if (isComplete) return <SuccessCard />
 
   return (
     <div className="max-w-xl mx-auto p-6">
