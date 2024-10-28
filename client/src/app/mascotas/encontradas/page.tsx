@@ -13,7 +13,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 2,
     "name": "Rocky",
-    "photoUrl": "https://images.unsplash.com/photo-1592194996308-7b2f7c1745a0",
+    "photoUrl": "",
     "datePublished": "2024-10-18T14:45:50.01",
     "dateBirth": "2023-01-21T00:00:00",
     "isAdopted": true,
@@ -22,7 +22,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 3,
     "name": "Bella",
-    "photoUrl": "https://images.unsplash.com/photo-1592188490100-6a07d2107fd3",
+    "photoUrl": "",
     "datePublished": "2024-10-19T16:15:30.47",
     "dateBirth": "2022-08-05T00:00:00",
     "isAdopted": false,
@@ -31,7 +31,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 4,
     "name": "Coco",
-    "photoUrl": "https://images.unsplash.com/photo-1601758123927-4a5a48a9d6a2",
+    "photoUrl": "",
     "datePublished": "2024-10-20T08:20:11.63",
     "dateBirth": "2021-12-17T00:00:00",
     "isAdopted": true,
@@ -40,7 +40,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 7,
     "name": "Milo",
-    "photoUrl": "https://images.unsplash.com/photo-1560807707-8cc77767d783",
+    "photoUrl": "",
     "datePublished": "2024-10-21T10:15:30.78",
     "dateBirth": "2020-03-11T00:00:00",
     "isAdopted": true,
