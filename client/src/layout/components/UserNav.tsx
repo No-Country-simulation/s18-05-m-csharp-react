@@ -36,7 +36,7 @@ const UserNav = () => {
         aria-label="Notifications"
         className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[
-          { href: "/#", label: "Ver notificaciones" },
+          { href: "/notificaciones", label: "Gestionar Publicaciones" },
           { href: "/notificaciones/adopciones", label: "Adopciones" },
           { href: "/notificaciones/mascotas-perdidas", label: "Mascotas Perdidas" },
           { href: "/notificaciones/mascotas-encontradas", label: "Mascotas Encontradas" },
