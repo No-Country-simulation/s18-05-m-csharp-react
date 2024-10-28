@@ -10,6 +10,7 @@ public class AdoptablePetProfile : Profile
     public AdoptablePetProfile()
     {
         CreateMap<AdoptablePet, AdoptablePetDto>().ReverseMap();
+        CreateMap<AdoptablePet, AdoptablePetCreateDto>().ReverseMap();
         CreateMap<AdoptablePetUpdateDto, AdoptablePet>().ReverseMap();
         CreateMap<AdoptablePetIdDto, AdoptablePet>().ReverseMap();
         CreateMap<AdoptablePetGetAllDto, AdoptablePet>().ReverseMap();

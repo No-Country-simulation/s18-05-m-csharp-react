@@ -66,7 +66,7 @@ public class AdoptablePetController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpPost]
     [Authorize(Roles = "User")]
-    public async Task<ActionResult> AddAdoptablePet(AdoptablePetDto adoptablePet)
+    public async Task<ActionResult> AddAdoptablePet(AdoptablePetCreateDto adoptablePet)
     {
         try
         {

@@ -13,11 +13,7 @@ public class AdoptablePetConfiguration : IEntityTypeConfiguration<AdoptablePet>
         builder.Property(p => p.Name)
                .IsRequired()
                .HasMaxLength(100);
-        /*
-        builder.Property(p => p.Breed)
-               .IsRequired()
-               .HasMaxLength(100);
-        */
+
         builder.Property(p => p.AnimalType)
             .IsRequired()
             .HasConversion<string>();
@@ -33,14 +29,19 @@ public class AdoptablePetConfiguration : IEntityTypeConfiguration<AdoptablePet>
         builder.Property(p => p.Notes)
                .HasMaxLength(500); // Optional
 
-        builder.Property(p => p.Neutered)
+        builder.Property(p => p.IsNeutered)
             .IsRequired()
             .HasDefaultValue(false);// False default
-        builder.Property(p => p.Vaccines)
+
+        builder.Property(p => p.HasVaccines)
             .IsRequired()
             .HasDefaultValue(false);
 
-        builder.Property(p => p.Sterilized)
+        builder.Property(p => p.IsSterilized)
+            .IsRequired()
+            .HasDefaultValue(false);
+        
+        builder.Property(p => p.IsAdopted)
             .IsRequired()
             .HasDefaultValue(false);
 
@@ -50,7 +51,6 @@ public class AdoptablePetConfiguration : IEntityTypeConfiguration<AdoptablePet>
 
         builder.Property(p => p.DatePublished)
                 .HasDefaultValueSql("getdate()");
-
 
         builder.Property(p => p.PhotoUrl)
                .IsRequired(false); // Optional
@@ -68,16 +68,16 @@ public class AdoptablePetConfiguration : IEntityTypeConfiguration<AdoptablePet>
         builder.HasIndex(p => p.AnimalType);
         builder.HasIndex(p => p.Size);
         builder.HasIndex(p => p.Gender);
-        builder.HasIndex(p => p.DateBirth);  // Para consultas basadas en edad
-        builder.HasIndex(p => p.Vaccines);
+        builder.HasIndex(p => p.Age);  // Para consultas basadas en edad
+        builder.HasIndex(p => p.HasVaccines);
         builder.HasIndex(p => p.Location);
 
         // Indice para todas las columnas del filtrado
-        builder.HasIndex(p => new { p.AnimalType, p.Size, p.Gender, p.DateBirth, p.Vaccines, p.Location });
+        builder.HasIndex(p => new { p.AnimalType, p.Size, p.Gender, p.Age, p.HasVaccines, p.Location });
 
         // Otros índices compuestos más pequeños
         builder.HasIndex(p => new { p.AnimalType, p.Size, p.Gender });
-        builder.HasIndex(p => new { p.DateBirth, p.Vaccines, p.Location });
+        builder.HasIndex(p => new { p.Age, p.HasVaccines, p.Location });
 
     }
 }
