@@ -1,29 +1,28 @@
-import PetCard from "@/components/PetCard";
-import { getAdoptablePet } from "@/data/adoptablePet/get";
+import PetsList from "@/components/pet/PetsList";
+import { fakeDataFoundsPets } from "./mascotas/encontradas/page";
+import { fakeDataLostPets } from "./mascotas/perdidas/page";
 
 export const revalidate = 60 * 60 * 24
 
 
 export default async function Home() {
-  const data = await getAdoptablePet()
   return (
-    <div className="w-11/12 mx-auto my-3 flex flex-col gap-12">
-      <div>
-        <h3 className="text-primary mb-4">En adopción</h3>
-
-        {data.success && data.data?.map((pet) => (
-          <PetCard pet={pet} key={`${pet.id}-adopcion`}/>
-        ))
-        }
+    <div className="mt-3 flex flex-col gap-12 mb-10">
+      <div className="px-4">
+        <h3 className="text-primary mb-4">Mascotas en adopción</h3>
+        <PetsList showLoad={false} />
       </div>
 
 
-      <div>
-        <h3 className="text-primary mb-4">Encontrados</h3>
-        {data.success && data.data?.map((pet) => (
-          <PetCard pet={pet} key={`${pet.id}-encontrados`}/>
-        ))
-        }
+      <div className="px-4">
+        <h3 className="text-primary mb-4">Mascotas encontradas</h3>
+        <PetsList fakeData={fakeDataFoundsPets} showLoad={false} chatIcon />
+      </div>
+
+
+      <div className="px-4">
+        <h3 className="text-primary mb-4">Mascotas Perdidas</h3>
+        <PetsList fakeData={fakeDataLostPets} showLoad={false} chatIcon />
       </div>
     </div>
   );
