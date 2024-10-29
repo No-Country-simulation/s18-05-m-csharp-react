@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-
+import { useRouter, usePathname } from "next/navigation";
 
 const options: Intl.DateTimeFormatOptions = {
   year: '2-digit',
@@ -8,11 +8,17 @@ const options: Intl.DateTimeFormatOptions = {
   day: 'numeric',
 };
 
-const PetCard = ({ pet, chatIcon }: { pet: AdoptablePet, chatIcon?: boolean }) => {
+const PetCard = ({ pet, isNotClickable, chatIcon }: { isNotClickable?: boolean, pet: AdoptablePet, chatIcon?: boolean }) => {
   const { name, dateBirth, datePublished, isAdopted, photoUrl } = pet;
+  const router = useRouter()
+  const path = usePathname()
 
   return (
-    <div className="w-[174px] text-gray flex flex-col items-center shadow-light-gray hover:shadow-lg transition-all ease duration-300" style={{ borderRadius: "70% 70% 14px 14px" }}>
+    <div className="w-[174px] text-gray flex flex-col items-center shadow-light-gray hover:shadow-lg transition-all ease duration-300" style={{ borderRadius: "70% 70% 14px 14px" }} onClick={() => {
+      if (!isNotClickable) {
+        router.push(`${path}/${pet.id}`)
+      }
+    }}>
       <header className="w-full h-[168px] flex align-middle justify-center items-end border-t-[1px] border-x-[1px] border-light-gray rounded-t-full overflow-hidden">
         <Image
           src={photoUrl}

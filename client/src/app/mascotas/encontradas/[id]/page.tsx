@@ -2,7 +2,7 @@ import PetDetailCard from "@/components/pet/detail/PetDetailCard"
 
 const page = ({ params: { id } }: { params: { id: string } }) => {
   return (
-    <div className="p-5">
+    <div className="md:p-5 py-5 px-1.5">
       <PetDetailCard />
     </div>
   )

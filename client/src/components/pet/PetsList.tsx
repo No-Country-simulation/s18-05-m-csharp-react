@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import PetCard from './PetCard'
 import Loading from '../shared/Loading'
 
-const PetsList = ({ showLoad = true, fakeData = false, chatIcon = false }: { showLoad?: boolean, fakeData?: Array<any> | false, chatIcon?: boolean }) => {
+const PetsList = ({ isNotClickable = false, showLoad = true, fakeData = false, chatIcon = false }: { isNotClickable?: boolean, showLoad?: boolean, fakeData?: Array<any> | false, chatIcon?: boolean }) => {
   const [isLoading, setIsLoading] = useState<boolean>(showLoad)
   const [data, setData] = useState<Array<any>>([])
 
@@ -26,7 +26,7 @@ const PetsList = ({ showLoad = true, fakeData = false, chatIcon = false }: { sho
   return (
     <div className="flex flex-wrap gap-4 justify-evenly">
       {data.map((pet) => (
-        <PetCard pet={pet} chatIcon={chatIcon} key={`${pet.id}-mascota`} />
+        <PetCard pet={pet} chatIcon={chatIcon} key={`${pet.id}-mascota`} isNotClickable={isNotClickable} />
       ))
       }
     </div>
