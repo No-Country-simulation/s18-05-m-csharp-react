@@ -6,6 +6,7 @@ public class AdoptablePetGetAllDto
     public string Name { get; set; }
     public string PhotoUrl { get; set; }
     public DateTime DatePublished { get; set; }
-    public DateTime? DateBirth { get; set; }
+    //public DateTime? DateBirth { get; set; }
+    public string? Age { get; set; }
     public bool IsAdopted { get; set; }
 }

@@ -10,11 +10,8 @@ namespace AdoPet.Application.Services;
 
 public class AdoptablePetService : IAdoptablePetService
 {
-
     private readonly IAdoptablePetRepository _adoptablePetRepository;
     private readonly IMapper _mapper;
-
-
 
     public AdoptablePetService(IAdoptablePetRepository adoptablePetRepository, IMapper mapper)
     {
@@ -22,23 +19,18 @@ public class AdoptablePetService : IAdoptablePetService
         _mapper = mapper;
     }
 
-
-
-    public async Task<BaseResponse<AdoptablePetDto>> AddAdoptablePet(AdoptablePetDto adoptablePet, int idUser)
+    public async Task<BaseResponse<AdoptablePetCreateDto>> AddAdoptablePet(AdoptablePetCreateDto adoptablePet, int idUser)
     {
-
-        BaseResponse<AdoptablePetDto> response = new BaseResponse<AdoptablePetDto>();
+        BaseResponse<AdoptablePetCreateDto> response = new BaseResponse<AdoptablePetCreateDto>();
 
         try
         {
-
             var mappedEntity = _mapper.Map<AdoptablePet>(adoptablePet);
             mappedEntity.UserId = idUser;
             var newPet = await _adoptablePetRepository.AddAsync(mappedEntity);
-            response.Data = _mapper.Map<AdoptablePetDto>(newPet);
+            response.Data = _mapper.Map<AdoptablePetCreateDto>(newPet);
             response.Success = true;
             response.Message = "Pet added successfully";
-
         }
 
         catch (Exception ex)
@@ -47,13 +39,10 @@ public class AdoptablePetService : IAdoptablePetService
             response.Message = ex.Message;
         }
         return response;
-
     }
-
 
     public async Task<BaseResponse<bool>> DeleteAdoptablePet(int id)
     {
-
         BaseResponse<bool> response = new BaseResponse<bool>();
 
         try
@@ -86,7 +75,6 @@ public class AdoptablePetService : IAdoptablePetService
 
         try
         {
-
             var pet = await _adoptablePetRepository.PetIdExistsAsync(id);
 
             if (!pet)
@@ -113,8 +101,6 @@ public class AdoptablePetService : IAdoptablePetService
 
         }
         return response;
-
-
     }
 
     public async Task<BaseResponse<AdoptablePetDto>> UpdateAdoptablePet(AdoptablePetUpdateDto adoptablePetUpdateDto, int id)

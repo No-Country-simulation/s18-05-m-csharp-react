@@ -41,7 +41,7 @@ internal class SendGridEmailService : IEmailService
 
         Aquí tienes los detalles de tu nueva mascota:
         - Nombre: {pet.Name}
-        - Fecha de nacimiento: {pet.DateBirth:dd/MM/yyyy}
+        - Fecha de nacimiento: {pet.Age}
         - Cuidador actual: {formerOwner.Name} {formerOwner.LastName}
 
         Por favor, responde a este correo lo antes posible para coordinar los siguientes pasos con {formerOwner.Name}.
@@ -58,7 +58,7 @@ internal class SendGridEmailService : IEmailService
             <p>Estamos seguros de que <strong>{pet.Name}</strong> será muy feliz contigo. Aquí tienes los detalles de tu nueva mascota:</p>
          <ul>
             <li><strong>Nombre:</strong> {pet.Name}</li>
-            <li><strong>Fecha de nacimiento:</strong> {pet.DateBirth:dd/MM/yyyy}</li>
+            <li><strong>Fecha de nacimiento:</strong> {pet.Age}</li>
             <li><strong>Cuidador actual:</strong> {formerOwner.Name} {formerOwner.LastName}</li>
         </ul>
         <p>Para coordinar los próximos pasos, haz clic en el botón a continuación o responde a este correo:</p>

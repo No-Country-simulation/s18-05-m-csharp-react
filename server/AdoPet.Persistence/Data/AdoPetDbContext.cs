@@ -15,6 +15,10 @@ public class AdoPetDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 
     public DbSet<AdoptablePet> AdoptablePets { get; set; }
     public DbSet<AdoptionRequest> AdoptionRequests { get; set; }
+    public DbSet<LostPet> LostPets { get; set; }
+    public DbSet<LostPetMatchRequest> LostPetMatchRequests { get; set; }
+    public DbSet<FoundPet> FoundPets { get; set; }
+    public DbSet<FoundPetClaim> FoundPetClaims { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
