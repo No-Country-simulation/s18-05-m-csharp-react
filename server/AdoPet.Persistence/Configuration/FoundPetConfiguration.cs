@@ -11,7 +11,7 @@ public class FoundPetConfiguration: IEntityTypeConfiguration<FoundPet>
         builder.HasKey(lp => lp.Id);
 
         builder.Property(lp => lp.Name)
-               .IsRequired()
+               .IsRequired(false)
                .HasMaxLength(100);
 
         builder.Property(lp => lp.AnimalType)

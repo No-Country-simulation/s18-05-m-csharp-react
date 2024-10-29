@@ -20,6 +20,7 @@ public static class PersistenceServiceExtensions
         // repositories
         services.AddScoped<IAdoptablePetRepository, AdoptablePetRepository>();
         services.AddScoped<IAdoptionRequestRepository, AdoptionRequestRepository>();
+        services.AddScoped<IFoundPetRepository, FoundPetRepository>();
         return services;
     }
 }
