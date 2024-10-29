@@ -13,7 +13,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 2,
     "name": "Rocky",
-    "photoUrl": "",
+    "photoUrl": "https://img.freepik.com/foto-gratis/perro-lindo-durmiendo-generado_23-2150651518.jpg?ga=GA1.1.518896649.1729735689&semt=ais_hybrid",
     "datePublished": "2024-10-18T14:45:50.01",
     "dateBirth": "2023-01-21T00:00:00",
     "isAdopted": true,
@@ -21,17 +21,17 @@ export const fakeDataFoundsPets = [
   },
   {
     "id": 3,
-    "name": "Bella",
-    "photoUrl": "",
+    "name": "Lobo",
+    "photoUrl": "https://img.freepik.com/foto-gratis/retrato-gato-hermoso-cerca_23-2149214422.jpg?ga=GA1.1.518896649.1729735689&semt=ais_hybrid",
     "datePublished": "2024-10-19T16:15:30.47",
     "dateBirth": "2022-08-05T00:00:00",
     "isAdopted": false,
-    "notes": "Pequeña y juguetona, la encontramos junto a un parque infantil."
+    "notes": "Es muy jugueton, lo encontramos junto a un parque infantil."
   },
   {
     "id": 4,
     "name": "Coco",
-    "photoUrl": "",
+    "photoUrl": "https://img.freepik.com/foto-gratis/nina-bonita-esta-jugando-conejo-mascota-concepto-mascotas_169016-60231.jpg?ga=GA1.1.518896649.1729735689&semt=ais_hybrid",
     "datePublished": "2024-10-20T08:20:11.63",
     "dateBirth": "2021-12-17T00:00:00",
     "isAdopted": true,
@@ -40,7 +40,7 @@ export const fakeDataFoundsPets = [
   {
     "id": 7,
     "name": "Milo",
-    "photoUrl": "",
+    "photoUrl": "https://img.freepik.com/foto-gratis/disparo-vertical-lindo-gato-gris-mirando-arriba_181624-57613.jpg?ga=GA1.1.518896649.1729735689&semt=ais_hybrid",
     "datePublished": "2024-10-21T10:15:30.78",
     "dateBirth": "2020-03-11T00:00:00",
     "isAdopted": true,
