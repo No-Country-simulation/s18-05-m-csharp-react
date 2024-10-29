@@ -1,6 +1,6 @@
 import PetsList from "@/components/pet/PetsList";
-import { fakeDataFoundsPets } from "./mascotas/encontradas/page";
-import { fakeDataLostPets } from "./mascotas/perdidas/page";
+import foundsPets from "@/data/fakeData/FoundsPets";
+import lostPets from "@/data/fakeData/LostPets";
 import Link from "next/link";
 
 export const revalidate = 60 * 60 * 24
@@ -17,13 +17,13 @@ export default async function Home() {
 
       <div className="md:px-4 px-0">
         <Link href={"/mascotas/encontradas"} className="text-title-secondary px-4 font-bold text-primary mb-6 block">Mascotas encontradas</Link>
-        <PetsList fakeData={fakeDataFoundsPets} showLoad={false} chatIcon isNotClickable />
+        <PetsList fakeData={foundsPets} showLoad={false} chatIcon isNotClickable />
       </div>
 
 
       <div className="md:px-4 px-0">
         <Link href={"/mascotas/perdidas"} className="text-title-secondary px-4 font-bold text-primary mb-6 block">Mascotas Perdidas</Link>
-        <PetsList fakeData={fakeDataLostPets} showLoad={false} chatIcon isNotClickable />
+        <PetsList fakeData={lostPets} showLoad={false} chatIcon isNotClickable />
       </div>
     </div>
   );
