@@ -9,20 +9,20 @@ export default function SobreNosotros() {
   ]
 
   return (
-    <div className="bg-white text-foreground p-5">
-      <h1 className="text-title font-bold text-primary mb-8 text-center">Sobre Nosotros</h1>
+    <div className="tracking-wide text-foreground p-5">
+      <h1 className="text-primary mb-8 text-center">Sobre Nosotros</h1>
 
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <div className="space-y-6">
-          <h2 className="text-title-secondary font-bold text-secondary">Nuestra Misión</h2>
-          <p className="text-body">
+          <h2 className="text-secondary leading-none">Nuestra Misión</h2>
+          <p className="text-body pl-3 leading-relaxed">
             En <span className="font-semibold text-secondary">AdoPet</span>, nos dedicamos a proporcionar hogares amorosos para todos los animales necesitados.
             Nuestro apasionado equipo trabaja incansablemente para rescatar, rehabilitar y reubicar mascotas,
             asegurando que reciban el cuidado y el afecto que merecen.
           </p>
 
-          <h2 className="text-title-secondary font-bold text-secondary">Nuestro Impacto</h2>
-          <p className="text-body">
+          <h2 className="text-secondary leading-none">Nuestro Impacto</h2>
+          <p className="text-body pl-3 leading-relaxed">
             Desde nuestra fundación en 2010, hemos logrado reubicar con éxito a más de 10,000 animales y reunir
             a innumerables mascotas perdidas con sus familias. Nuestra red de voluntarios y hogares de acogida
             nos permite brindar atención personalizada a cada animal en nuestro programa.
@@ -63,7 +63,7 @@ export default function SobreNosotros() {
         ))}
       </div>
 
-      <div className="bg-custom-gradient-2 rounded-lg p-8 text-white">
+      <div className="bg-custom-gradient-2 rounded-lg p-8 py-14 text-white">
         <h2 className="text-title-secondary font-bold mb-4 text-center">Únete a Nuestra Causa</h2>
         <p className="text-body text-center max-w-2xl mx-auto">
           Ya sea que estés buscando adoptar, ser voluntario o donar, hay muchas formas de apoyar

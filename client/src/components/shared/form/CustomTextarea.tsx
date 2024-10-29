@@ -1,4 +1,4 @@
-import { Description, Field, Label, Textarea, TextareaProps } from '@headlessui/react'
+import { Field, Label, Textarea, TextareaProps } from '@headlessui/react'
 import clsx from 'clsx'
 import { forwardRef } from 'react'
 
@@ -14,7 +14,6 @@ const CustomTextArea = forwardRef<HTMLTextAreaElement, PropsCustomTextArea>((pro
     <div className="w-full">
       <Field>
         <Label className="text-subtitle text-dark-gray">{label}</Label>
-        {/* <Description className="text-sm/6 text-white/50">This will be shown under the product title.</Description> */}
         <Textarea
           ref={ref}
           {...props}

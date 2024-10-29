@@ -11,8 +11,8 @@ export default function Ayudanos() {
   ]
 
   return (
-    <div className="bg-white text-foreground">
-      <h1 className="text-title font-bold text-primary text-center p-5">Ayúdanos a Marcar la Diferencia</h1>
+    <div className="bg-white text-foreground tracking-wide">
+      <h1 className="text-primary text-center p-5">Ayúdanos a Marcar la Diferencia</h1>
 
       <div className="grid md:grid-cols-3 gap-8 p-5 items-center">
         {helpOptions.map((option, index) => (
@@ -35,15 +35,15 @@ export default function Ayudanos() {
         ))}
       </div>
 
-      <div className="bg-custom-gradient-3 text-white">
-        <div className="py-14 px-8 text-center">
-          <h2 className="text-title-secondary font-bold mb-4">Juntos, Podemos Salvar Vidas</h2>
-          <p className="text-body max-w-2xl mx-auto mb-6">
+      <div className="bg-custom-gradient-3 text-white mt-8 mb-[-42px] pb-[22px]">
+        <div className="py-16 px-8 text-center">
+          <h2 className="mb-4">Juntos, Podemos Salvar Vidas</h2>
+          <p className="text-body max-w-2xl  mx-auto mb-6">
             Ya sea que te ofrezcas como voluntario, acojas o dones, tu apoyo es crucial en nuestra
             misión de rescatar y reubicar a los animales necesitados. Únete a nosotros para marcar
             la diferencia hoy.
           </p>
-          <CustomButton text={"Involúcrate"} />
+          <CustomButton type="submit" extraClass="h-12" text="Involúcrate" />
         </div>
       </div>
     </div>

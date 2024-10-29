@@ -14,7 +14,7 @@ const PetCard = ({ pet, isNotClickable, chatIcon }: { isNotClickable?: boolean, 
   const path = usePathname()
 
   return (
-    <div className="w-[174px] text-gray flex flex-col items-center shadow-light-gray hover:shadow-lg transition-all ease duration-300" style={{ borderRadius: "70% 70% 14px 14px" }} onClick={() => {
+    <div className="w-[174px] text-gray flex flex-col items-center shadow-light-gray hover:shadow-lg hover:scale-105 transition-all ease duration-300" style={{ borderRadius: "70% 70% 14px 14px" }} onClick={() => {
       if (!isNotClickable) {
         router.push(`${path}/${pet.id}`)
       }
