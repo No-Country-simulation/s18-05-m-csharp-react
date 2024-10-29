@@ -2,10 +2,8 @@ import CustomInput, { CustomInputProps } from '@/components/shared/form/CustomIn
 import Image from 'next/image'
 import { forwardRef } from 'react'
 
-interface LocationInputProps extends CustomInputProps {
-}
 
-const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(
+const LocationInput = forwardRef<HTMLInputElement, CustomInputProps>(
   (props, ref) => {
     return (
       <CustomInput
@@ -18,9 +16,9 @@ const LocationInput = forwardRef<HTMLInputElement, LocationInputProps>(
         <Image
           src="/assets/icons/location.svg"
           alt="Location Icon"
-          width={21}
+          width={17}
           height={21}
-          className="absolute left-2 top-[57px] transform -translate-y-1/2"
+          className="absolute left-3 top-[57px] transform -translate-y-1/2"
         />
       </CustomInput>
     )

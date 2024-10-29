@@ -1,5 +1,6 @@
+import { FC } from "react"
 
-const page = () => {
+const page: FC<{ params: { id: string } }> = ({ params: { id } }) => {
   return (
     <div>page</div>
   )

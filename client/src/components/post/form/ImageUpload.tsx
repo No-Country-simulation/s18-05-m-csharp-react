@@ -1,9 +1,8 @@
 import { forwardRef, InputHTMLAttributes, useState } from "react";
 
-interface ImageUploadProps extends InputHTMLAttributes<HTMLInputElement> {
-}
 
-const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
+
+const ImageUpload = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   (props, ref) => {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
