@@ -75,9 +75,9 @@ const CustomForm: FC<Props> = (props) => {
                   extraClass=" rounded-xl"
                   topLabel={"Edad*"}
                   placeholder={"2 años, 2 meses (edad estimada)"}
-                  key={"dateBirth"}
-                  {...register("dateBirth", defaultRequireValidation)}
-                  error={errors?.dateBirth?.message}
+                  key={"age"}
+                  {...register("age", defaultRequireValidation)}
+                  error={errors?.age?.message}
                 />
               </>)
             }
