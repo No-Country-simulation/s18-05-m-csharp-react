@@ -17,6 +17,8 @@ const register = (data: RegisterFormValues): Promise<boolean> => {
       if (res.error) throw new Error(res.error)
       return true
     })
+    // Esto es porque no devuelve nada que se pueda transformar en json
+    .catch(e => true)
 }
 
 export default register
