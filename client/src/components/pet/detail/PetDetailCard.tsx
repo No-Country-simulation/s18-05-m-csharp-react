@@ -75,6 +75,7 @@ const PetDetailCard: FC<Props> = (props) => {
             : "Franco Maidana"
         }
         text={isForAdoptablePet ? "¡Aplicar para adopción!" : "!Es mi mascota!"}
+        postulateText={isForAdoptablePet ? "¡Postulado exitosamente!" : "!Solicitud enviada!"}
       />
     </div>
   )

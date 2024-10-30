@@ -1,10 +1,11 @@
 import CustomButton from "@/components/shared/form/CustomButton";
 import { createAdoptionRequest } from "@/data/adoptionRequest/post";
 import Image from "next/image";
-import { FC } from "react"
+import { FC, useState } from "react"
 
 type PetCardFooterProps = {
   poster: string;
+  postulateText: string;
   text: string;
   isForAdoptablePet?: boolean;
   petId?: number;
@@ -12,7 +13,10 @@ type PetCardFooterProps = {
 
 
 const PetCardFooter: FC<PetCardFooterProps> = (props) => {
-  const { poster, text, isForAdoptablePet, petId } = props
+  const { poster, text, postulateText, isForAdoptablePet, petId } = props
+  const [postulate, setPostulate] = useState<boolean>(false)
+  const [isFirstClick, setisFirstClick] = useState<boolean>(true)
+
 
   return (
     <footer>
@@ -61,20 +65,34 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
       <CustomButton
         extraClass="w-full mt-7 h-12 uppercase tracking-wider"
         type="button"
+        disabled={postulate}
         onClick={async (e) => {
           e.preventDefault()
-          // if (isForAdoptablePet && petId) {
-          //   const res = await createAdoptionRequest(petId)
-          //   if (res.success) {
-
-          //   }
-          // }
-          console.log(petId);
-
+          if (isForAdoptablePet && petId && isFirstClick) {
+            const res = await createAdoptionRequest(petId)
+            if (res.success) {
+              setPostulate(true)
+              setisFirstClick(false)
+            }
+          } else {
+            setPostulate(true)
+          }
         }}
       >
-        {text}
+        {
+          postulate
+            ? postulateText
+            : text
+        }
       </CustomButton>
+      {
+        postulate && <button className="block mx-auto mb-3 mt-6 text-center text-secondary font-semibold hover:underline" type="button" onClick={(e) => {
+
+          setPostulate(false)
+        }}>
+          Cancelar postulación
+        </button>
+      }
     </footer>
   )
 }
