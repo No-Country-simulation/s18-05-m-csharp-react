@@ -2,6 +2,7 @@
 import ChatAndCallIcon from '@/components/pet/ChatAndCallIcon';
 import Loading from '@/components/shared/Loading';
 import { getAdoptionRequest } from '@/data/adoptionRequest/get';
+import { updateOneAdoptionRequest } from '@/data/adoptionRequest/put';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -15,10 +16,20 @@ export default function AdoptionManagement({ hiddenTitle }: { hiddenTitle?: bool
     setExpandedRequest(expandedRequest === id ? null : id);
   };
 
-  const handleStatusChange = (id: number, newStatus: 'aprobada' | 'rechazada') => {
+  const handleStatusChange = async (id: number, newStatus: 'aprobada' | 'rechazada') => {
     setRequests(requests.map(request =>
       request.id === id ? { ...request, status: newStatus === 'aprobada' ? 1 : 2 } : request
     ));
+
+    try {
+      const data = await updateOneAdoptionRequest(id, newStatus === 'aprobada' ? 1 : 2)
+      if (process.env.MODE === "dev") {
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
   };
 
   useEffect(() => {
@@ -44,15 +55,15 @@ export default function AdoptionManagement({ hiddenTitle }: { hiddenTitle?: bool
         ) : requests.length > 0 ? (
           requests.map(request => (
             <div key={request.id} className={`border border-primary rounded-lg overflow-hidden transition-all ease-in-out duration-300 ${expandedRequest === request.id ? 'bg-custom-gradient text-white border-transparent' : 'bg-white'}`}>
-              <div className="flex items-center justify-between p-6" onClick={() => handleExpand(request.id)}>
+              <div className="flex flex-wrap gap-y-2 items-center justify-between p-6 relative" onClick={() => handleExpand(request.id)}>
                 <div>
                   <h3>{request.name} ({request.age})</h3>
                   <p className={expandedRequest === request.id ? 'text-white' : 'text-dark-gray'}>
                     Solicitado por: {request.adoptable.name} {request.adoptable.lastName}
                   </p>
                 </div>
-                <div className="flex items-center">
-                  <span className={`px-4 py-2 rounded-full text-small font-semibold mr-2 transition-all duration-300 ${request.status === 0 ? 'bg-yellow-100 text-yellow-700' : request.status === 1 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <div className="flex items-center gap-2 ml-auto">
+                  <span className={`px-4 py-2 rounded-full text-small font-semibold transition-all duration-300 ${request.status === 0 ? 'bg-yellow-100 text-yellow-700' : request.status === 1 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                     {request.status === 0 ? 'Pendiente' : request.status === 1 ? 'Aprobada' : 'Rechazada'}
                   </span>
                   <Image
@@ -60,7 +71,7 @@ export default function AdoptionManagement({ hiddenTitle }: { hiddenTitle?: bool
                     width={24}
                     height={24}
                     src="/assets/icons/arrow_down.svg"
-                    className="transition-transform duration-300 transform"
+                    className="transition-transform duration-300 transform md:relative absolute top-1/3 right-4"
                     style={{ transform: expandedRequest === request.id ? 'rotate(180deg)' : 'rotate(0deg)' }}
                   />
                 </div>
@@ -88,7 +99,9 @@ export default function AdoptionManagement({ hiddenTitle }: { hiddenTitle?: bool
                       {request.status === 0 && (
                         <div className="flex justify-end space-x-3">
                           <button
-                            onClick={() => handleStatusChange(request.id, 'aprobada')}
+                            onClick={() => {
+                              handleStatusChange(request.id, 'aprobada')
+                            }}
                             className="flex items-center px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-300"
                           >
                             <Image

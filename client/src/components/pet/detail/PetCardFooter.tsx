@@ -10,6 +10,7 @@ type PetCardFooterProps = {
   text: string;
   isForAdoptablePet?: boolean;
   petId?: number;
+  alreadyAdopted?: boolean
 }
 
 
@@ -43,7 +44,7 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
       <CustomButton
         extraClass="w-full mt-7 h-12 uppercase tracking-wider"
         type="button"
-        disabled={postulate}
+        disabled={props.alreadyAdopted ? true : postulate}
         onClick={async (e) => {
           e.preventDefault()
           if (isForAdoptablePet && petId && isFirstClick) {
@@ -58,7 +59,7 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
         }}
       >
         {
-          postulate
+          postulate || props.alreadyAdopted
             ? postulateText
             : text
         }
