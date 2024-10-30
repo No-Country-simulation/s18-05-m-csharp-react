@@ -73,7 +73,7 @@ export default function Donar() {
 
             <CustomInput topLabel="Correo Electrónico" placeholder="ejemplo@correo.com" type="email" id="email" name="email" />
 
-            <CustomButton type="submit" extraClass="w-full h-12" text="Donar Ahora" />
+            <CustomButton type="submit" extraClass="w-full h-12" text="Donar Ahora" disabled title="La funcionalidad no se encuentra activada"/>
 
           </form>
 

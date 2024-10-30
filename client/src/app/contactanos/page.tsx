@@ -36,7 +36,7 @@ export default function Contactanos() {
 
             <CustomTextArea id="message" name="message" rows={4} label="Mensaje" placeholder="Me gusta mucho lo que hacen, quiero saber más..." />
 
-            <CustomButton extraClass="h-10 w-full" text={"Enviar"} />
+            <CustomButton extraClass="h-10 w-full" text={"Enviar"} disabled title="La funcionalidad no se encuentra activada"/>
           </form>
         </div>
 
