@@ -47,7 +47,12 @@ const PetDetailCard: FC<Props> = (props) => {
             ? new Date(petData.datePublished).toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "2-digit" })
             : "15/10/24"
         }
-        genre="Hembra"
+        genre={
+          petData
+            ? petData.gender === 0 ? "Macho" : petData.gender === 1 ? "Hembra"
+              : "Desconocido"
+            : "Macho"
+        }
         birthDate={petData?.age ?? "5 años"}
         notes={petData?.notes ?? "Encontré a esta perrita corriendo asustada por la Avenida Córdoba. Se nota que tiene dueño, tiene puesto un collar con su nombre."}
         isForAdoptablePet={isForAdoptablePet}
