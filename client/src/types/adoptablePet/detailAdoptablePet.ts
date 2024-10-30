@@ -6,11 +6,11 @@ type DetailAdoptablePetCheck = {
 }
 
 type DetailAdoptablePet = AdoptablePet & DetailAdoptablePetCheck & {
-  gender: 0 | 1 | 2;
+  gender: 0 | 1 | 2 | number;
   location: string;
   animalType: number;
   notes: string;
-  size: 0 | 1 | 2;
+  size: 0 | 1 | 2 | number;
   userId: number;
   healthIssues: string;
   owner: {

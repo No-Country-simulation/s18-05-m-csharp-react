@@ -90,7 +90,7 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
 
           setPostulate(false)
         }}>
-          Cancelar postulación
+          Cancelar
         </button>
       }
     </footer>
