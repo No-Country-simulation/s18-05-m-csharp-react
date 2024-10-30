@@ -81,7 +81,7 @@ export default function LostPetForm() {
           />
 
           <CustomTextArea
-            {...register("diseases")}
+            {...register("healthIssues")}
             placeholder={"¿Tiene alguna enfermedad relevante? ¿Toma alguna medicación?"}
             label="Enfermedades"
           />
