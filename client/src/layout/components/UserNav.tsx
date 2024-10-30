@@ -20,7 +20,10 @@ const UserNav = () => {
       <CustomPopover
         aria-label="Messages"
         className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
-        options={[{ href: "/#", label: "Ver mensajes" }, { href: "/#", label: "Nuevo mensaje" }]}
+        options={[
+          { href: "/#", label: "Ver mensajes", isDisabled: true },
+          { href: "/#", label: "Nuevo mensaje", isDisabled: true }
+        ]}
       >
         <Image
           src={"/assets/icons/chat.svg"}
@@ -57,7 +60,7 @@ const UserNav = () => {
         className="p-2 hover:bg-white-100 rounded-full transition-colors focus:outline-primary-light-500"
         options={[
           { href: "/mi-perfil", label: "Ver perfil" },
-          { href: "/#", label: "Ajustes" }
+          { href: "/#", label: "Ajustes", isDisabled: true }
         ]}
         specialContent={
           <button className="rounded-lg py-2 px-4 transition hover:bg-red-400 block hover:text-white w-full text-left text-small" onClick={logOut} >

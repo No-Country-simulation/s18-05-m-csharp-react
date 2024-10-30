@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
 interface Props extends ComponentPropsWithoutRef<typeof PopoverButton> {
   children: ReactNode,
-  options: { label: string; href: string }[],
+  options: { label: string; isDisabled?: boolean; href: string }[],
   specialContent?: ReactNode
 }
 
@@ -25,8 +25,8 @@ const CustomPopover: FC<Props> = (props) => {
       >
         <div className="p-2">
           {
-            options.map(({ label, href }, i) => (
-              <Link key={label + "-" + i} className="rounded-lg text-small py-2 px-4 transition hover:bg-primary-light hover:text-white block" href={href}>
+            options.map(({ label, href, isDisabled }, i) => (
+              <Link key={label + "-" + i} className={`rounded-lg text-small py-2 px-4 transition  block ${isDisabled ? "bg-black/10 cursor-not-allowed" : "hover:bg-primary-light hover:text-white"}`} href={href}>
                 {label}
               </Link>
             ))
