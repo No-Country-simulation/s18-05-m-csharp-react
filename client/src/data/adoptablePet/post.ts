@@ -12,7 +12,7 @@ const createOne = async (pet: any): Promise<ResponseDetailAdoptablePet> => {
       token: getCookie('token')
     });
     if (!res.success) return { data: res, success: false };
-    return { data: res, success: true };
+    return res;
   } catch (error) {
     return { data: null, ...responseError(error) }
   }

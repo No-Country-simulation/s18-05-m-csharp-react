@@ -6,9 +6,10 @@ import LinkUnderline from "../shared/LinkUnderline";
 
 type Props = {
   imageSrc?: string
+  namePet?: string
 };
 
-const SuccessCard: FC<Props> = ({ imageSrc }) => {
+const SuccessCard: FC<Props> = ({ namePet, imageSrc }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -28,7 +29,9 @@ const SuccessCard: FC<Props> = ({ imageSrc }) => {
           width={180}
           className="rounded-full border border-primary shadow-xl"
         />
-        <h3 className="text-dark-gray">¡Publicado con éxito!</h3>
+        <h3 className="text-dark-gray">
+          ¡{namePet ? `${namePet} ha sido publicado con éxito` : "Publicado con éxito"}!
+        </h3>:
       </header>
 
       <footer className="gap-2.5 text-center mt-5 flex flex-col">

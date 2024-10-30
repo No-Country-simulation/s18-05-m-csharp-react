@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/iniciar-sesion', request.url))
   }
 
-  if (token && request.url.includes("iniciar-sesion") || request.url.includes("registrarme")) {
+  if (token && (request.url.includes("iniciar-sesion") || request.url.includes("registrarme"))) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 

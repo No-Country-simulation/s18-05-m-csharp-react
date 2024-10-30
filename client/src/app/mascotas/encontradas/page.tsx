@@ -15,7 +15,7 @@ const page = () => {
         </p>
       </div>
 
-      <div className="container md:px-3 px-0 pt-5 mx-auto mb-6 min-h-[50vh]">
+      <div className="container lg:px-3 md:px-1 px-0 pt-5 xl:mx-0 mx-auto mb-6 min-h-[50vh]">
         <PetsList fakeData={foundsPets} chatIcon />
       </div>
     </div>

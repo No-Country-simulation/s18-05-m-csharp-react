@@ -1,13 +1,18 @@
-type DetailAdoptablePet = AdoptablePet & {
+
+type DetailAdoptablePetCheck = {
+  isNeutered: boolean;
+  hasVaccines: boolean;
+  isSterilized: boolean;
+}
+
+type DetailAdoptablePet = AdoptablePet & DetailAdoptablePetCheck & {
   gender: 0 | 1 | 2;
   location: string;
   animalType: number;
   notes: string;
-  neutered: boolean;
-  vaccines: boolean;
-  sterilized: boolean;
   size: 0 | 1 | 2;
   userId: number;
+  healthIssues: string;
   owner: {
     name: string;
     lastName: string;

@@ -25,7 +25,7 @@ const PetCardHeader: FC<PetCardHeaderProps> = (props) => {
             height={21}
             className="inline-block mr-1 align-middle"
           />
-          {distance} km
+          {distance}
         </p>
       </div>
       <div className="relative w-[180px] h-[180px] rounded-full overflow-hidden flex align-middle mt-[-60px]">
