@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { forwardRef, InputHTMLAttributes, useState } from "react";
 
 
@@ -21,7 +22,7 @@ const ImageUpload = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputEl
         transition-all ease duration-300 border-2 border-primary-light-500 rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-white mt-[-96px] mb-5`}
       >
         {previewUrl ? (
-          <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+          <Image width={528} height={192} src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
         ) : (
           <div className="flex flex-col text-center text-light-gray">
             + <span>Cargar foto*</span>

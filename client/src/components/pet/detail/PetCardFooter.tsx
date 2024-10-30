@@ -2,6 +2,7 @@ import CustomButton from "@/components/shared/form/CustomButton";
 import { createAdoptionRequest } from "@/data/adoptionRequest/post";
 import Image from "next/image";
 import { FC, useState } from "react"
+import ChatAndCallIcon from "../ChatAndCallIcon";
 
 type PetCardFooterProps = {
   poster: string;
@@ -9,6 +10,7 @@ type PetCardFooterProps = {
   text: string;
   isForAdoptablePet?: boolean;
   petId?: number;
+  alreadyAdopted?: boolean
 }
 
 
@@ -36,36 +38,13 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
           </div>
 
         </div>
-        <div className={`w-1/3 flex ${isForAdoptablePet ? "justify-end" : "justify-evenly"}`}>
-          {
-            !isForAdoptablePet &&
-            <div className="cursor-pointer p-2 hover:scale-105 hover:shadow-lg transition-all transform duration-200 border border-primary-light-500 rounded-full">
-              <Image
-                src={"/assets/icons/call-phone.svg"}
-                alt={"call-icon"}
-                width={28}
-                height={26}
-                className="text-sm"
-              />
-            </div>
-          }
-
-          <div className="cursor-pointer p-2 hover:scale-105 hover:shadow-lg transition-all transform duration-200 border border-primary-light-500 rounded-full">
-            <Image
-              src={"/assets/icons/chat-multiple.svg"}
-              alt={"chat-icon"}
-              width={26}
-              height={26}
-              className="text-sm"
-            />
-          </div>
-        </div>
+        <ChatAndCallIcon isForAdoptablePet={isForAdoptablePet} />
       </div>
 
       <CustomButton
         extraClass="w-full mt-7 h-12 uppercase tracking-wider"
         type="button"
-        disabled={postulate}
+        disabled={props.alreadyAdopted ? true : postulate}
         onClick={async (e) => {
           e.preventDefault()
           if (isForAdoptablePet && petId && isFirstClick) {
@@ -80,7 +59,7 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
         }}
       >
         {
-          postulate
+          postulate || props.alreadyAdopted
             ? postulateText
             : text
         }

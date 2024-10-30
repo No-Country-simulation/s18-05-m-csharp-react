@@ -74,13 +74,22 @@ const PetDetailCard: FC<Props> = (props) => {
         <PetCardFooter
           petId={petId}
           isForAdoptablePet={isForAdoptablePet}
+          alreadyAdopted={petData?.isAdopted}
           poster={
             petData?.owner
               ? `${petData.owner.name} ${petData.owner.lastName}`
               : "Franco Maidana"
           }
-          text={isForAdoptablePet ? "¡Aplicar para adopción!" : isForLostPet ? "¡Lo encontre!" : "!Es mi mascota!"}
-          postulateText={isForAdoptablePet ? "¡Postulado exitosamente!" : isForLostPet ? "¡Aviso enviado!" : "!Solicitud enviada!"}
+          text={isForAdoptablePet
+            ? "¡Aplicar para adopción!"
+            : isForLostPet
+              ? "¡Lo encontre!"
+              : "!Es mi mascota!"}
+          postulateText={isForAdoptablePet
+            ? petData?.isAdopted ? "Ya fue adoptado" : "¡Postulado exitosamente!"
+            : isForLostPet
+              ? "¡Aviso enviado!"
+              : "!Solicitud enviada!"}
         />
       </div>
     </>

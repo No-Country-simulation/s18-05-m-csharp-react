@@ -1,46 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# AdoPet (Client) - Plataforma de Adopción de Mascotas 🐾
 
-Run the command below to install the dependencies:
+Este proyecto de frontend está construido con [Next.js 14](https://nextjs.org), [React 18](https://reactjs.org), y [TypeScript](https://www.typescriptlang.org), con el propósito de facilitar la adopción de mascotas, publicar mascotas encontradas, y ayudar en la difusión de mascotas perdidas para su rápida búsqueda y recuperación.
+
+## Características
+
+- **Publicación de Mascotas en Adopción:** Los usuarios pueden listar mascotas disponibles para adopción.
+- **Difusión de Mascotas Perdidas:** Permite a los usuarios publicar detalles de mascotas extraviadas.
+- **Búsqueda de Mascotas Encontradas:** Los usuarios pueden informar sobre mascotas encontradas para ayudar a que regresen con sus dueños.
+- **Gestión de Solicitudes de Adopción:** Administración y visualización de solicitudes de adopción en tiempo real.
+
+## Configuración y Ejecución 🚀
+
+### Instalación de Dependencias
+
+Primero, instala las dependencias del proyecto con el siguiente comando:
 
 ```bash
 npm install
 ```
 
-First, run the development server:
+### Ejecutar el Servidor de Desarrollo
+
+Para iniciar el entorno de desarrollo:
 
 ```bash
 npm run dev
-# or
+# o bien, puedes utilizar
 yarn dev
-# or
 pnpm dev
-# or
 bun dev
 ```
 
-Open [http://localhost:3030](http://localhost:3030) with your browser to see the result.
+Esto iniciará el servidor en el puerto 3030. Abre [http://localhost:3030](http://localhost:3030) en tu navegador para ver el proyecto en acción.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura del Proyecto
 
-This project uses local fonts in `assets/fonts` folder.
+- **`app/`**: Contiene las páginas principales y la lógica de enrutamiento.
+- **`components/`**: Componentes reutilizables para la interfaz de usuario, incluyendo inputs personalizados y formularios de búsqueda.
+- **`data/`**: Archivo de datos estáticos o configuraciones relacionadas con el proyecto.
+- **`hooks/`**: Hooks personalizados para facilitar la lógica compartida en la aplicación.
+- **`layout/`**: Estructuras de diseño comunes que se aplican a múltiples páginas.
+- **`public/`**: Recursos estáticos accesibles públicamente, como imágenes y fuentes.
+- **`store/`**: Configuración de estado global utilizando [Zustand](https://github.com/pmndrs/zustand) para la gestión de estado.
+- **`styles/`**: Archivos de configuración y estilos para Tailwind CSS, con una paleta de colores y fuentes personalizadas.
+- **`utils/`**: Funciones de utilidad que se usan en toda la aplicación para tareas comunes.
+- **`validations/`**: Archivos de validación para asegurar la integridad de los datos de entrada.
 
-## Learn More
+## Scripts Disponibles
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev`: Ejecuta el servidor de desarrollo en el puerto 3030.
+- `npm run build`: Construye el proyecto para producción.
+- `npm run start`: Inicia la aplicación en modo de producción.
+- `npm run lint`: Verifica y corrige el código con ESLint.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Recursos Adicionales
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para aprender más sobre las tecnologías utilizadas:
 
-## Deploy on Vercel
-- [Frontend](https://adopet-maidana07-projects.vercel.app/)
+- [Documentación de Next.js](https://nextjs.org/docs)
+- [Tutorial interactivo de Next.js](https://nextjs.org/learn)
+- [Repositorio GitHub de Next.js](https://github.com/vercel/next.js)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Despliegue en Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este proyecto está desplegado en [Vercel](https://vercel.com). Puedes acceder a la versión en producción [aquí](https://adopet-maidana07-projects.vercel.app/).
 
-## Author
- - [Maidana07](https://github.com/Maidana07)
+## Autor
+
+Desarrollado por [Maidana07](https://github.com/Maidana07)
+

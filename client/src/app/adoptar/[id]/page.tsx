@@ -3,6 +3,8 @@ import LinkUnderline from "@/components/shared/LinkUnderline"
 import { getAdoptablePetById } from "@/data/adoptablePet/get"
 import { FC } from "react"
 
+export const revalidate = 60 * 2 // revalidate every 2 minutes (MOMENTANEO PARA MOSTRARLO)
+
 type Props = {
   params: {
     id: string

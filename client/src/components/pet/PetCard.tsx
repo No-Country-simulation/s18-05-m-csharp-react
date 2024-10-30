@@ -9,7 +9,7 @@ const options: Intl.DateTimeFormatOptions = {
 };
 
 const PetCard = ({ pet, isNotClickable, chatIcon }: { isNotClickable?: boolean, pet: AdoptablePet, chatIcon?: boolean }) => {
-  const { name, dateBirth, datePublished, isAdopted, photoUrl } = pet;
+  const { name, age, datePublished, isAdopted, photoUrl } = pet;
   const router = useRouter()
   const path = usePathname()
 
@@ -41,7 +41,7 @@ const PetCard = ({ pet, isNotClickable, chatIcon }: { isNotClickable?: boolean, 
 
           <p>
             {
-              isAdopted ? "Adoptado" : Math.floor(((new Date()).getTime() - new Date(dateBirth).getTime()) / (1000 * 60 * 60 * 24 * 365.25)) + ' años'
+              isAdopted ? "Finalizada" : age ?? "2 años"
             }
           </p>
 

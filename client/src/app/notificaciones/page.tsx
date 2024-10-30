@@ -12,12 +12,12 @@ const items = [
 
 const page = () => {
   return (
-    <div className="container mx-auto p-6 md:p-8 lg:p-12 mb-12 transition-all duration-300 ease-in-out">
+    <div className="container mx-auto py-6 px-2 md:p-8 lg:p-12 mb-12 transition-all duration-300 ease-in-out">
       <h1 className="text-primary mb-8 text-center">Gestionar Publicaciones</h1>
       <div className="space-y-10">
         {
           items.map((item, index) => (
-            <Disclosure as="div" className="p-6 shadow-xl rounded-2xl" defaultOpen={index === 0} key={index}>
+            <Disclosure as="div" className="md:p-6 py-3 px-1 shadow-xl rounded-2xl" defaultOpen={index === 0} key={index}>
               <DisclosureButton className="group flex w-full items-center justify-between">
                 <h2 className="text-secondary">
                   {item.title}
