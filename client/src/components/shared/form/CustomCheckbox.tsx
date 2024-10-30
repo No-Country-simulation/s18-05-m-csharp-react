@@ -5,7 +5,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   checked: boolean;
   extraClassName?: string;
-  setChecked: (checked: boolean) => void
+  setChecked?: (checked: boolean) => void
 }
 
 const CustomCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) => {
@@ -16,7 +16,9 @@ const CustomCheckbox = forwardRef<HTMLInputElement, Props>((props, ref) => {
       <Checkbox
         ref={ref}
         checked={checked}
-        onChange={(e) => setChecked(e)}
+        onChange={(e) => {
+          setChecked && setChecked(e)
+        }}
         className="group block size-5 p-[1px] rounded-full data-[checked]:border-primary border bg-white data-[checked]:bg-primary-light-500"
       >
         <svg className="stroke-primary p-[1px]  bg-white rounded-full opacity-0 group-data-[checked]:opacity-100" viewBox="0 0 14 14" fill="none">

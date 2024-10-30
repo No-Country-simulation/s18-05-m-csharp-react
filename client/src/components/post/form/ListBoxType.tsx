@@ -1,6 +1,5 @@
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react"
 import Image from "next/image"
-import { useState } from "react"
 
 const animalTypes = [
   { label: "Perro", value: 0 },
@@ -8,7 +7,6 @@ const animalTypes = [
   { label: "Hamster", value: 2 },
   { label: "Ave", value: 3 },
   { label: "Conejo", value: 4 },
-  // { label: "No sé", value: 5 },
 ]
 
 interface PropsListBoxType {
