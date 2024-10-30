@@ -10,8 +10,8 @@ const page = async () => {
         <AnimalSearch />
       </div>
 
-      <div className="container px-3 mx-auto mb-6 min-h-[50vh]">
-        <PetsList />
+      <div className="container lg:px-3 md:px-1 px-0 pt-5 xl:mx-0 mx-auto mb-6 min-h-[50vh]">
+        <PetsList isForAdoptablePet />
       </div>
     </div>
   )

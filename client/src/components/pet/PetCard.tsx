@@ -41,7 +41,7 @@ const PetCard = ({ pet, isNotClickable, chatIcon }: { isNotClickable?: boolean, 
 
           <p>
             {
-              isAdopted ? "Finalizada" : age
+              isAdopted ? "Finalizada" : age ?? "2 años"
             }
           </p>
 
