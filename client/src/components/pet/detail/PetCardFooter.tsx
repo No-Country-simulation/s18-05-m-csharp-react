@@ -1,16 +1,18 @@
 import CustomButton from "@/components/shared/form/CustomButton";
+import { createAdoptionRequest } from "@/data/adoptionRequest/post";
 import Image from "next/image";
 import { FC } from "react"
 
 type PetCardFooterProps = {
   poster: string;
   text: string;
-  isForAdoptablePet?: boolean
+  isForAdoptablePet?: boolean;
+  petId?: number;
 }
 
 
 const PetCardFooter: FC<PetCardFooterProps> = (props) => {
-  const { poster, text, isForAdoptablePet } = props
+  const { poster, text, isForAdoptablePet, petId } = props
 
   return (
     <footer>
@@ -56,7 +58,21 @@ const PetCardFooter: FC<PetCardFooterProps> = (props) => {
         </div>
       </div>
 
-      <CustomButton extraClass="w-full mt-7 h-12 uppercase tracking-wider">
+      <CustomButton
+        extraClass="w-full mt-7 h-12 uppercase tracking-wider"
+        type="button"
+        onClick={async (e) => {
+          e.preventDefault()
+          // if (isForAdoptablePet && petId) {
+          //   const res = await createAdoptionRequest(petId)
+          //   if (res.success) {
+
+          //   }
+          // }
+          console.log(petId);
+
+        }}
+      >
         {text}
       </CustomButton>
     </footer>

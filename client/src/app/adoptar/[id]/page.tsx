@@ -19,7 +19,7 @@ const page: FC<Props> = async ({ params: { id } }) => {
 
   return (
     <div className="md:p-5 py-5 px-1.5">
-      <PetDetailCard isForAdoptablePet petData={petData} />
+      <PetDetailCard isForAdoptablePet petData={petData} petId={id} />
     </div>
   )
 }

@@ -8,11 +8,12 @@ import PetCardChecks from "./PetCardChecks"
 
 type Props = {
   isForAdoptablePet?: boolean,
-  petData?: DetailAdoptablePet
+  petData?: DetailAdoptablePet,
+  petId?: number,
 }
 
 const PetDetailCard: FC<Props> = (props) => {
-  const { isForAdoptablePet, petData } = props
+  const { isForAdoptablePet, petData, petId } = props
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-lg my-8 mx-auto">
@@ -66,6 +67,7 @@ const PetDetailCard: FC<Props> = (props) => {
       />
 
       <PetCardFooter
+        petId={petId}
         isForAdoptablePet={isForAdoptablePet}
         poster={
           petData?.owner
