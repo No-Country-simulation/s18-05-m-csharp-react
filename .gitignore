@@ -8,3 +8,10 @@
 
 **/.env
 **/.env.local
+
+# Client
+client/.next
+client/.vercel
+client/bun.lockb
+client/next-env.d.ts
+*.tsbuildinfo
