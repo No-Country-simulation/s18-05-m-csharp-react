@@ -1,4 +1,4 @@
-# AdopPet 🐶 🐱 
+# AdopPet 🐾 
 
 ## 📑 Descripción General del Proyecto
 
