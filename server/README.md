@@ -1,4 +1,4 @@
-# AdoPet API 🐶 🐱
+# AdoPet API - Plataforma de Adopción de Mascotas 🐾
 
 Esta es una API creada en ASP.NET Core Web API utilizando Clean Architecture.
 
