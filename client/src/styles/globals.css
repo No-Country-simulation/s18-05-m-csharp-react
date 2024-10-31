@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* COLOR PALETTE */
+  --primary: #5804B2;
+  --primary-light: #AF91CF;
+  --secondary: #CD7223;
+  --secondary-light: #FFDBBB;
+  --dark-gray: #595959;
+  --light-gray: #B3B3B3;
+  --gray: #686868;
+  --white: #fff;
+
+  --primary-light-500: #af91cf8f;
+
+  /* FONTS SIZES */
+  --fs-title: 34pt;
+  --fs-title-secondary: 27pt;
+  --fs-subtitle: 17pt;
+  --fs-body: 13pt;
+  --fs-small: 12pt;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sf);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: var(--fs-title);
+}
+
+h2 {
+  font-size: var(--fs-title-secondary);
+}
+
+h3 {
+  font-size: var(--fs-subtitle);
+}
+
+textarea {
+  field-sizing: content;
+}
+
+@media (width <=768px) {
+  body {
+    justify-content: start
+  }
+
+  main {
+    padding-bottom: 90px
+  }
+}
+
+
+@import url("./utiilities.css");

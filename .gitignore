@@ -486,3 +486,23 @@ $RECYCLE.BIN/
 # Exclude appsettings.Development.json
 /server/AdoPet.API/appsettings.Development.json
 /server/AdoPet.API/appsettings.json
+
+
+# === Frontend ====
+.vscode
+**/.vscode
+
+**/node_modules
+
+**/dist
+**/build
+
+**/.env
+**/.env.local
+
+# Client
+client/.next
+client/.vercel
+client/bun.lockb
+client/next-env.d.ts
+*.tsbuildinfo
