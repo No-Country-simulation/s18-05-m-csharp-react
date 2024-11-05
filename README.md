@@ -116,7 +116,7 @@
       <div>
        <h4>Backend</h4>
         <a href="https://www.linkedin.com/in/marcossoares1/" target="_blank" rel="author">
-          <img width="110" src="https://media.licdn.com/dms/image/v2/D4D35AQG79gcd-FBbRA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1728842464433?e=1730822400&v=beta&t=OsDJfUx8Nbt-KpvfcKbdLoJN7FB-9vHEaPwOL1QqCKw"/>
+          <img width="110" src="https://media.licdn.com/dms/image/v2/D4D35AQG79gcd-FBbRA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1728842464433?e=1731441600&v=beta&t=sLzWlDyhyGZkAZQCIttPVcTfy9lpU33HhT9yoTPsw-c"/>
         </a>
           <h4 style="margin-top: 1rem;">Marcos <br>Soares</h4>
         <div style='display: flex; flex-direction: column'>
